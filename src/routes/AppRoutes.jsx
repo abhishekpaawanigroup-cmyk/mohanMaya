@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router/dom";
 
 import React from "react";
 import WebsiteLayout from "../layouts/WebsiteLayout";
+import Home from "../pages/website/Home/Home";
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
@@ -12,7 +13,7 @@ const AppRoutes = () => {
       children: [
         {
           index: true,
-          element: <h1 className="text-2xl font-bold">HOME PAGE</h1>,
+          element: <Home />,
         },
       ],
     },
