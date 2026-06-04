@@ -73,7 +73,7 @@ const FeaturedProduct = () => {
   };
   return (
     <section className="bg-[#f4f4f4] py-20">
-      <div className=" mx-auto px-8 relative max-w-[1440px]">
+      <div className="mx-auto px-8 relative max-w-360">
         {/* Custom Arrows */}
         <button className="custom-prev absolute left-0 top-[35%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
@@ -120,7 +120,7 @@ const FeaturedProduct = () => {
                   )}
 
                   {/* Product Image */}
-                  <div className="h-[250px] flex items-center justify-center overflow-hidden">
+                  <div className="h-62.5 flex items-center justify-center overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -154,7 +154,7 @@ const FeaturedProduct = () => {
                 </div>
 
                 {/* Product Info */}
-                <div className="mt-6 flex-grow">
+                <div className="mt-6 grow">
                   <h3 className="text-[18px] font-bold text-[#1d1d1d] line-clamp-2 hover:text-[#c1965e] transition-colors">
                     {item.name}
                   </h3>

@@ -18,8 +18,8 @@ const Header = () => {
 
   return (
     <header className="w-full border-t border-[#c89d65] bg-white">
-      <div className="max-w-[1440px] mx-auto px-8">
-        <div className="h-[110px] flex items-center justify-between">
+      <div className="max-w-360 mx-auto px-8">
+        <div className="h-27.5 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
@@ -51,14 +51,14 @@ const Header = () => {
           {/* Right Section */}
           <div className="flex items-center gap-8">
             {/* Search */}
-            <div className="hidden md:flex items-center overflow-hidden border border-gray-300 rounded-full  h-[44px]">
+            <div className="hidden md:flex items-center overflow-hidden border border-gray-300 rounded-full h-11">
               <input
                 type="text"
                 placeholder="Search..."
                 className="flex-1 px-4 outline-none text-lg"
               />
 
-              <button className="w-[44px] h-[44px] bg-[#bf9456] flex items-center justify-center text-white text-[18px] rounded-full">
+              <button className="w-11 h-11 bg-[#bf9456] flex items-center justify-center text-white text-lg rounded-full">
                 <FiSearch />
               </button>
             </div>

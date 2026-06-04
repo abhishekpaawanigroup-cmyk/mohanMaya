@@ -39,23 +39,23 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed right-0 top-0 h-full w-80 bg-gradient-to-b from-slate-900 to-slate-800 shadow-2xl transition-transform duration-300 z-50 transform flex flex-col ${
+        className={`fixed right-0 top-0 h-full w-80 bg-linear-to-b from-slate-900 to-slate-800 shadow-2xl transition-transform duration-300 z-50 transform flex flex-col ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header - Fixed */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-700 flex-shrink-0">
+        <div className="flex items-center justify-between p-6 border-b border-slate-700 shrink-0">
           <h2 className="text-white text-xl font-bold">ADDINA</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-amber-500 transition-colors   duration-200 rounded-full duration-300"
+            className="p-2 hover:bg-amber-500 transition-colors duration-300 rounded-full"
           >
             <FiX className="text-2xl text-white" />
           </button>
         </div>
 
         {/* Search Box - Fixed */}
-        <div className="p-6 border-b border-slate-700 flex-shrink-0">
+        <div className="p-6 border-b border-slate-700 shrink-0">
           <div className="flex items-center overflow-hidden border border-slate-600 rounded-lg h-12 bg-slate-800">
             <input
               type="text"
@@ -99,13 +99,13 @@ const MobileSidebar = ({ isOpen, onClose }) => {
             </h3>
             <div className="space-y-3 text-white flex flex-col gap-2">
               <div className="flex items-center gap-3">
-                <span className="inline-block mt-1  p-[10px] rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
+                <span className="inline-block mt-1 p-2.5 rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
                   <FaLocationDot />
                 </span>
                 <p>12/A, Miranda City Tower, NYC</p>
               </div>
               <div className="flex items-center gap-3">
-                <span className="inline-block p-[10px] rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
+                <span className="inline-block p-2.5 rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
                   <FaPhone />
                 </span>
                 <a
@@ -116,7 +116,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <span className="inline-block p-[10px] rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
+                <span className="inline-block p-2.5 rounded-full shadow-[0px_1px_4px_rgba(255,255,255,0.22)]">
                   <CgMail />
                 </span>
                 <a
