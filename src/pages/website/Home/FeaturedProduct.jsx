@@ -16,44 +16,45 @@ import "swiper/css/navigation";
 const products = [
   {
     id: 1,
-    name: "Leather Chair",
+    name: "Miniature Cart",
     price: "USD 200.00",
     image:
-      "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+      "/Featured-images/mini-cart.png",
     discount: true,
   },
   {
     id: 2,
-    name: "Chair Pillow",
+    name: "Miniature Home",
     price: "USD 49.00",
     image:
-      "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes2.png",
+      "/Featured-images/mini-home.png",
   },
   {
     id: 3,
-    name: "Alexander Roll Arm Sofa",
+    name: "Miniature Toy",
     price: "USD 150.00",
     image:
-      "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+      "/Featured-images/mini-iron.png",
     discount: true,
   },
   {
     id: 4,
-    name: "Brasslegged Armchair",
+    name: "Mini Tree-House",
     price: "USD 150.00",
     image:
-      "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes4.png",
+      "/Featured-images/tree-house.png",
   },
   {
     id: 5,
-    name: "Modern Chair",
+    name: "Miniature Toy",
     price: "USD 180.00",
     image:
-      "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+      "/Featured-images/mini-iron.png",
   },
 ];
 const FeaturedProduct = () => {
   const [wishlist, setWishlist] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleAddToCart = (productId, productName) => {
     console.log(`Added to cart: ${productName}`);
@@ -73,13 +74,23 @@ const FeaturedProduct = () => {
   };
   return (
     <section className="bg-[#f4f4f4] py-20">
+      
       <div className="mx-auto px-8 relative max-w-360">
+        <div className="text-center mb-14">
+            <span className="bg-[#efebe4] text-[#c1965e] px-4 py-2 text-sm font-semibold uppercase">
+              Top Sale
+            </span>
+
+            <h2 className="text-5xl font-bold text-[#161616] mt-4">
+              Featured Products
+            </h2>
+          </div>
         {/* Custom Arrows */}
-        <button className="custom-prev absolute left-0 top-[35%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev absolute left-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next absolute right-0 top-[35%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next absolute right-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -111,7 +122,7 @@ const FeaturedProduct = () => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-[#efede4] overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="group relative bg-[#efede4] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
                   {/* Discount Badge */}
                   {item.discount && (
                     <span className="absolute top-6 left-6 z-10 bg-[#c1965e] text-white px-4 py-2 rounded-full text-lg font-semibold">
@@ -120,11 +131,11 @@ const FeaturedProduct = () => {
                   )}
 
                   {/* Product Image */}
-                  <div className="h-62.5 flex items-center justify-center overflow-hidden">
+                  <div className="h-70 flex items-center justify-center overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-[65%] object-contain transition-transform duration-500 group-hover:scale-110"
+                      className="w-[60%] object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
 

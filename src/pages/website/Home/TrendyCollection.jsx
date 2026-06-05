@@ -17,65 +17,72 @@ const productData = {
   all: [
     {
       id: 1,
-      name: "Stylish Grey Chair",
+      name: "Miniature tree",
       price: 150,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+        "/trandy-images/product-1.png",
       discount: "10% Off",
     },
     {
       id: 2,
-      name: "Chair Pillow",
+      name: "Miniature home",
       price: 190,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes4.png",
+        "/trandy-images/product-2.png",
     },
     {
       id: 3,
-      name: "Seater Gray Sofa",
+      name: "Miniature Car",
       price: 300,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+        "/trandy-images/product-3.png",
       discount: "15% Off",
     },
     {
       id: 4,
-      name: "Wooden Chair",
+      name: "Miniature Basket",
       price: 129,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes2.png",
+        "/trandy-images/product-4.png",
+    },
+    {
+      id: 2,
+      name: "Miniature home",
+      price: 190,
+      image:
+        "/trandy-images/product-2.png",
     },
   ],
 
   newIn: [
     {
       id: 5,
-      name: "Modern Sofa",
+      name: "Miniature Tree",
       price: 220,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+        "/trandy-images/product-1.png",
       discount: "20% Off",
     },
     {
       id: 6,
-      name: "Luxury Chair",
+      name: "Miniature Home",
       price: 175,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes4.png",
+        "/trandy-images/product-2.png",
     },
     {
       id: 7,
-      name: "Premium Armchair",
+      name: "Miniature Car",
       price: 280,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+        "/trandy-images/product-3.png",
     },
     {
       id: 8,
-      name: "Soft Cushion Chair",
+      name: "Miniature Basket",
       price: 149,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes2.png",
+        "/trandy-images/product-4.png",
     },
   ],
 
@@ -85,7 +92,7 @@ const productData = {
       name: "Royal Blue Sofa",
       price: 350,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes4.png",
+        "/trandy-images/product-1.png",
       discount: "25% Off",
     },
     {
@@ -93,21 +100,21 @@ const productData = {
       name: "Classic Wooden Chair",
       price: 210,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes2.png",
+        "/trandy-images/product-2.png",
     },
     {
       id: 11,
       name: "Premium Grey Sofa",
       price: 330,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+        "/trandy-images/product-3.png",
     },
     {
       id: 12,
       name: "Luxury Lounge Chair",
       price: 280,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+        "/trandy-images/product-4.png",
     },
   ],
 
@@ -117,7 +124,7 @@ const productData = {
       name: "Leather Chair",
       price: 260,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes1.png",
+        "/trandy-images/product-1.png",
       discount: "30% Off",
     },
     {
@@ -125,28 +132,28 @@ const productData = {
       name: "Velvet Armchair",
       price: 180,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes4.png",
+        "/trandy-images/product-2.png",
     },
     {
       id: 15,
       name: "Office Chair",
       price: 220,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes2.png",
+        "/trandy-images/product-3.png",
     },
     {
       id: 16,
       name: "Comfort Sofa",
       price: 400,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+        "/trandy-images/product-4.png",
     },
     {
       id: 17,
       name: "ujjawal",
       price: 400,
       image:
-        "https://preview.colorlib.com/theme/furn/assets/img/gallery/popular-imtes3.png",
+        "/trandy-images/product-1.png",
     },
   ],
 };
@@ -195,11 +202,11 @@ const TrendyCollection = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-center mb-14">
           <div>
-            <span className="bg-[#efebe4] text-[#c1965e] px-4 py-2 text-sm font-semibold uppercase">
+            <span className="bg-transparent text-[#0892d0] border border-[#0892d0] px-4 py-2 text-sm font-semibold uppercase">
               This Month
             </span>
 
-            <h2 className="text-5xl font-bold text-[#161616] mt-4">
+            <h2 className="text-5xl font-bold text-[#0f3439] mt-4">
               Trendy Collection
             </h2>
           </div>
@@ -229,11 +236,11 @@ const TrendyCollection = () => {
         </div>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev absolute left-0 top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev-trendy absolute left-0 top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next absolute translate-x-1/2 -translate-y-1/2 right-0 top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-0 top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -244,6 +251,7 @@ const TrendyCollection = () => {
             prevEl: ".custom-prev-trendy",
             nextEl: ".custom-next-trendy",
           }}
+          loop={true}
           spaceBetween={30}
           slidesPerView={4}
           breakpoints={{
@@ -265,7 +273,7 @@ const TrendyCollection = () => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-[#efede4] overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="group relative bg-[#b7f1fb] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
                   {/* Discount Badge */}
                   {item.discount && (
                     <span className="absolute top-6 left-6 z-10 bg-[#c1965e] text-white px-4 py-2 rounded-full text-lg font-semibold">
