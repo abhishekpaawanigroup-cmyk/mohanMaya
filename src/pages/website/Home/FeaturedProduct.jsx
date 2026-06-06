@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ProductPreviewModal from "./Productmodal";
 import { Navigation } from "swiper/modules";
 import {
   FiEye,
@@ -19,52 +20,81 @@ const products = [
     name: "Miniature Cart",
     price: "USD 200.00",
     image:
-      "/Featured-images/mini-cart.png",
+      "/Featured-images/mm4.png",
     discount: true,
+    gallery: [
+    "/Featured-images/mm5.png",
+    "/Featured-images/mm6.png",
+    "/Featured-images/mm7.png",
+    "/Featured-images/mm4.png",
+  ],
   },
   {
     id: 2,
     name: "Miniature Home",
     price: "USD 49.00",
     image:
-      "/Featured-images/mini-home.png",
+      "/Featured-images/mm5.png",
+      gallery: [
+    "/Featured-images/mm4.png",
+    "/Featured-images/mm5.png",
+    "/Featured-images/mm6.png",
+    "/Featured-images/mm7.png",
+  ],
   },
   {
     id: 3,
     name: "Miniature Toy",
     price: "USD 150.00",
     image:
-      "/Featured-images/mini-iron.png",
+      "/Featured-images/mm6.png",
     discount: true,
+    gallery: [
+    "/Featured-images/mm4.png",
+    "/Featured-images/mm5.png",
+    "/Featured-images/mm6.png",
+    "/Featured-images/mm7.png",
+  ],
   },
   {
     id: 4,
     name: "Mini Tree-House",
     price: "USD 150.00",
     image:
-      "/Featured-images/tree-house.png",
+      "/Featured-images/mm7.png",
+      gallery: [
+    "/Featured-images/mm4.png",
+    "/Featured-images/mm5.png",
+    "/Featured-images/mm6.png",
+    "/Featured-images/mm7.png",
+  ],
   },
   {
     id: 5,
     name: "Miniature Toy",
     price: "USD 180.00",
     image:
-      "/Featured-images/mini-iron.png",
+      "/Featured-images/mm6.png",
+      gallery: [
+    "/Featured-images/mm4.png",
+    "/Featured-images/mm5.png",
+    "/Featured-images/mm6.png",
+    "/Featured-images/mm7.png",
+  ],
   },
 ];
 const FeaturedProduct = () => {
   const [wishlist, setWishlist] = useState({});
-  const [selectedProduct, setSelectedProduct] = useState(null);
+ const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleAddToCart = (productId, productName) => {
     console.log(`Added to cart: ${productName}`);
     // Add your add to cart logic here
   };
 
-  const handleQuickView = (productId) => {
-    console.log(`Quick view: ${productId}`);
-    // Add your quick view logic here
-  };
+const handleQuickView = (product) => {
+  setSelectedProduct(product);
+};
 
   const handleAddToWishlist = (productId) => {
     setWishlist((prev) => ({
@@ -73,24 +103,23 @@ const FeaturedProduct = () => {
     }));
   };
   return (
-    <section className="bg-[#f4f4f4] py-20">
-      
+    <section className="bg-gradient-to-r from-[#d7c842] to-[#0f83df] py-20">
       <div className="mx-auto px-8 relative max-w-360">
         <div className="text-center mb-14">
-            <span className="bg-[#efebe4] text-[#c1965e] px-4 py-2 text-sm font-semibold uppercase">
+            <span className="bg-transparent text-[#ab20ae] border border-[#ab20ae] px-4 py-2 text-sm font-medium uppercase">
               Top Sale
             </span>
 
-            <h2 className="text-5xl font-bold text-[#161616] mt-4">
+            <h2 className="text-5xl font-bold text-[#7a037cd6] mt-4">
               Featured Products
             </h2>
           </div>
         {/* Custom Arrows */}
-        <button className="custom-prev absolute left-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev absolute left-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#ceb60b] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next absolute right-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next absolute right-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#1b5fa2] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -122,20 +151,20 @@ const FeaturedProduct = () => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-[#efede4] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="group relative bg-transparent overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
                   {/* Discount Badge */}
                   {item.discount && (
-                    <span className="absolute top-6 left-6 z-10 bg-[#c1965e] text-white px-4 py-2 rounded-full text-lg font-semibold">
+                    <span className="absolute top-[15px] left-[15px] z-10 bg-transparent text-[#ff7f50] border border-[#ff7f50] px-[10px] py-2 rounded-full text-[14px] font-semibold">
                       10% Off
                     </span>
                   )}
 
                   {/* Product Image */}
-                  <div className="h-70 flex items-center justify-center overflow-hidden">
+                  <div className="h-80 flex items-center justify-center overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-[60%] object-contain transition-transform duration-500 group-hover:scale-110"
+                      className="w-[50%] object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
 
@@ -148,10 +177,10 @@ const FeaturedProduct = () => {
                         onClick={() => handleAddToCart(item.id, item.name)}
                       />
                       <ActionButton
-                        icon={FiEye}
-                        label="Quick View"
-                        onClick={() => handleQuickView(item.id)}
-                      />
+  icon={FiEye}
+  label="Quick View"
+  onClick={() => handleQuickView(item)}
+/>
                       <ActionButton
                         icon={FiHeart}
                         label="Add to List"
@@ -165,16 +194,16 @@ const FeaturedProduct = () => {
                 </div>
 
                 {/* Product Info */}
-                <div className="mt-6 grow">
-                  <h3 className="text-[18px] font-bold text-[#1d1d1d] line-clamp-2 hover:text-[#c1965e] transition-colors">
+                <div className="mt-6 grow text-center">
+                  <h3 className="text-[18px] font-bold text-[#1d1d1d] line-clamp-2 ">
                     {item.name}
                   </h3>
 
-                  <div className="flex gap-1 text-[#c1965e] text-sm mt-2">
+                  <div className="flex gap-1 text-[#ff7f50] text-sm mt-2 justify-center">
                     ★★★★★
                   </div>
 
-                  <p className="text-[#c1965e] text-[16px] font-semibold mt-3">
+                  <p className="text-[#ff7f50] text-[16px] font-semibold mt-3">
                     {item.price}
                   </p>
                 </div>
@@ -182,8 +211,15 @@ const FeaturedProduct = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        {selectedProduct && (
+  <ProductPreviewModal
+    product={selectedProduct}
+    onClose={() => setSelectedProduct(null)}
+  />
+)}
       </div>
     </section>
+    
   );
 };
 

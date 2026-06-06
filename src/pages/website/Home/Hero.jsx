@@ -1,61 +1,37 @@
 import { useState, useEffect, useCallback } from "react";
 
-import Mini1 from "./../../../assets/images/mini1.png";
-import Mini2 from "./../../../assets/images/mini2.png";
-import Mini3 from "./../../../assets/images/mini3.png";
+
 
 const slides = [
   {
     id: 1,
     badge: "NEW ARRIVAL...",
-    title: ["Elevate", "Your Home", "Aesthetics"],
+    title: ["Welcome", "To The", "Mini World"],
     description:
-      "A furniture e-commerce company operates in the digital space, offering a wide range of furniture products for sale through an online platform.",
-    image: Mini1,
+      "Miniatures can range in size from tiny figurines that can fit on the tip of a finger to larger models that may be a few inches in height or length.",
+    image: "/hero-image/mm1.jpeg",
     accent: "#ff7f50",
+    
   },
   {
     id: 2,
     badge: "BEST SELLER...",
-    title: ["Redefine", "Modern", "Living"],
+    title: ["Amazing", "Miniature", "Collection"],
     description:
-      "Discover our curated collection of contemporary furniture designed to transform your living spaces into something truly extraordinary.",
-    image: Mini2,
+      "Explore handcrafted miniature products designed with precision and creativity.",
+    image: "/hero-image/mm2.jpeg",
     accent: "#ff7f50",
   },
   {
     id: 3,
     badge: "LIMITED EDITION...",
-    title: ["Craft Your", "Perfect", "Sanctuary"],
+    title: ["Creative", "Tiny", "Designs"],
     description:
-      "Premium handcrafted furniture pieces that blend timeless elegance with modern comfort, made for those who appreciate fine design.",
-    image: Mini3,
+      "Unique miniature pieces made for collectors and enthusiasts.",
+    image: "/hero-image/mm3.jpeg",
     accent: "#ff7f50",
   },
 ];
-
-const DotPattern = ({ className }) => (
-  <svg
-    className={className}
-    width="120"
-    height="120"
-    viewBox="0 0 120 120"
-    fill="none"
-  >
-    {Array.from({ length: 8 }).map((_, row) =>
-      Array.from({ length: 8 }).map((_, col) => (
-        <circle
-          key={`${row}-${col}`}
-          cx={col * 16 + 8}
-          cy={row * 16 + 8}
-          r="2"
-          fill="#ff7f50"
-          fillOpacity="0.5"
-        />
-      ))
-    )}
-  </svg>
-);
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -88,68 +64,36 @@ export default function Hero() {
   const slide = slides[current];
 
   return (
-    <div
-      className="relative min-h-screen overflow-hidden bg-[#f8f9fa]"
+    <section
+      className="relative min-h-screen overflow-hidden"
       style={{
         fontFamily: "'Playfair Display', serif",
       }}
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap');
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/hero-video.mp4" type="video/mp4" />
+      </video>
 
-        .dm {
-          font-family: 'DM Sans', sans-serif;
-        }
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-        .slide-enter {
-          opacity: 0;
-          transform: translateX(${direction > 0 ? "40px" : "-40px"});
-        }
-
-        .slide-active {
-          opacity: 1;
-          transform: translateX(0);
-          transition: all .4s ease;
-        }
-
-        .image-enter {
-          opacity: 0;
-          transform: scale(.9);
-        }
-
-        .image-active {
-          opacity: 1;
-          transform: scale(1);
-          transition: all .5s ease;
-        }
-      `}</style>
-
-      <DotPattern className="absolute top-0 left-0 opacity-60" />
-      <DotPattern className="absolute bottom-0 right-0 opacity-60" />
-
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 min-h-screen grid lg:grid-cols-2 items-center gap-10">
-        {/* LEFT CONTENT */}
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 min-h-screen grid lg:grid-cols-2 items-center gap-10">
+        
+        {/* Left Content */}
         <div>
-          <div
-            className={`dm inline-block border px-3 py-1 text-xs tracking-[3px] mb-6 ${
-              animating ? "slide-enter" : "slide-active"
-            }`}
-            style={{
-              borderColor: slide.accent,
-              color: slide.accent,
-            }}
-          >
+          <span className="inline-block border border-[#ff7f50] text-[#ff7f50] px-4 py-2 tracking-[3px] text-sm mb-6">
             {slide.badge}
-          </div>
+          </span>
 
-          <h1
-            className={`font-black text-[#0f3439] leading-none mb-6 ${
-              animating ? "slide-enter" : "slide-active"
-            }`}
-            style={{
-              fontSize: "clamp(3rem,6vw,5rem)",
-            }}
-          >
+          <h1 className="text-white font-black leading-none mb-6 text-[clamp(3rem,6vw,5rem)]">
             {slide.title.map((line, index) => (
               <span key={index} className="block">
                 {line}
@@ -157,70 +101,47 @@ export default function Hero() {
             ))}
           </h1>
 
-          <p
-            className={`dm text-[#0f3439] max-w-md leading-7 mb-10 ${
-              animating ? "slide-enter" : "slide-active"
-            }`}
-          >
+          <p className="text-gray-300 max-w-lg leading-8 mb-10">
             {slide.description}
           </p>
 
-          <div
-            className={`flex gap-4 flex-wrap ${
-              animating ? "slide-enter" : "slide-active"
-            }`}
-          >
-            <button
-              className="px-7 py-3 text-white text-sm tracking-wider"
-              style={{
-                backgroundColor: slide.accent,
-              }}
-            >
+          <div className="flex gap-4 flex-wrap">
+            <button className="bg-[#ff7f50] text-white px-8 py-4 font-medium hover:bg-white hover:text-[#ff7f50] transition-all duration-300">
               BUY NOW →
             </button>
 
-            <button
-              className="px-7 py-3 border text-sm tracking-wider"
-              style={{
-                borderColor: slide.accent,
-                color: slide.accent,
-              }}
-            >
+            <button className="border border-[#ff7f50] text-[#ff7f50] px-8 py-4 font-medium hover:bg-[#ff7f50] hover:text-white transition-all duration-300">
               VIEW DETAILS →
             </button>
           </div>
         </div>
 
-        {/* RIGHT IMAGE */}
-        <div className="flex justify-center items-center w-[400px] h-[400px] overflow-hidden rounded-full">
-          <img
-            src={slide.image}
-            alt="Furniture"
-            className={`w-full h-full object-fill max-w-[600px] drop-shadow-2xl ${
-              animating ? "image-enter" : "image-active"
-            }`}
-          />
+        {/* Right Image */}
+        <div className="flex justify-center">
+          <div className="w-[400px] h-[400px] rounded-full overflow-hidden border-8 border-white/20 backdrop-blur-sm">
+            <img
+              src={slide.image}
+              alt={slide.title[0]}
+              className="w-full h-full object-fill"
+            />
+          </div>
         </div>
       </div>
 
-      {/* RIGHT DOT NAVIGATION */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+      {/* Navigation Dots */}
+      <div className="absolute z-20 right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
         {slides.map((item, index) => (
           <button
             key={item.id}
             onClick={() => goTo(index)}
-            className="rounded-full border-2 transition-all"
-            style={{
-              width: index === current ? "12px" : "8px",
-              height: index === current ? "12px" : "8px",
-              borderColor:
-                index === current ? slide.accent : "#ff7f50",
-              background:
-                index === current ? slide.accent : "transparent",
-            }}
+            className={`rounded-full transition-all duration-300 ${
+              current === index
+                ? "w-4 h-4 bg-[#ff7f50]"
+                : "w-2 h-2 border border-[#ff7f50]"
+            }`}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

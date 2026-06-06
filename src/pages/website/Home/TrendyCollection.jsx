@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ProductPreviewModal from "./Productmodal";
 import { Navigation, Autoplay } from "swiper/modules";
 import {
   FiHeart,
@@ -22,6 +23,12 @@ const productData = {
       image:
         "/trandy-images/product-1.png",
       discount: "10% Off",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 2,
@@ -29,6 +36,12 @@ const productData = {
       price: 190,
       image:
         "/trandy-images/product-2.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 3,
@@ -37,6 +50,12 @@ const productData = {
       image:
         "/trandy-images/product-3.png",
       discount: "15% Off",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 4,
@@ -44,6 +63,12 @@ const productData = {
       price: 129,
       image:
         "/trandy-images/product-4.png",
+        gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 2,
@@ -51,6 +76,12 @@ const productData = {
       price: 190,
       image:
         "/trandy-images/product-2.png",
+        gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
   ],
 
@@ -62,6 +93,12 @@ const productData = {
       image:
         "/trandy-images/product-1.png",
       discount: "20% Off",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 6,
@@ -69,6 +106,12 @@ const productData = {
       price: 175,
       image:
         "/trandy-images/product-2.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 7,
@@ -76,6 +119,12 @@ const productData = {
       price: 280,
       image:
         "/trandy-images/product-3.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 8,
@@ -83,6 +132,12 @@ const productData = {
       price: 149,
       image:
         "/trandy-images/product-4.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
   ],
 
@@ -94,6 +149,12 @@ const productData = {
       image:
         "/trandy-images/product-1.png",
       discount: "25% Off",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 10,
@@ -101,6 +162,12 @@ const productData = {
       price: 210,
       image:
         "/trandy-images/product-2.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 11,
@@ -108,6 +175,12 @@ const productData = {
       price: 330,
       image:
         "/trandy-images/product-3.png",
+        gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 12,
@@ -115,6 +188,12 @@ const productData = {
       price: 280,
       image:
         "/trandy-images/product-4.png",
+        gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
   ],
 
@@ -126,11 +205,25 @@ const productData = {
       image:
         "/trandy-images/product-1.png",
       discount: "30% Off",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 14,
       name: "Velvet Armchair",
       price: 180,
+      image:
+        "/trandy-images/product-2.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
       image:
         "/trandy-images/product-2.png",
     },
@@ -140,6 +233,12 @@ const productData = {
       price: 220,
       image:
         "/trandy-images/product-3.png",
+        gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 16,
@@ -147,13 +246,25 @@ const productData = {
       price: 400,
       image:
         "/trandy-images/product-4.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
     {
       id: 17,
-      name: "ujjawal",
+      name: "Toy Car",
       price: 400,
       image:
         "/trandy-images/product-1.png",
+      gallery: [
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
+  ],
     },
   ],
 };
@@ -180,14 +291,15 @@ const tabs = [
 const TrendyCollection = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [wishlist, setWishlist] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleAddToCart = (productId, productName) => {
     console.log(`Added to cart: ${productName}`);
   };
 
-  const handleQuickView = (productId) => {
-    console.log(`Quick view: ${productId}`);
-  };
+  const handleQuickView = (product) => {
+  setSelectedProduct(product);
+};
 
   const handleAddToWishlist = (productId) => {
     setWishlist((prev) => ({
@@ -197,12 +309,12 @@ const TrendyCollection = () => {
   };
 
   return (
-    <section className="py-20 bg-[#f6f6f6]">
+    <section className="py-20 bg-[#78d542]">
       <div className="max-w-350 mx-auto  relative">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-center mb-14">
           <div>
-            <span className="bg-transparent text-[#0892d0] border border-[#0892d0] px-4 py-2 text-sm font-semibold uppercase">
+            <span className="bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
               This Month
             </span>
 
@@ -224,7 +336,7 @@ const TrendyCollection = () => {
                 }`}
               >
                 {activeTab === tab.value && (
-                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#c1965e] text-white text-xs font-bold px-3 py-1 rounded">
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ff7f50] text-white text-xs font-bold px-3 py-1 rounded">
                     {productData[tab.value].length}
                   </span>
                 )}
@@ -236,11 +348,11 @@ const TrendyCollection = () => {
         </div>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev-trendy absolute left-0 top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev-trendy absolute left-0 top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ff7f50] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-0 top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#b18b5e] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-0 top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#ff7f50] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -273,10 +385,10 @@ const TrendyCollection = () => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-[#b7f1fb] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="group relative bg-[#efefef] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
                   {/* Discount Badge */}
                   {item.discount && (
-                    <span className="absolute top-6 left-6 z-10 bg-[#c1965e] text-white px-4 py-2 rounded-full text-lg font-semibold">
+                    <span className="absolute top-6 left-6 z-10 bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 rounded-full text-lg font-semibold">
                       {item.discount}
                     </span>
                   )}
@@ -299,10 +411,10 @@ const TrendyCollection = () => {
                         onClick={() => handleAddToCart(item.id, item.name)}
                       />
                       <ActionButton
-                        icon={FiEye}
-                        label="Quick View"
-                        onClick={() => handleQuickView(item.id)}
-                      />
+  icon={FiEye}
+  label="Quick View"
+  onClick={() => handleQuickView(item)}
+/>
                       <ActionButton
                         icon={FiHeart}
                         label="Add to List"
@@ -317,15 +429,15 @@ const TrendyCollection = () => {
 
                 {/* Product Info */}
                 <div className="mt-6 flex-grow">
-                  <h3 className="text-lg font-bold text-[#1d1d1d] line-clamp-2 hover:text-[#c1965e] transition-colors">
+                  <h3 className="text-lg font-bold text-[#1d1d1d] line-clamp-2 ">
                     {item.name}
                   </h3>
 
-                  <div className="flex gap-1 text-[#c1965e] text-sm mt-2">
+                  <div className="flex gap-1 text-[#ff7f50] text-sm mt-2">
                     ★★★★★
                   </div>
 
-                  <p className="text-[#c1965e] text-base font-semibold mt-3">
+                  <p className="text-[#ff7f50] text-base font-semibold mt-3">
                     USD {item.price}.00
                   </p>
                 </div>
@@ -333,6 +445,13 @@ const TrendyCollection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {selectedProduct && (
+  <ProductPreviewModal
+    product={selectedProduct}
+    onClose={() => setSelectedProduct(null)}
+  />
+)}
       </div>
     </section>
   );

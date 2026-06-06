@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Logo */}
           <div>
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-[#c89b67]">ADDINA</span>
+              <span className="text-[#ff7f50]">ADDINA</span>
             </h2>
 
             <p className="text-gray-400 leading-6 mb-8">
@@ -46,7 +46,7 @@ export default function Footer() {
                 (Icon, index) => (
                   <div
                     key={index}
-                    className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center cursor-pointer hover:bg-[#c89b67] hover:text-white transition-all duration-300"
+                    className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center cursor-pointer hover:bg-[#ff7f50] hover:text-white transition-all duration-300"
                   >
                     <Icon />
                   </div>
@@ -105,7 +105,7 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-4 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[#c89b67] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-[#ff7f50] flex items-center justify-center">
                 <FaMapMarkerAlt />
               </div>
 
@@ -117,7 +117,7 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#c89b67] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-[#ff7f50] flex items-center justify-center">
                 <FaPhoneAlt />
               </div>
 

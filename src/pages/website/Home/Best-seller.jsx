@@ -48,15 +48,15 @@ export const products = [
 
 const BestSellers = () => {
   return (
-    <section className="bg-[#f5f5f5] py-24">
+    <section className="bg-[#5dcafcf2] py-24">
       <div className="max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="mb-12">
-          <span className="inline-block bg-[#efebe4] text-[#c1965e] px-4 py-2 text-sm font-semibold uppercase">
+          <span className="inline-block bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
             This Week
           </span>
 
-          <h2 className="mt-5 text-5xl font-bold text-[#111]">
+          <h2 className="mt-5 text-5xl font-bold text-[#0f3439]">
             Best Sellers
           </h2>
         </div>
@@ -69,7 +69,7 @@ const BestSellers = () => {
               className="group flex items-center gap-6 cursor-pointer"
             >
               {/* Image */}
-              <div className="w-[180px] h-[140px] bg-[#efefef] overflow-hidden flex items-center justify-center">
+              <div className="w-[180px] h-[140px] bg-transparent overflow-hidden flex items-center justify-center">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -79,16 +79,16 @@ const BestSellers = () => {
 
               {/* Content */}
               <div>
-                <h3 className="text-[20px] font-bold text-[#111] mb-2 transition-colors duration-300 group-hover:text-[#b68952]">
+                <h3 className="text-[20px] font-bold text-[#111] mb-2 transition-colors duration-300 ">
                   {item.name}
                 </h3>
 
-                <p className="text-[#b68952] text-xl font-medium mb-3">
+                <p className="text-[#ff7f50] text-xl font-medium mb-3">
                   USD {item.price.toFixed(2)}
                 </p>
 
                 {/* Rating */}
-                <div className="flex gap-1 text-[#d8a640]">
+                <div className="flex gap-1 text-[#ff7f50]">
                   <FiStar />
                   <FiStar />
                   <FiStar />

@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 
-const ProductPreviewModal = ({ product, onClose }) => {{
+const ProductPreviewModal = ({ product, onClose }) => {
+   const [selectedImage, setSelectedImage] = useState(
+    product.gallery?.[0] || product.image
+  );
 
-  const [selectedImage, setSelectedImage] = useState(
-  product.gallery?.[0] || product.image
-);
-
-const images = product.gallery || [
-  product.image,
-  product.image,
-  product.image,
-  product.image,
-];
-};
-
-  
+  const images = product.gallery || [
+    product.image,
+    product.image,
+    product.image,
+    product.image,
+  ];
 
   return (
     <div className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-3xl w-full max-w-4xl overflow-hidden">
+      <div className="relative bg-white rounded-xl w-full max-w-4xl overflow-hidden">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-50 w-11 h-11 rounded-full bg-black text-white flex items-center justify-center hover:bg-[#c1965e] transition"
+          className="absolute top-5 right-5 z-50 w-11 h-11 rounded-full bg-black text-white flex items-center justify-center hover:bg-[#ff7f50] transition duration-200"
         >
           <FiX size={22} />
         </button>
@@ -32,7 +28,7 @@ const images = product.gallery || [
         <div className="p-8">
           
           {/* Main Image */}
-          <div className="bg-[#f8f8f8] rounded-2xl h-[500px] flex items-center justify-center overflow-hidden">
+          <div className="bg-[#f8f8f8] rounded-xl h-[500px] flex items-center justify-center overflow-hidden">
             <img
               src={selectedImage}
               alt={product.name}
@@ -49,8 +45,8 @@ const images = product.gallery || [
                 onClick={() => setSelectedImage(img)}
                 className={`w-24 h-24 bg-[#f5f5f5] rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${
                   selectedImage === img
-                    ? "border-[#c1965e]"
-                    : "border-transparent hover:border-[#c1965e]"
+                    ? "border-[#ff7f50]"
+                    : "border-transparent hover:border-[#ff7f50]"
                 }`}
               >
                 <img

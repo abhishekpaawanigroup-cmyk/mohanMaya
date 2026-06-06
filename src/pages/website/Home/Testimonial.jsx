@@ -52,7 +52,7 @@ function Testimonials() {
       <div className="relative z-10 max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="text-center mb-16">
-          <span className="bg-transparent text-[#b98b59] border border-[#b98b59] px-4 py-2 text-sm font-semibold uppercase">
+          <span className="bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
             Testimonials
           </span>
 
@@ -110,7 +110,7 @@ function Testimonials() {
                   {item.review}
                 </p>
 
-                <span className="absolute top-6 right-6 text-4xl text-[#c79a56] opacity-60">
+                <span className="absolute top-6 right-6 text-4xl text-[#ff7f50]">
                   <FaQuoteRight />
                 </span>
               </div>
@@ -120,11 +120,11 @@ function Testimonials() {
 
         {/* Navigation Buttons */}
         <div className="flex justify-center gap-5 mt-14">
-          <button className="custom-prev w-14 h-14 rounded-full border border-[#c79a56] text-[#c79a56] hover:bg-[#c79a56] hover:text-white transition">
+          <button className="custom-prev w-14 h-14 rounded-full border border-[#ff7f50] text-[#ff7f50] hover:bg-[#ff7f50] hover:text-white transition">
             <FaArrowLeftLong className="mx-auto"/>
           </button>
 
-          <button className="custom-next w-14 h-14 rounded-full border border-[#c79a56] text-[#c79a56] hover:bg-[#c79a56] hover:text-white transition">
+          <button className="custom-next w-14 h-14 rounded-full border border-[#ff7f50] text-[#ff7f50] hover:bg-[#ff7f50] hover:text-white transition">
            <FaArrowRightLong className="mx-auto"/>
           </button>
         </div>
