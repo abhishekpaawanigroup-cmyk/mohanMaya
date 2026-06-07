@@ -1,0 +1,146 @@
+import React from "react";
+import { FiArrowRight } from "react-icons/fi";
+
+const SeasonalCollection = () => {
+  return (
+    <section className="py-20 bg-gradient-to-r from-[#e19f56e3] to-[#1b1717]">
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <span className="inline-block border border-[#2b2400] text-[#2b2400] px-5 py-2 rounded-full text-sm font-bold uppercase">
+            Seasonal Collection
+          </span>
+
+          <h2 className="text-5xl font-bold mt-5 text-[#2b2400]">
+            Shop By Season
+          </h2>
+
+          <p className="mt-4 text-[#000] max-w-2xl mx-auto text-lg">
+            Explore exclusive seasonal products crafted for every celebration.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+
+          {/* LEFT VIDEO SECTION */}
+          <div className="lg:col-span-2">
+            <div className="relative overflow-hidden rounded-lg h-[600px] shadow-2xl">
+
+              {/* Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source
+                  src="/season/animated.mp4"
+                  type="video/mp4"
+                />
+              </video>
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+
+              {/* Content */}
+              <div className="absolute z-10 left-10 top-1/2 -translate-y-1/2 text-white max-w-lg">
+
+                <span className="inline-block bg-white/15 backdrop-blur-md px-4 py-2 rounded-full text-sm uppercase tracking-wider mb-5">
+                  Limited Edition
+                </span>
+
+                <h3 className="text-5xl font-bold leading-tight mb-5">
+                  Seasonal
+                  <br />
+                  Collection 2026
+                </h3>
+
+                <p className="text-lg text-white/90 mb-8">
+                  Discover handcrafted products inspired by every season and
+                  celebration.
+                </p>
+
+                <button className="inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold hover:bg-[#175e97] hover:text-white transition-all duration-300">
+                  Shop Collection
+                  <FiArrowRight />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT IMAGE CARDS */}
+          <div className="flex flex-col gap-6">
+
+            {/* Winter */}
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#7d66e2]">
+              <img
+                src="/season/mm5.png"
+                alt="Winter"
+                className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute inset-0 bg-black/40" />
+
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <span className="text-xs uppercase tracking-wider">
+                  Winter Special
+                </span>
+
+                <h4 className="text-2xl font-bold">
+                  Winter Collection
+                </h4>
+              </div>
+            </div>
+
+            {/* Summer */}
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#ffe400]">
+              <img
+                src="/season/mm6.png"
+                alt="Summer"
+                className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute inset-0 bg-black/40" />
+
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <span className="text-xs uppercase tracking-wider">
+                  Summer Special
+                </span>
+
+                <h4 className="text-2xl font-bold">
+                  Summer Collection
+                </h4>
+              </div>
+            </div>
+
+            {/* Christmas */}
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#c90707]">
+              <img
+                src="/season/mm7.png"
+                alt="Christmas"
+                className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute inset-0 bg-black/40" />
+
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <span className="text-xs uppercase tracking-wider">
+                  Christmas Special
+                </span>
+
+                <h4 className="text-2xl font-bold">
+                  Christmas Collection
+                </h4>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SeasonalCollection;

@@ -18,67 +18,69 @@ const productData = {
   all: [
     {
       id: 1,
-      name: "Mohan Maya",
+      name: "Miniature tree",
       price: 150,
       image:
-        "/trandy-images/mm4.png",
+        "/trandy-images/product-1.png",
+      discount: "10% Off",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 2,
-      name: "Mohan Maya",
+      name: "Miniature home",
       price: 190,
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 3,
-      name: "Mohan Maya",
+      name: "Miniature Car",
       price: 300,
       image:
-        "/trandy-images/mm6.png",
+        "/trandy-images/product-3.png",
+      discount: "15% Off",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 4,
-      name: "Mohan Maya",
+      name: "Miniature Basket",
       price: 129,
       image:
-        "/trandy-images/mm7.png",
+        "/trandy-images/product-4.png",
         gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 2,
-      name: "Mohan Maya",
+      name: "Miniature home",
       price: 190,
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
         gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
   ],
@@ -86,54 +88,55 @@ const productData = {
   newIn: [
     {
       id: 5,
-      name: "Mohan Maya",
+      name: "Miniature Tree",
       price: 220,
       image:
-        "/trandy-images/mm4.png",
+        "/trandy-images/product-1.png",
+      discount: "20% Off",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 6,
-      name: "Mohan Maya",
+      name: "Miniature Home",
       price: 175,
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 7,
-      name: "Mohan Maya",
+      name: "Miniature Car",
       price: 280,
       image:
-        "/trandy-images/mm6.png",
+        "/trandy-images/product-3.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 8,
-      name: "Mohan Maya",
+      name: "Miniature Basket",
       price: 149,
       image:
-        "/trandy-images/mm7.png",
+        "/trandy-images/product-4.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
   ],
@@ -141,54 +144,55 @@ const productData = {
   topRated: [
     {
       id: 9,
-      name: "Mohan Maya",
+      name: "Royal Blue Sofa",
       price: 350,
       image:
-        "/trandy-images/mm4.png",
+        "/trandy-images/product-1.png",
+      discount: "25% Off",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 10,
-      name: "Mohan Maya",
+      name: "Classic Wooden Chair",
       price: 210,
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 11,
-      name: "Mohan Maya",
+      name: "Premium Grey Sofa",
       price: 330,
       image:
-        "/trandy-images/mm6.png",
+        "/trandy-images/product-3.png",
         gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 12,
-      name: "Mohan Maya",
+      name: "Luxury Lounge Chair",
       price: 280,
       image:
-        "/trandy-images/mm7.png",
+        "/trandy-images/product-4.png",
         gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
   ],
@@ -196,69 +200,70 @@ const productData = {
   tensingItems: [
     {
       id: 13,
-      name: "Mohan Maya",
+      name: "Leather Chair",
       price: 260,
       image:
-        "/trandy-images/mm4.png",
+        "/trandy-images/product-1.png",
+      discount: "30% Off",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 14,
-      name: "Mohan Maya",
+      name: "Velvet Armchair",
       price: 180,
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
       image:
-        "/trandy-images/mm5.png",
+        "/trandy-images/product-2.png",
     },
     {
       id: 15,
-      name: "Mohan Maya",
+      name: "Office Chair",
       price: 220,
       image:
-        "/trandy-images/mm6.png",
+        "/trandy-images/product-3.png",
         gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 16,
-      name: "Mohan Maya",
+      name: "Comfort Sofa",
       price: 400,
       image:
-        "/trandy-images/mm7.png",
+        "/trandy-images/product-4.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
     {
       id: 17,
-      name: "Mohan Maya",
+      name: "Toy Car",
       price: 400,
       image:
-        "/trandy-images/mm4.png",
+        "/trandy-images/product-1.png",
       gallery: [
-    "/trandy-images/mm4.png",
-    "/trandy-images/mm5.png",
-    "/trandy-images/mm6.png",
-    "/trandy-images/mm7.png",
+    "/trandy-images/product-1.png",
+    "/trandy-images/product-2.png",
+    "/trandy-images/product-3.png",
+    "/trandy-images/product-4.png",
   ],
     },
   ],
@@ -304,17 +309,17 @@ const TrendyCollection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#c74646c2] to-[#484848]">
+    <section className="py-20 bg-gradient-to-r from-[#ff2d2dc2] to-[#28ef21]">
       <div className="max-w-350 mx-auto  relative">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-center mb-14">
           <div>
-            <span className="bg-transparent text-[#0f3439] border border-[#0f3439] px-4 py-2 text-sm font-bold uppercase rounded-full">
+            <span className="bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
               This Month
             </span>
 
             <h2 className="text-5xl font-bold text-[#0f3439] mt-4">
-              Trending Collection
+              Trendy Collection
             </h2>
           </div>
 
@@ -343,11 +348,11 @@ const TrendyCollection = () => {
         </div>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev-trendy absolute left-[-40px] top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ce4c49] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev-trendy absolute left-0 top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ff7f50] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-[-40px] top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#513d36] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-0 top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#ff7f50] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -381,14 +386,19 @@ const TrendyCollection = () => {
               <div className="flex flex-col h-full">
                 {/* Product Card */}
                 <div className="group relative bg-transparent shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full overflow-hidden">
-                  
+                  {/* Discount Badge */}
+                  {item.discount && (
+                    <span className="absolute top-6 left-6 z-10 bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 rounded-full text-lg font-semibold">
+                      {item.discount}
+                    </span>
+                  )}
 
                   {/* Product Image */}
                   <div className="h-80 flex items-center justify-center overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-[50%] object-contain transition-transform duration-500 group-hover:scale-110"
+                      className="w-[65%] object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
 
@@ -418,13 +428,17 @@ const TrendyCollection = () => {
                 </div>
 
                 {/* Product Info */}
-                <div className="mt-6 flex-grow text-center">
+                <div className="mt-6 flex-grow">
                   <h3 className="text-lg font-bold text-[#1d1d1d] line-clamp-2 ">
                     {item.name}
                   </h3>
 
+                  <div className="flex gap-1 text-[#ff7f50] text-sm mt-2">
+                    ★★★★★
+                  </div>
+
                   <p className="text-[#ff7f50] text-base font-semibold mt-3">
-                    INR {item.price}.00
+                    USD {item.price}.00
                   </p>
                 </div>
               </div>

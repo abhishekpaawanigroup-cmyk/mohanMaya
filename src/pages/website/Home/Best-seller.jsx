@@ -6,38 +6,38 @@ import { FiStar } from "react-icons/fi";
 export const products = [
   {
     id: 1,
-    image: "/bestseller-image/sell2.png",
-    name: "Stylish Grey Chair",
+    image: "/bestseller-image/mm4.png",
+    name: "Mohan Maya",
     price: 66,
   },
   {
     id: 2,
-    image: "/bestseller-image/sell3.png",
-    name: "Chair Pillow",
+    image: "/bestseller-image/mm5.png",
+    name: "Mohan Maya",
     price: 66,
   },
   {
     id: 3,
-    image: "/bestseller-image/sell4.png",
-    name: "Alexander Roll Chair",
+    image: "/bestseller-image/mm6.png",
+    name: "Mohan Maya",
     price: 66,
   },
   {
     id: 4,
-    image: "/bestseller-image/sell5.png",
-    name: "Wooden Chair",
+    image: "/bestseller-image/mm7.png",
+    name: "Mohan Maya",
     price: 66,
   },
   {
     id: 5,
-    image: "/bestseller-image/sell1.png",
-    name: "Chair Pillow",
+    image: "/bestseller-image/mm4.png",
+    name: "Mohan Maya",
     price: 66,
   },
   {
     id: 6,
-    image: "/bestseller-image/sell3.png",
-    name: "Seater Gray Sofa",
+    image: "/bestseller-image/mm5.png",
+    name: "Mohan Maya",
     price: 66,
   },
 ];
@@ -48,11 +48,11 @@ export const products = [
 
 const BestSellers = () => {
   return (
-    <section className="bg-[#5dcafcf2] py-24">
+    <section className="bg-gradient-to-r from-[#46c7c0c2] to-[#730000] py-24">
       <div className="max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="mb-12">
-          <span className="inline-block bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
+          <span className="inline-block bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase rounded-full">
             This Week
           </span>
 
@@ -73,7 +73,7 @@ const BestSellers = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-[110px] h-[110px] object-contain transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
 

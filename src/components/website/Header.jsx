@@ -26,11 +26,11 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img
-              src="/trandy-images/product-1.png"
+              src="/trandy-images/mm5.png"
               alt="logo"
-              className="w-14 h-14"
+              className="w-14 h-20"
             />
-            <h1 className="text-4xl font-bold font-serif">ADDINA</h1>
+            <h1 className="text-4xl font-bold font-serif">MM</h1>
           </div>
 
           {/* Navigation */}

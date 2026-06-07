@@ -52,7 +52,7 @@ function Testimonials() {
       <div className="relative z-10 max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="text-center mb-16">
-          <span className="bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase">
+          <span className="bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase rounded-full">
             Testimonials
           </span>
 
@@ -106,7 +106,7 @@ function Testimonials() {
                   {item.role}
                 </p>
 
-                <p className="text-gray-600 leading-8">
+                <p className="text-gray-600 leading-6">
                   {item.review}
                 </p>
 

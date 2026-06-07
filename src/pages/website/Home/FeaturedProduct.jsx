@@ -18,10 +18,10 @@ const products = [
   {
     id: 1,
     name: "Miniature Cart",
-    price: "USD 200.00",
+    price: "200.00",
     image:
       "/Featured-images/mm4.png",
-    discount: true,
+    
     gallery: [
     "/Featured-images/mm5.png",
     "/Featured-images/mm6.png",
@@ -32,7 +32,7 @@ const products = [
   {
     id: 2,
     name: "Miniature Home",
-    price: "USD 49.00",
+    price: "49.00",
     image:
       "/Featured-images/mm5.png",
       gallery: [
@@ -45,10 +45,10 @@ const products = [
   {
     id: 3,
     name: "Miniature Toy",
-    price: "USD 150.00",
+    price: "150.00",
     image:
       "/Featured-images/mm6.png",
-    discount: true,
+    
     gallery: [
     "/Featured-images/mm4.png",
     "/Featured-images/mm5.png",
@@ -59,7 +59,7 @@ const products = [
   {
     id: 4,
     name: "Mini Tree-House",
-    price: "USD 150.00",
+    price: "150.00",
     image:
       "/Featured-images/mm7.png",
       gallery: [
@@ -72,7 +72,7 @@ const products = [
   {
     id: 5,
     name: "Miniature Toy",
-    price: "USD 180.00",
+    price: "180.00",
     image:
       "/Featured-images/mm6.png",
       gallery: [
@@ -103,23 +103,23 @@ const handleQuickView = (product) => {
     }));
   };
   return (
-    <section className="bg-gradient-to-r from-[#d7c842] to-[#0f83df] py-20">
+    <section className="bg-gradient-to-r from-[#d7c842] to-[#175e97] py-20">
       <div className="mx-auto px-8 relative max-w-360">
         <div className="text-center mb-14">
-            <span className="bg-transparent text-[#ab20ae] border border-[#ab20ae] px-4 py-2 text-sm font-medium uppercase">
+            <span className="bg-transparent text-[#ab20ae] border border-[#ab20ae] px-4 py-2 text-sm font-bold uppercase rounded-full">
               Top Sale
             </span>
 
             <h2 className="text-5xl font-bold text-[#7a037cd6] mt-4">
-              Featured Products
+              Featured Characters
             </h2>
           </div>
         {/* Custom Arrows */}
-        <button className="custom-prev absolute left-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#ceb60b] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev absolute left-[-40px] top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#ceb60b] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next absolute right-0 top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#1b5fa2] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next absolute right-[-40px] top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#1b5fa2] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -152,61 +152,52 @@ const handleQuickView = (product) => {
               <div className="flex flex-col h-full">
                 {/* Product Card */}
                 <div className="group relative bg-transparent overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
-                  {/* Discount Badge */}
-                  {item.discount && (
-                    <span className="absolute top-[15px] left-[15px] z-10 bg-transparent text-[#ff7f50] border border-[#ff7f50] px-[10px] py-2 rounded-full text-[14px] font-semibold">
-                      10% Off
-                    </span>
-                  )}
+  {/* Product Image */}
+  <div className="h-80 flex items-center justify-center overflow-hidden">
+    <img
+      src={item.image}
+      alt={item.name}
+      className="w-[50%] object-contain transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
 
-                  {/* Product Image */}
-                  <div className="h-80 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-[50%] object-contain transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
+  {/* Action Icons on Hover */}
+  <div className="absolute inset-0 bg-[black/40] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
+    <div className="flex gap-4 items-center">
+      <ActionButton
+        icon={FiShoppingBag}
+        label="Add to Cart"
+        onClick={() => handleAddToCart(item.id, item.name)}
+      />
 
-                  {/* Action Icons on Hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
-                    <div className="flex gap-4 items-center">
-                      <ActionButton
-                        icon={FiShoppingBag}
-                        label="Add to Cart"
-                        onClick={() => handleAddToCart(item.id, item.name)}
-                      />
-                      <ActionButton
-  icon={FiEye}
-  label="Quick View"
-  onClick={() => handleQuickView(item)}
-/>
-                      <ActionButton
-                        icon={FiHeart}
-                        label="Add to List"
-                        onClick={() => handleAddToWishlist(item.id)}
-                        className={
-                          wishlist[item.id] ? "bg-red-500 hover:bg-red-600" : ""
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
+      <ActionButton
+        icon={FiEye}
+        label="Quick View"
+        onClick={() => handleQuickView(item)}
+      />
+
+      <ActionButton
+        icon={FiHeart}
+        label="Add to List"
+        onClick={() => handleAddToWishlist(item.id)}
+        className={
+          wishlist[item.id] ? "bg-red-500 hover:bg-red-600" : ""
+        }
+      />
+    </div>
+  </div>
+</div>
 
                 {/* Product Info */}
-                <div className="mt-6 grow text-center">
-                  <h3 className="text-[18px] font-bold text-[#1d1d1d] line-clamp-2 ">
-                    {item.name}
-                  </h3>
+<div className="mt-6 grow text-center">
+  <h3 className="text-[18px] font-bold text-[#1d1d1d] line-clamp-2">
+    {item.name}
+  </h3>
 
-                  <div className="flex gap-1 text-[#ff7f50] text-sm mt-2 justify-center">
-                    ★★★★★
-                  </div>
-
-                  <p className="text-[#ff7f50] text-[16px] font-semibold mt-3">
-                    {item.price}
-                  </p>
-                </div>
+  <p className="text-[#ff7f50] text-[16px] font-semibold mt-3">
+   INR {item.price}
+  </p>
+</div>
               </div>
             </SwiperSlide>
           ))}
