@@ -1,147 +1,215 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
 
 
+import Radha from "../../../assets/website/RadhaJi.jpeg";
+import madhav from "../../../assets/website/Madhav.jpeg";
+import mother from "../../../assets/website/Mother.jpeg";
+import maya from "../../../assets/website/Maya.jpeg";
+import Shiva from "../../../assets/website/Shiva.jpeg";
+import Madhvi from "../../../assets/website/Madhvi.jpeg";
 
-const slides = [
-  {
-    id: 1,
-    badge: "NEW ARRIVAL...",
-    title: ["Welcome", "To The", "Mini World"],
-    description:
-      "Miniatures can range in size from tiny figurines that can fit on the tip of a finger to larger models that may be a few inches in height or length.",
-    image: "/hero-image/mm1.jpeg",
-    accent: "#ff7f50",
-    
-  },
-  {
-    id: 2,
-    badge: "BEST SELLER...",
-    title: ["Amazing", "Miniature", "Collection"],
-    description:
-      "Explore handcrafted miniature products designed with precision and creativity.",
-    image: "/hero-image/mm2.jpeg",
-    accent: "#ff7f50",
-  },
-  {
-    id: 3,
-    badge: "LIMITED EDITION...",
-    title: ["Creative", "Tiny", "Designs"],
-    description:
-      "Unique miniature pieces made for collectors and enthusiasts.",
-    image: "/hero-image/mm3.jpeg",
-    accent: "#ff7f50",
-  },
-];
+import "swiper/css";
+import "swiper/css/navigation";
 
-export default function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState(1);
+const Hero = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
-  const goTo = useCallback(
-    (index) => {
-      if (animating || index === current) return;
-
-      setDirection(index > current ? 1 : -1);
-      setAnimating(true);
-
-      setTimeout(() => {
-        setCurrent(index);
-        setAnimating(false);
-      }, 400);
+  const characters = [
+    {
+      name: "Mohan Maya",
+      image: "/hero/mm.jpeg",
+      description:
+        "Lord Krishna is revered as the embodiment of love, wisdom, and divine guidance. His teachings in the Bhagavad Gita continue to inspire millions around the world.",
     },
-    [animating, current]
-  );
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((current + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [current, goTo]);
-
-  const slide = slides[current];
+    {
+      name: "Radha Ji",
+      image: Radha,
+      description:
+        "Radha symbolizes pure devotion and eternal love. Her bond with Krishna represents the highest form of spiritual connection.",
+    },
+    {
+      name: "Madhav",
+      image: madhav,
+      description:
+        "Madhav is a representation of grace, compassion, and inner strength. His presence brings peace and inspiration.",
+    },
+    {
+      name: "Mother",
+      image: mother,
+      description:
+        "A symbol of unconditional love, sacrifice, and nurturing care. Mothers hold a special place in every heart.",
+    },
+    {
+      name: "Maya",
+      image: maya,
+      description:
+        "Maya represents beauty, mystery, and the fascinating illusionary nature of life and existence.",
+    },
+    {
+      name: "Shiva",
+      image: Shiva,
+      description:
+        "Lord Shiva is known as the destroyer of negativity and the transformer of life. He symbolizes power, meditation, and balance.",
+    },
+    {
+      name: "Madhvi",
+      image: Madhvi,
+      description:
+        "Madhvi represents elegance, devotion, and strength. Her character reflects resilience and grace.",
+    },
+  ];
 
   return (
-    <section
-      className="relative min-h-screen overflow-hidden"
-      style={{
-        fontFamily: "'Playfair Display', serif",
-      }}
-    >
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/season/animated.mp4" type="video/mp4" />
-      </video>
+    <div className="relative pb-10 mt-20 bg-[#ffd8df]">
+      {/* Hero Video Section */}
+      <div className="w-full h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="/hero/mohan-maya.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 min-h-screen grid lg:grid-cols-2 items-center gap-10">
-        
-        {/* Left Content */}
-        <div>
-          <span className="inline-block border border-[#ff7f50] text-[#ff7f50] px-4 py-2 tracking-[3px] text-sm mb-6">
-            {slide.badge}
-          </span>
-
-          <h1 className="text-white font-black leading-none mb-6 text-[clamp(3rem,6vw,5rem)]">
-            {slide.title.map((line, index) => (
-              <span key={index} className="block">
-                {line}
-              </span>
-            ))}
+        <div className="absolute top-1/2 left-1/2 z-20 w-full px-4 text-center text-white -translate-x-1/2 -translate-y-1/2">
+          <h1 className="font-bold text-3xl md:text-5xl">
+            Where Tiny Art Comes to Life
           </h1>
 
-          <p className="text-gray-300 max-w-lg leading-8 mb-10">
-            {slide.description}
+          <p className="text-lg leading-relaxed max-w-[650px] mx-auto mt-4">
+            Explore a unique collection of miniature crafts that capture
+            extraordinary detail and timeless craftsmanship.
           </p>
 
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-[#ff7f50] text-white px-8 py-4 font-medium hover:bg-white hover:text-[#ff7f50] transition-all duration-300">
-              BUY NOW →
-            </button>
-
-            <button className="border border-[#ff7f50] text-[#ff7f50] px-8 py-4 font-medium hover:bg-[#ff7f50] hover:text-white transition-all duration-300">
-              VIEW DETAILS →
-            </button>
-          </div>
-        </div>
-
-        {/* Right Image */}
-        <div className="flex justify-center">
-          <div className="w-[400px] h-[400px] rounded-full overflow-hidden border-8 border-white/20 backdrop-blur-sm">
-            <img
-              src={slide.image}
-              alt={slide.title[0]}
-              className="w-full h-full object-fill"
-            />
-          </div>
+          <button className="mt-6 px-6 py-3 bg-[#ef4462] border border-[#ef4462] rounded-[30px] hover:bg-transparent hover:border-[#fff] transition-all duration-300 cursor-pointer">
+            Explore Now
+          </button>
         </div>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="absolute z-20 right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-        {slides.map((item, index) => (
-          <button
-            key={item.id}
-            onClick={() => goTo(index)}
-            className={`rounded-full transition-all duration-300 ${
-              current === index
-                ? "w-4 h-4 bg-[#ff7f50]"
-                : "w-2 h-2 border border-[#ff7f50]"
-            }`}
-          />
-        ))}
+      {/* Slider Section */}
+      <div className="relative z-20 mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
+        <button className="custom-hero-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
+          <FiChevronLeft size={26} />
+        </button>
+
+        <button className="custom-hero-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
+          <FiChevronRight size={26} />
+        </button>
+
+        <Swiper
+          modules={[Navigation]}
+          navigation={{
+            prevEl: ".custom-hero-prev",
+            nextEl: ".custom-hero-next",
+          }}
+          spaceBetween={20}
+          loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1400: {
+              slidesPerView: 5,
+            },
+          }}
+        >
+          {characters.map((char, idx) => (
+            <SwiperSlide key={idx}>
+              <div
+                onClick={() => setSelectedCharacter(char)}
+                className="rounded-md h-[300px] overflow-hidden relative cursor-pointer group"
+              >
+                <img
+                  src={char.image}
+                  alt={char.name}
+                  className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                />
+
+                <div className="absolute inset-0 bg-black/20"></div>
+
+                <h2 className="text-xl font-semibold text-white absolute bottom-0 left-0 right-0 z-10 bg-[#f04764] text-center py-2">
+                  {char.name}
+                </h2>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </section>
+
+
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedCharacter && (
+          <motion.div
+            className="fixed inset-0 bg-black/80 z-[999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCharacter(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, y: 40 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 40 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl overflow-hidden max-w-lg w-full shadow-2xl"
+            >
+              <div className="relative">
+                <img
+                  src={selectedCharacter.image}
+                  alt={selectedCharacter.name}
+                  className="w-full h-[400px] object-cover"
+                />
+
+                <button
+                  onClick={() => setSelectedCharacter(null)}
+                  className="absolute top-4 right-4 bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#fe4462] hover:text-white transition"
+                >
+                  <FiX size={22} />
+                </button>
+              </div>
+
+              <div className="p-6">
+                <h2 className="text-3xl font-bold text-[#fe4462] mb-4">
+                  {selectedCharacter.name}
+                </h2>
+
+                <p className="text-gray-600 leading-relaxed">
+                  {selectedCharacter.description}
+                </p>
+
+               <button
+  type="button"
+  onClick={() => console.log("Explore button clicked")}
+  className="mt-6 bg-[#fe4462] text-white px-6 py-3 rounded-[30px] hover:bg-[#da4059] transition cursor-pointer"
+>
+  Explore Now
+</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
-}
+};
+
+export default Hero;

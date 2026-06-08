@@ -3,9 +3,11 @@ import React from "react";
 const UpcomingCollection = () => {
   return (
     <section
-      className="relative min-h-[350px] sm:min-h-[450px] md:min-h-[550px] w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="relative min-h-[350px] sm:min-h-[450px] md:min-h-[500px] w-full bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
-        backgroundImage: "url('/upcoming-image/pic1.png')",
+        backgroundImage: "url('/upcoming-image/pic2.jpeg')",
+        backgroundPosition: "bottom",
+        backgroundSize: "cover"
       }}
     >
       {/* Overlay */}

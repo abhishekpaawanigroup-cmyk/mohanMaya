@@ -304,16 +304,16 @@ const TrendyCollection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#c74646c2] to-[#484848]">
+    <section className="py-20 bg-[#ffd8df]">
       <div className="max-w-350 mx-auto  relative">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-center mb-14">
           <div>
-            <span className="bg-transparent text-[#0f3439] border border-[#0f3439] px-4 py-2 text-sm font-bold uppercase rounded-full">
+            <span className="bg-transparent text-[#ef4462] border border-[#ef4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
               This Month
             </span>
 
-            <h2 className="text-5xl font-bold text-[#0f3439] mt-4">
+            <h2 className="text-5xl font-bold text-[#ef4462] mt-4">
               Trending Collection
             </h2>
           </div>
@@ -324,14 +324,14 @@ const TrendyCollection = () => {
               <button
                 key={tab.value}
                 onClick={() => setActiveTab(tab.value)}
-                className={`relative pb-2 text-lg font-medium transition-all ${
+                className={`relative pb-2 text-lg cursor-pointer font-medium transition-all ${
                   activeTab === tab.value
                     ? "text-black border-b-2 border-black"
                     : "text-gray-500 hover:text-black"
                 }`}
               >
                 {activeTab === tab.value && (
-                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ff7f50] text-white text-xs font-bold px-3 py-1 rounded">
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#fe4462] text-white text-xs font-bold px-3 py-1 rounded">
                     {productData[tab.value].length}
                   </span>
                 )}
@@ -343,11 +343,11 @@ const TrendyCollection = () => {
         </div>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev-trendy absolute left-[-40px] top-[50%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ce4c49] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev-trendy absolute left-[0] top-[55%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-[-40px] top-[50%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#513d36] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-[0] top-[55%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -380,7 +380,7 @@ const TrendyCollection = () => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-transparent shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full overflow-hidden">
+                <div className="group relative bg-[#d1aaaa8a] shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full overflow-hidden">
                   
 
                   {/* Product Image */}
@@ -399,19 +399,23 @@ const TrendyCollection = () => {
                         icon={FiShoppingBag}
                         label="Add to Cart"
                         onClick={() => handleAddToCart(item.id, item.name)}
+                         className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
                       />
                       <ActionButton
   icon={FiEye}
   label="Quick View"
   onClick={() => handleQuickView(item)}
+   className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
 />
                       <ActionButton
                         icon={FiHeart}
                         label="Add to List"
                         onClick={() => handleAddToWishlist(item.id)}
-                        className={
-                          wishlist[item.id] ? "bg-red-500 hover:bg-red-600" : ""
-                        }
+                        className={`text-white ${
+  wishlist[item.id]
+    ? "bg-red-500 hover:bg-[#ff7f50]"
+    : "bg-[#ff7f50] hover:bg-[#ef4462]"
+}`}
                       />
                     </div>
                   </div>

@@ -1,34 +1,52 @@
-import React, { useState } from "react";
+
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaYoutube,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { FiMapPin, FiPhone, FiMail, FiX } from "react-icons/fi";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
-
-  const [homeOpen, setHomeOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(false);
   const [blogOpen, setBlogOpen] = useState(false);
 
+  const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+
   return (
     <>
-      <header className="w-full bg-white shadow-sm fixed top-0 z-50">
-        <div className="max-w-[1440px] mx-auto py-5 flex items-center justify-between">
+      <header
+  className={`w-full fixed top-0 z-50 transition-all duration-100 ${
+    scrolled
+      ? "bg-white/30 backdrop-blur-[8px] shadow-lg border-b border-white/20"
+      : "bg-[#ffd8df]"
+  }`}
+>
+        <div className="max-w-360 mx-auto flex items-center justify-between py-[10px]">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img
-              src="/trandy-images/mm5.png"
+              src="/header/logo.png"
               alt="logo"
-              className="w-14 h-20"
+              className="w-18 h-18 rounded-full"
             />
             <h1 className="text-4xl font-bold font-serif">MM</h1>
           </div>
@@ -38,29 +56,29 @@ export default function Header() {
             <ul className="flex items-center gap-10 text-[17px]">
               {/* Home */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   Home
                 </a>
               </li>
 
               {/* About */}
               <li>
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   About
                 </a>
               </li>
 
               {/* Shop */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   Shop
                 </a>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Product
                     </a>
@@ -68,7 +86,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Product Details
                     </a>
@@ -76,7 +94,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Wishlist
                     </a>
@@ -84,7 +102,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Cart
                     </a>
@@ -92,7 +110,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Checkout
                     </a>
@@ -102,15 +120,15 @@ export default function Header() {
 
               {/* Pages */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   Pages
                 </a>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Team
                     </a>
@@ -118,7 +136,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       FAQ
                     </a>
@@ -126,7 +144,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Pricing
                     </a>
@@ -134,7 +152,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       404 Page
                     </a>
@@ -144,15 +162,15 @@ export default function Header() {
 
               {/* Blog */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   Blog
                 </a>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Blog Grid
                     </a>
@@ -160,7 +178,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Blog List
                     </a>
@@ -168,7 +186,7 @@ export default function Header() {
                   <li>
                     <a
                       href="#"
-                      className="block px-6 py-3 hover:bg-[#ff7f50] hover:text-[#fff]"
+                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
                     >
                       Blog Details
                     </a>
@@ -178,7 +196,7 @@ export default function Header() {
 
               {/* Contact */}
               <li>
-                <a href="#" className="font-medium hover:text-[#ff7f50]">
+                <a href="#" className="font-medium hover:text-[#ef4462]">
                   Contact
                 </a>
               </li>
@@ -187,28 +205,28 @@ export default function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center border border-gray-300 rounded-full overflow-hidden">
+            <div className="hidden md:flex items-center border border-[#ef4462] rounded-full overflow-hidden">
               <input
                 type="text"
                 placeholder="Search..."
                 className="px-5 py-3 outline-none w-64 font-medium"
               />
 
-              <button className="bg-[#ff7f50] text-white text-lg p-4 rounded-full">
+              <button className="bg-[#ef4462] text-white text-lg p-4 rounded-full cursor-pointer">
                 <IoSearch />
               </button>
             </div>
 
             <div className="relative text-2xl cursor-pointer">
               <FaRegHeart />
-              <span className="absolute -top-2 -right-2 bg-[#ff7f50] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-[#ef4462] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                 3
               </span>
             </div>
 
             <div className="relative text-2xl cursor-pointer">
               <LuShoppingBag />
-              <span className="absolute -top-2 -right-2 bg-[#ff7f50] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-[#ef4462] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                 12
               </span>
             </div>
@@ -239,13 +257,13 @@ export default function Header() {
       >
         <div className="flex items-center justify-between p-8 border-b border-gray-800">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="logo" className="w-8 h-8" />
-            <h2 className="text-4xl font-bold font-serif">ADDINA</h2>
+            <img src="/header/logo.png" alt="logo" className="w-12 h-12 rounded-full" />
+            <h2 className="text-4xl font-bold font-serif">MM</h2>
           </div>
 
           <button
             onClick={() => setOpenMenu(false)}
-            className="text-[20px] p-[14px] rounded-full bg-[#ff7f50] flex items-center justify-center cursor-pointer"
+            className="text-[20px] p-[14px] rounded-full bg-[#fe4462] flex items-center justify-center cursor-pointer"
           >
             <FiX />
           </button>
@@ -264,32 +282,14 @@ export default function Header() {
           {/* Mobile Navigation Only */}
           <div className="block lg:hidden mt-8 border-t border-gray-800">
             {/* Home */}
-            <div className="border-b border-gray-800">
-              <button
-                onClick={() => setHomeOpen(!homeOpen)}
-                className="w-full flex justify-between items-center py-5"
-              >
-                <span className="text-lg font-semibold">Home</span>
-                <span className="text-3xl">{homeOpen ? "-" : "+"}</span>
-              </button>
-
-              {homeOpen && (
-                <div className="pb-4 pl-4 space-y-3 text-gray-400">
-                  <a href="#" className="block">
-                    Home Style 01
-                  </a>
-                  <a href="#" className="block">
-                    Home Style 02
-                  </a>
-                  <a href="#" className="block">
-                    Home Style 03
-                  </a>
-                </div>
-              )}
+            <div className="py-3 border-b border-gray-800 ">
+              <a href="#" className="text-lg font-semibold">
+                Home
+              </a>
             </div>
 
             {/* About */}
-            <div className="py-5 border-b border-gray-800">
+            <div className="py-3 border-b border-gray-800">
               <a href="#" className="text-lg font-semibold">
                 About
               </a>
@@ -299,7 +299,7 @@ export default function Header() {
             <div className="border-b border-gray-800">
               <button
                 onClick={() => setShopOpen(!shopOpen)}
-                className="w-full flex justify-between items-center py-5"
+                className="w-full flex justify-between items-center py-3"
               >
                 <span className="text-lg font-semibold">Shop</span>
                 <span className="text-3xl">{shopOpen ? "-" : "+"}</span>
@@ -330,7 +330,7 @@ export default function Header() {
             <div className="border-b border-gray-800">
               <button
                 onClick={() => setPagesOpen(!pagesOpen)}
-                className="w-full flex justify-between items-center py-5"
+                className="w-full flex justify-between items-center py-3"
               >
                 <span className="text-lg font-semibold">Pages</span>
                 <span className="text-3xl">{pagesOpen ? "-" : "+"}</span>
@@ -358,7 +358,7 @@ export default function Header() {
             <div className="border-b border-gray-800">
               <button
                 onClick={() => setBlogOpen(!blogOpen)}
-                className="w-full flex justify-between items-center py-5"
+                className="w-full flex justify-between items-center py-3"
               >
                 <span className="text-lg font-semibold">Blog</span>
                 <span className="text-3xl">{blogOpen ? "-" : "+"}</span>
@@ -380,18 +380,14 @@ export default function Header() {
             </div>
 
             {/* Contact */}
-            <div className="py-5 border-b border-gray-800">
-              <a href="#" className="text-lg font-semibold">
-                Contact
-              </a>
-            </div>
+           
           </div>
 
-          <h3 className="text-[26px] font-bold mt-12 mb-8">Contact Info</h3>
+          <h3 className="text-[26px] font-bold mt-10 mb-6">Contact Info</h3>
 
           <div className="space-y-8">
             <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
                 <FiMapPin />
               </div>
 
@@ -401,7 +397,7 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
                 <FiPhone />
               </div>
 
@@ -409,7 +405,7 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
                 <FiMail />
               </div>
 
@@ -418,19 +414,19 @@ export default function Header() {
           </div>
 
           <div className="flex gap-4 mt-10">
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
               <FaFacebookF />
             </div>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
               <FaTwitter />
             </div>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
               <FaYoutube />
             </div>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#ff7f50] transition-colors duration-300 cursor-pointer">
+            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
               <FaLinkedinIn />
             </div>
           </div>

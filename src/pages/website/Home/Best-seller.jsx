@@ -48,15 +48,15 @@ export const products = [
 
 const BestSellers = () => {
   return (
-    <section className="bg-gradient-to-r from-[#46c7c0c2] to-[#730000] py-24">
+    <section className="bg-[#ffe7ad] py-24">
       <div className="max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="mb-12">
-          <span className="inline-block bg-transparent text-[#ff7f50] border border-[#ff7f50] px-4 py-2 text-sm font-semibold uppercase rounded-full">
+          <span className="inline-block bg-[transparent] text-[#c48212] border border-[#c48212] px-4 py-2 text-sm font-semibold uppercase rounded-full">
             This Week
           </span>
 
-          <h2 className="mt-5 text-5xl font-bold text-[#0f3439]">
+          <h2 className="mt-5 text-5xl font-bold text-[#c48212]">
             Best Sellers
           </h2>
         </div>
@@ -83,8 +83,8 @@ const BestSellers = () => {
                   {item.name}
                 </h3>
 
-                <p className="text-[#ff7f50] text-xl font-medium mb-3">
-                  USD {item.price.toFixed(2)}
+                <p className="text-[#ff7f50] text-LG font-medium mb-3">
+                  INR {item.price.toFixed(2)}
                 </p>
 
                 {/* Rating */}

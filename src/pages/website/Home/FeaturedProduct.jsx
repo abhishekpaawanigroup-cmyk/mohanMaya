@@ -103,23 +103,23 @@ const handleQuickView = (product) => {
     }));
   };
   return (
-    <section className="bg-gradient-to-r from-[#d7c842] to-[#175e97] py-20">
+    <section className="bg-[#ffd8df] pb-20 pt-6">
       <div className="mx-auto px-8 relative max-w-360">
         <div className="text-center mb-14">
-            <span className="bg-transparent text-[#ab20ae] border border-[#ab20ae] px-4 py-2 text-sm font-bold uppercase rounded-full">
+            <span className="bg-[transparent] text-[#ef4462] border border-[#ef4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
               Top Sale
             </span>
 
-            <h2 className="text-5xl font-bold text-[#7a037cd6] mt-4">
+            <h2 className="text-5xl font-bold text-[#ef4462] mt-4">
               Featured Characters
             </h2>
           </div>
         {/* Custom Arrows */}
-        <button className="custom-prev absolute left-[-40px] top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#ceb60b] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev absolute left-[0] top-[50%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next absolute right-[-40px] top-[48%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#1b5fa2] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next absolute right-[0] top-[50%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -151,7 +151,7 @@ const handleQuickView = (product) => {
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
                 {/* Product Card */}
-                <div className="group relative bg-transparent overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
+                <div className="group relative bg-[#d1aaaa8a] overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
   {/* Product Image */}
   <div className="h-80 flex items-center justify-center overflow-hidden">
     <img
@@ -168,21 +168,25 @@ const handleQuickView = (product) => {
         icon={FiShoppingBag}
         label="Add to Cart"
         onClick={() => handleAddToCart(item.id, item.name)}
+        className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
       />
 
       <ActionButton
         icon={FiEye}
         label="Quick View"
         onClick={() => handleQuickView(item)}
+         className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
       />
 
       <ActionButton
         icon={FiHeart}
         label="Add to List"
         onClick={() => handleAddToWishlist(item.id)}
-        className={
-          wishlist[item.id] ? "bg-red-500 hover:bg-red-600" : ""
-        }
+        className={`text-white ${
+  wishlist[item.id]
+    ? "bg-red-500 hover:bg-[#ff7f50]"
+    : "bg-[#ff7f50] hover:bg-[#ef4462]"
+}`}
       />
     </div>
   </div>

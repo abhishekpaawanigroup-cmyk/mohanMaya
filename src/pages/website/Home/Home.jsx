@@ -5,7 +5,8 @@ import Hero from "./Hero";
 import Testimonials from "./Testimonial";
 import BestSellers from "./Best-seller";
 import SeasonalCollection from "./Season-collection";
-import UpcomingCollection from "../../Upcoming";
+import UpcomingCollection from "./Upcoming";
+
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
     <Hero />
      <FeaturedProduct />
      <SeasonalCollection />
-     <UpcomingCollection/>
+     <UpcomingCollection />
       <TrendyCollection />
       <Testimonials />
       <BestSellers />

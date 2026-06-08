@@ -20,7 +20,7 @@ const ProductPreviewModal = ({ product, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-50 w-11 h-11 rounded-full bg-black text-white flex items-center justify-center hover:bg-[#ff7f50] transition duration-200"
+          className="absolute top-5 right-5 z-50 w-11 h-11 rounded-full bg-black text-white flex items-center justify-center hover:bg-[#fe4462] transition duration-200"
         >
           <FiX size={22} />
         </button>
@@ -28,7 +28,7 @@ const ProductPreviewModal = ({ product, onClose }) => {
         <div className="p-8">
           
           {/* Main Image */}
-          <div className="bg-[#f8f8f8] rounded-xl h-[500px] flex items-center justify-center overflow-hidden">
+          <div className="bg-[#ffd3d3] rounded-xl h-[500px] flex items-center justify-center overflow-hidden">
             <img
               src={selectedImage}
               alt={product.name}
