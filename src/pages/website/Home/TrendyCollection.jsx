@@ -304,27 +304,27 @@ const TrendyCollection = () => {
   };
 
   return (
-    <section className="py-20 bg-[#ffd8df]">
-      <div className="max-w-350 mx-auto  relative">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#ffd8df]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-center mb-14">
+        <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-8 mb-14">
           <div>
             <span className="bg-transparent text-[#ef4462] border border-[#ef4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
               This Month
             </span>
 
-            <h2 className="text-5xl font-bold text-[#ef4462] mt-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#ef4462] mt-4">
               Trending Collection
             </h2>
           </div>
 
           {/* Tabs */}
-          <div className="flex flex-wrap gap-12 mt-8 lg:mt-0">
+          <div className="flex flex-wrap justify-center lg:justify-end gap-4 sm:gap-6 lg:gap-10 mt-4 lg:mt-0">
             {tabs.map((tab) => (
               <button
                 key={tab.value}
                 onClick={() => setActiveTab(tab.value)}
-                className={`relative pb-2 text-lg cursor-pointer font-medium transition-all ${
+                className={`relative pb-2 text-sm sm:text-base lg:text-lg cursor-pointer font-medium transition-all ${
                   activeTab === tab.value
                     ? "text-black border-b-2 border-black"
                     : "text-gray-500 hover:text-black"
@@ -343,11 +343,11 @@ const TrendyCollection = () => {
         </div>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev-trendy absolute left-[0] top-[55%] -translate-x-1/2 -translate-y-1/2  z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center  border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
+        <button className="custom-prev-trendy absolute left-0 sm:left-3 lg:left-0 top-[55%] lg:top-[50%] z-20 w-14 h-14 sm:w-14 sm:h-14 lg:w-14 lg:h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-2 lg:border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-next-trendy absolute translate-x-1/2 -translate-y-1/2 right-[0] top-[55%] z-20 w-15 h-15 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
+        <button className="custom-next-trendy absolute right-0 sm:right-3 lg:right-0 top-[55%] lg:top-[50%] z-20 w-14 h-14 sm:w-14 sm:h-14 lg:w-14 lg:h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-2 lg:border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white">
           <FiChevronRight size={26} />
         </button>
 
@@ -362,19 +362,27 @@ const TrendyCollection = () => {
           spaceBetween={30}
           slidesPerView={4}
           breakpoints={{
-            320: {
-              slidesPerView: 1,
-            },
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-            1400: {
-              slidesPerView: 4,
-            },
-          }}
+  320: {
+    slidesPerView: 1,
+    spaceBetween: 20,
+  },
+  640: {
+    slidesPerView: 2,
+    spaceBetween: 20,
+  },
+  768: {
+    slidesPerView: 2,
+    spaceBetween: 25,
+  },
+  1024: {
+    slidesPerView: 3,
+    spaceBetween: 30,
+  },
+  1400: {
+    slidesPerView: 4,
+    spaceBetween: 30,
+  },
+}}
         >
           {productData[activeTab].map((item) => (
             <SwiperSlide key={item.id}>

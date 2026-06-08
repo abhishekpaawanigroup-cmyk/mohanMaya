@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 const products = [
   {
     id: 1,
-    name: "Miniature Cart",
+    name: "Mohan-Maya",
     price: "200.00",
     image:
       "/Featured-images/mm4.png",
@@ -31,8 +31,8 @@ const products = [
   },
   {
     id: 2,
-    name: "Miniature Home",
-    price: "49.00",
+    name: "Mohan-Maya",
+    price: "249.00",
     image:
       "/Featured-images/mm5.png",
       gallery: [
@@ -44,7 +44,7 @@ const products = [
   },
   {
     id: 3,
-    name: "Miniature Toy",
+    name: "Mohan-Maya",
     price: "150.00",
     image:
       "/Featured-images/mm6.png",
@@ -58,7 +58,7 @@ const products = [
   },
   {
     id: 4,
-    name: "Mini Tree-House",
+    name: "Mohan-Maya",
     price: "150.00",
     image:
       "/Featured-images/mm7.png",
@@ -71,7 +71,7 @@ const products = [
   },
   {
     id: 5,
-    name: "Miniature Toy",
+    name: "Mohan-Maya",
     price: "180.00",
     image:
       "/Featured-images/mm6.png",

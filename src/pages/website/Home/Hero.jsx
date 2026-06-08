@@ -98,11 +98,11 @@ const Hero = () => {
 
       {/* Slider Section */}
       <div className="relative z-20 mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
-        <button className="custom-hero-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
+        <button className="custom-hero-prev absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
           <FiChevronLeft size={26} />
         </button>
 
-        <button className="custom-hero-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
+        <button className="custom-hero-next absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
           <FiChevronRight size={26} />
         </button>
 

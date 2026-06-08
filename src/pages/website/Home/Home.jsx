@@ -6,6 +6,7 @@ import Testimonials from "./Testimonial";
 import BestSellers from "./Best-seller";
 import SeasonalCollection from "./Season-collection";
 import UpcomingCollection from "./Upcoming";
+import FeaturesSection from "./Feature";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
     <>
     <Hero />
      <FeaturedProduct />
+     <FeaturesSection />
      <SeasonalCollection />
      <UpcomingCollection />
       <TrendyCollection />

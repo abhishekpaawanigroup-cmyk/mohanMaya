@@ -1,4 +1,3 @@
-
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
@@ -6,6 +5,7 @@ import { MdMenu } from "react-icons/md";
 import React, { useState, useEffect } from "react";
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { FiMapPin, FiPhone, FiMail, FiX } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -56,23 +56,26 @@ useEffect(() => {
             <ul className="flex items-center gap-10 text-[17px]">
               {/* Home */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  Home
-                </a>
+                <NavLink to="/" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>Home</NavLink>
               </li>
 
               {/* About */}
               <li>
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  About
-                </a>
+               <NavLink
+  to="/about"
+  className={({ isActive }) =>
+    `font-medium hover:text-[#ef4462] ${
+      isActive ? "text-[#ef4462]" : ""
+    }`
+  }
+>
+  About
+</NavLink>
               </li>
 
               {/* Shop */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  Shop
-                </a>
+                <NavLink to="/shop" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Shop</NavLink>
 
                 <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
@@ -120,9 +123,7 @@ useEffect(() => {
 
               {/* Pages */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  Pages
-                </a>
+                <NavLink to="/pages" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : ""}`}>Pages</NavLink>
 
                 <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
@@ -162,9 +163,7 @@ useEffect(() => {
 
               {/* Blog */}
               <li className="relative group">
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  Blog
-                </a>
+                <NavLink to="/blog" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Blog</NavLink>
 
                 <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
@@ -196,9 +195,8 @@ useEffect(() => {
 
               {/* Contact */}
               <li>
-                <a href="#" className="font-medium hover:text-[#ef4462]">
-                  Contact
-                </a>
+                <NavLink to="/contact" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>Contact
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -283,16 +281,12 @@ useEffect(() => {
           <div className="block lg:hidden mt-8 border-t border-gray-800">
             {/* Home */}
             <div className="py-3 border-b border-gray-800 ">
-              <a href="#" className="text-lg font-semibold">
-                Home
-              </a>
+              <NavLink to="/" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Home</NavLink>
             </div>
 
             {/* About */}
             <div className="py-3 border-b border-gray-800">
-              <a href="#" className="text-lg font-semibold">
-                About
-              </a>
+              <NavLink to="/about" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>About</NavLink>
             </div>
 
             {/* Shop */}
