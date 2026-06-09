@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
+import ProductModal from "./ProductModal";
 
 const ProductCard = () => {
   const [wishlist, setWishlist] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+    <>
+    <div
+  onClick={() => setOpenModal(true)}
+  className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+>
       
       {/* Image Section */}
       <div className="relative overflow-hidden">
@@ -23,9 +29,12 @@ const ProductCard = () => {
 
         {/* Wishlist */}
         <button
-          onClick={() => setWishlist(!wishlist)}
-          className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md"
-        >
+  onClick={(e) => {
+    e.stopPropagation();
+    setWishlist(!wishlist);
+  }}
+  className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md"
+>
           <Heart
             size={20}
             className={`transition ${
@@ -63,12 +72,25 @@ const ProductCard = () => {
         </div>
 
         {/* Add To Cart */}
-        <button className="mt-5 w-full flex items-center justify-center gap-2 bg-[#fe4462] hover:bg-[#e53a58] text-white py-3 rounded-xl font-medium transition">
-          <ShoppingCart size={18} />
-          Add To Cart
-        </button>
+        <button
+  onClick={(e) => {
+    e.stopPropagation();
+    // Add to cart logic
+  }}
+  className="mt-5 w-full flex items-center justify-center gap-2 bg-[#fe4462] hover:bg-[#e53a58] text-white py-3 rounded-xl font-medium transition"
+>
+  <ShoppingCart size={18} />
+  Add To Cart
+</button>
       </div>
     </div>
+
+    {openModal && (
+    <ProductModal
+      onClose={() => setOpenModal(false)}
+    />
+  )}
+  </>
   );
 };
 
