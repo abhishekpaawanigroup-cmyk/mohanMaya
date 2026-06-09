@@ -32,19 +32,19 @@ export default function FeaturesSection() {
   return (
     <section className="py-10 px-4 bg-[#ffd8df]">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-[#fff7f7] border-2 border-[#fe4462] rounded-lg lg:rounded-full overflow-hidden">
+        <div className="bg-[#ffd8df] border-2 border-[#fe4462] rounded-lg lg:rounded-full overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {features.map((item, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-4 p-8 ${
+                className={`flex items-center gap-4 p-6 ${
                   index !== features.length - 1
                     ? "lg:border-r-2 border-[#fe4462]"
                     : ""
                 }`}
               >
                 {/* Icon */}
-                <div className="flex items-center justify-center w-18 h-18 rounded-full bg-[#fddae0] text-[#fe4462] shrink-0">
+                <div className="flex items-center justify-center w-18 h-18 rounded-full bg-[#fff] text-[#fe4462] shrink-0">
                   {item.icon}
                 </div>
 
