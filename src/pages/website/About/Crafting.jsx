@@ -35,7 +35,7 @@ const steps = [
 
 const CraftingProcess = () => {
   return (
-    <section className="py-20 bg-[#ffe7ad]">
+    <section className="py-20 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}

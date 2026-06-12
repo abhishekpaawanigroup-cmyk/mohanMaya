@@ -37,7 +37,7 @@ useEffect(() => {
   className={`w-full fixed top-0 z-50 transition-all duration-100 ${
     scrolled
       ? "bg-white/30 backdrop-blur-[8px] shadow-lg border-b border-white/20"
-      : "bg-[#ffd8df]"
+      : "bg-[#f0e0e3]"
   }`}
 >
         <div className="max-w-360 mx-auto flex items-center justify-between py-[10px]">
@@ -46,9 +46,9 @@ useEffect(() => {
             <img
               src="/header/logo.png"
               alt="logo"
-              className="w-18 h-18 rounded-full"
+              className="w-16 h-16 rounded-full"
             />
-            <h1 className="text-4xl font-bold font-serif">MM</h1>
+            <h1 className="text-4xl font-bold">M&M</h1>
           </div>
 
           {/* Navigation */}
@@ -77,7 +77,7 @@ useEffect(() => {
               <li className="relative group">
                 <NavLink to="/shop" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Shop</NavLink>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"
@@ -125,7 +125,7 @@ useEffect(() => {
               <li className="relative group">
                 <NavLink to="/pages" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : ""}`}>Pages</NavLink>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"
@@ -165,7 +165,7 @@ useEffect(() => {
               <li className="relative group">
                 <NavLink to="/blog" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Blog</NavLink>
 
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#ffd8df] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
+                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
                   <li>
                     <a
                       href="#"

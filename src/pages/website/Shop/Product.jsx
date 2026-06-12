@@ -14,12 +14,12 @@ const ProductCard = () => {
 >
       
       {/* Image Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden pb-1 pt-5">
         
         <img
           src="/bestseller-image/mm5.png"
           alt="Mohan-Maya"
-          className="w-full h-[200px] object-contain group-hover:scale-105 transition duration-500"
+          className=" h-[200px] bg-[#f0e0e3] w-[200px] mx-auto rounded-full object-contain group-hover:scale-105 transition duration-500"
         />
 
         {/* Discount Badge */}
@@ -48,16 +48,12 @@ const ProductCard = () => {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800">
+        <h3 className="text-lg font-semibold text-gray-800 text-center">
           Mohan-Maya
         </h3>
 
-        <p className="text-sm text-gray-500 mt-1">
-          Handcrafted Miniature Collection
-        </p>
-
         {/* Pricing */}
-        <div className="flex items-center gap-3 mt-3">
+        <div className="flex items-center gap-3 mt-3 justify-center">
           <span className="text-xl font-bold text-[#fe4462]">
             ₹999
           </span>

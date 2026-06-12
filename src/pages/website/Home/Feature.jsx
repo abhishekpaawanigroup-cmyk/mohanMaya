@@ -30,9 +30,9 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-10 px-4 bg-[#ffd8df]">
+    <section className="py-10 px-4 bg-[#f0e0e3]">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-[#ffd8df] border-2 border-[#fe4462] rounded-lg lg:rounded-full overflow-hidden">
+        <div className="bg-[#ffeff2] border-2 border-[#fe4462] rounded-lg lg:rounded-full overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {features.map((item, index) => (
               <div

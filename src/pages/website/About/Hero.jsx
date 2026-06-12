@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = () => {
   return (
     <section
-      className="relative h-screen lg:h-[80vh] bg-cover bg-bottom mt-[90px]"
+      className="relative h-screen max-h-[1000px] bg-cover bg-bottom"
       style={{
         backgroundImage:
           "url('/About/Hero/about-banner.jpeg')",

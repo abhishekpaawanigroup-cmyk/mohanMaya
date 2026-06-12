@@ -103,7 +103,7 @@ const handleQuickView = (product) => {
     }));
   };
   return (
-    <section className="bg-[#ffd8df] pb-20 pt-6">
+    <section className="bg-[#f0e0e3] pb-20 pt-6">
       <div className="mx-auto px-8 relative max-w-360">
         <div className="text-center mb-14">
             <span className="bg-[transparent] text-[#ef4462] border border-[#ef4462] px-4 py-2 text-sm font-bold uppercase rounded-full">

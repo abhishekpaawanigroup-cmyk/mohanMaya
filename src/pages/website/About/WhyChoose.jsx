@@ -1,98 +1,191 @@
 import React from "react";
 import {
-  Award,
-  Palette,
-  ShieldCheck,
-  Truck,
-} from "lucide-react";
-
+  FaClock,
+  FaHeart,
+  FaMagic,
+  FaSmile,
+} from "react-icons/fa";
+import {
+  FaPaintBrush,
+  FaGem,
+  FaGift,
+  FaHandsHelping,
+} from "react-icons/fa";
+ 
+ 
 const features = [
   {
-    icon: <Palette size={28} />,
-    title: "Handcrafted Excellence",
-    description:
-      "Every miniature is carefully designed and handcrafted with attention to the smallest details.",
+    icon: <FaClock />,
+    title: "Exceptional Craftsmanship",
+    desc: "Every miniature is meticulously handcrafted with remarkable precision, ensuring stunning details and artistic excellence.",
+    color: "text-pink-500",
+    bg: "bg-pink-50",
   },
   {
-    icon: <Award size={28} />,
-    title: "Premium Quality",
-    description:
-      "We use high-quality materials and advanced techniques to ensure durability and perfection.",
+    icon: <FaHeart />,
+    title: "Crafted with Passion",
+    desc: "Our skilled artisans pour creativity and dedication into every piece, transforming imagination into timeless collectibles.",
+    color: "text-rose-500",
+    bg: "bg-rose-50",
   },
   {
-    icon: <ShieldCheck size={28} />,
-    title: "Trusted Craftsmanship",
-    description:
-      "Our skilled artists bring years of experience and passion into every collectible we create.",
+    icon: <FaMagic />,
+    title: "Exclusive & Unique Designs",
+    desc: "Discover limited-edition miniatures inspired by culture, mythology, and creativity, designed to make every collection truly special.",
+    color: "text-orange-500",
+    bg: "bg-orange-50",
   },
   {
-    icon: <Truck size={28} />,
-    title: "Safe Delivery",
-    description:
-      "Each product is securely packaged and delivered with care to reach you in perfect condition.",
+    icon: <FaSmile />,
+    title: "A Memorable Experience",
+    desc: "Whether for gifting or collecting, our miniatures bring joy, elegance, and lasting memories to every home and every occasion.",
+    color: "text-green-500",
+    bg: "bg-green-50",
   },
 ];
-
+ 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-[#ffd8df]">
-      <div className="max-w-7xl mx-auto px-6">
-        
+  <section className="py-20 bg-[#fff8fb] relative overflow-hidden">
+ 
+      {/* Background */}
+      <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffecef] opacity-40 -left-40 top-20"></div>
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-[#ffecef] opacity-30 -right-32 bottom-10"></div>
+ 
+      <div className="max-w-7xl mx-auto px-5 relative z-10">
+ 
         {/* Heading */}
-        <div className="text-center mb-14">
-          <span className="text-[#fe4462] border border-[#fe4462] rounded-full px-4 py-2 uppercase tracking-widest font-semibold">
-            Why Choose Us
+ 
+        <div className="text-center mb-16">
+ 
+          <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-1 rounded-full text-sm font-semibold">
+            WHY CHOOSE US
           </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-3">
-            Crafted With Passion,
-            <br />
-            Designed To Inspire
+ 
+          <h2 className="text-5xl font-bold text-[#2b2626] mt-5">
+            Discover the Art Behind
+            <span className="text-[#fe4462]"> Every Miniature</span>
           </h2>
-
-          <p className="max-w-2xl mx-auto text-gray-600 mt-5">
-            We combine creativity, craftsmanship, and quality to create
-            miniature collectibles that tell unique stories and leave a
-            lasting impression.
+ 
+          <p className="max-w-2xl mx-auto mt-4 text-gray-500">
+            We create handcrafted miniature masterpieces with exceptional
+            precision, premium quality, and timeless artistry that collectors
+            cherish forever.
           </p>
+ 
         </div>
-
-        {/* Features */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl"
-            >
-              <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#ffd8df] text-[#fe4462] mb-6">
-                {item.icon}
+ 
+        <div className="grid lg:grid-cols-3 gap-10 items-center">
+ 
+          {/* Left */}
+ 
+          <div className="space-y-12">
+ 
+            <div className="text-center">
+ 
+              <div className="w-16 h-16 rounded-full bg-[#ffd8df] flex justify-center items-center mx-auto text-[#fe4462] text-2xl">
+                <FaPaintBrush />
               </div>
-
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {item.title}
+ 
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+                Exceptional Craftsmanship
               </h3>
-
-              <p className="text-gray-600 leading-relaxed text-sm">
-                {item.description}
+ 
+              <p className="text-gray-500 mt-3 leading-7">
+                Every miniature is handcrafted with remarkable attention to
+                detail, creating a masterpiece that reflects true artistic
+                excellence.
               </p>
+ 
             </div>
-          ))}
+ 
+            <div className="text-center">
+ 
+              <div className="w-16 h-16 rounded-full bg-[#ffd8df] flex justify-center items-center mx-auto text-[#fe4462] text-2xl">
+                <FaGem />
+              </div>
+ 
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+                Exclusive Designs
+              </h3>
+ 
+              <p className="text-gray-500 mt-3 leading-7">
+                Unique and limited-edition creations inspired by culture,
+                mythology, and imagination for collectors worldwide.
+              </p>
+ 
+            </div>
+ 
+          </div>
+ 
+          {/* Center */}
+ 
+          <div className="flex flex-col items-center">
+ 
+            <div className="relative">
+ 
+              <div className="absolute w-full h-full bg-[#ffd8df] rounded-3xl top-5 left-5"></div>
+ 
+              <img
+                src="/Shop/Product1.jpeg"
+                alt=""
+                className="relative w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+              />
+ 
+            </div>
+ 
+            <button className="mt-10 px-8 py-4 bg-[#fe4462] border border-[#fe4462] rounded-full text-white font-semibold shadow-lg hover:bg-transparent hover:text-[#fe4462] hover:border-[#fe4462] duration-300 cursor-pointer">
+              Explore Collection
+            </button>
+ 
+          </div>
+ 
+          {/* Right */}
+ 
+          <div className="space-y-12">
+ 
+            <div className="text-center">
+ 
+              <div className="w-16 h-16 rounded-full bg-[#ffd8df] flex justify-center items-center mx-auto text-[#fe4462] text-2xl">
+                <FaGift />
+              </div>
+ 
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+                Perfect for Gifting
+              </h3>
+ 
+              <p className="text-gray-500 mt-3 leading-7">
+                Thoughtfully designed keepsakes that make unforgettable gifts
+                for birthdays, festivals, weddings, and special occasions.
+              </p>
+ 
+            </div>
+ 
+            <div className="text-center">
+ 
+              <div className="w-16 h-16 rounded-full bg-[#ffd8df] flex justify-center items-center mx-auto text-[#fe4462] text-2xl">
+                <FaHandsHelping />
+              </div>
+ 
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+                Crafted with Passion
+              </h3>
+ 
+              <p className="text-gray-500 mt-3 leading-7">
+                Our skilled artisans combine creativity and dedication to bring
+                imagination to life through timeless miniature art.
+              </p>
+ 
+            </div>
+ 
+          </div>
+ 
         </div>
-
-        {/* Bottom Banner */}
-        <div className="mt-16 bg-[#ffd8df] border-2 border-[#fe4462] text-[#fe4462] rounded-3xl p-10 text-center">
-          <h3 className="text-3xl font-bold mb-3">
-            Bringing Imagination To Life
-          </h3>
-
-          <p className="max-w-2xl mx-auto">
-            From concept to creation, every miniature is crafted with
-            precision, passion, and a commitment to excellence.
-          </p>
-        </div>
+ 
       </div>
+ 
     </section>
   );
 };
-
+ 
 export default WhyChooseUs;

@@ -28,13 +28,13 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-20 bg-[#ffd8df]">
+    <section className="py-20 bg-[#f0e0e3]">
       <div className="max-w-7xl mx-auto px-4">
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Left Content */}
-          <div className="sticky top-24">
+          <div>
             <span className="inline-block text-[#fe4462] border border-[#fe4462] px-4 py-1 rounded-full text-sm font-medium">
               FAQs
             </span>

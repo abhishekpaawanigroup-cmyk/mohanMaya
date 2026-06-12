@@ -304,7 +304,7 @@ const TrendyCollection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#ffd8df]">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#f0e0e3]">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-8 mb-14">

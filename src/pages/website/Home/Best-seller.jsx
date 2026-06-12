@@ -48,7 +48,7 @@ export const products = [
 
 const BestSellers = () => {
   return (
-    <section className="bg-[#ffe7ad] py-24">
+    <section className="bg-[#f5f0e8] py-24">
       <div className="max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="mb-12">

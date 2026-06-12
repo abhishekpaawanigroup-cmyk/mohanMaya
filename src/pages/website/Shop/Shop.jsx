@@ -1,12 +1,12 @@
 import React from 'react'
-import HeroShop from './Hero'
+import Hero from './Hero'
 import Products from './AllProduct'
 import FAQSection from './FAQ'
 
 const Shop = () => {
   return (
     <>
-    <HeroShop />
+    <Hero />
     <Products />
     <FAQSection />
     </>

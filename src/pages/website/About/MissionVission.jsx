@@ -3,7 +3,7 @@ import { Target, Eye } from "lucide-react";
 
 const MissionVision = () => {
   return (
-    <section className="py-20 bg-[#ffd8df]">
+    <section className="py-20 bg-[#f0e0e3]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}

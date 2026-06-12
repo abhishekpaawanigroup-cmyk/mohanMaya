@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Logo */}
           <div>
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-[#fe4462]">MM</span>
+              <span className="text-[#fffq]">M&M</span>
             </h2>
 
             <p className="text-gray-400 leading-6 mb-8">
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-2xl font-semibold mb-8">Services</h3>
+            <h3 className="text-2xl font-semibold mb-8 pl-5">Services</h3>
 
             <ul className="space-y-3">
               {services.map((item, index) => (
@@ -76,7 +76,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-2xl font-semibold mb-8">Company</h3>
+            <h3 className="text-2xl font-semibold mb-8 pl-5">Company</h3>
 
             <ul className="space-y-3">
               {company.map((item, index) => (

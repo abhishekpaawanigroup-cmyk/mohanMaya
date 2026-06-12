@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 const SeasonalCollection = () => {
   return (
-    <section className="py-20 bg-[#ffe7ad]">
+    <section className="py-20 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -74,7 +74,7 @@ const SeasonalCollection = () => {
           <div className="flex flex-col gap-6">
 
             {/* Winter */}
-            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#9789d4]">
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#d4cbf9]">
               <img
                 src="/season/mm5.png"
                 alt="Winter"
@@ -95,7 +95,7 @@ const SeasonalCollection = () => {
             </div>
 
             {/* Summer */}
-            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#d6c749]">
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#d2e591]">
               <img
                 src="/season/mm6.png"
                 alt="Summer"
@@ -116,7 +116,7 @@ const SeasonalCollection = () => {
             </div>
 
             {/* Christmas */}
-            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#ff5353]">
+            <div className="group relative overflow-hidden rounded-lg h-[184px] shadow-lg cursor-pointer bg-[#e18888]">
               <img
                 src="/season/mm7.png"
                 alt="Christmas"
