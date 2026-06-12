@@ -55,7 +55,7 @@ export default function Header() {
     <>
       {/* ── Navbar ── */}
       <motion.header
-        className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+        className={`w-full fixed top-0 z-50 border-b-0 transition-all duration-300 ${
           scrolled
             ? "bg-white/90 dark:bg-[#0d0508]/90 backdrop-blur-xl shadow-lg border-b border-white/20 dark:border-white/5"
             : darkMode

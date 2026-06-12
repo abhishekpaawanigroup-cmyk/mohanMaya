@@ -76,9 +76,9 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-semibold mb-8">Contact</h3>
             <p className="text-gray-400 leading-8 mb-6">
-              Vrindavan, Mathura,
+              Ganga Enclave, Shobha Sadan,
               <br />
-              Uttar Pradesh, India
+              Roorke, Uttarakhand, India
             </p>
             <div className="flex gap-4 mb-6">
               <div className="w-10 h-10 rounded-full bg-[#fe4462] flex items-center justify-center shrink-0">
@@ -93,7 +93,7 @@ export default function Footer() {
                 <FaPhoneAlt />
               </div>
               <div>
-                <h4 className="font-semibold">+91 98765 43210</h4>
+                <h4 className="font-semibold">+91 99567 48903</h4>
                 <p className="text-gray-500">Mon - Sat: 9 AM - 6 PM</p>
               </div>
             </div>

@@ -16,7 +16,7 @@ const FeaturedProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
-    <section className="bg-[#f0e0e3] dark:bg-[#0d0508] pb-20 pt-10">
+    <section className="bg-[#f4edee] dark:bg-[#0d0508] pb-20 pt-10">
       <div className="mx-auto px-8 relative max-w-[1440px]">
         <SectionHeading badge="Top Sale" title="Featured Characters" className="mb-14" />
 

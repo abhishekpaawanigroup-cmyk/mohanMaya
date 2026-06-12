@@ -81,17 +81,19 @@ export function AppProvider({ children }) {
 
   const toggleWishlist = useCallback(
     (product) => {
-      setWishlist((prev) => {
-        const exists = prev.some((i) => i.id === product.id);
-        if (exists) {
-          addToast("Removed from wishlist", "info");
-          return prev.filter((i) => i.id !== product.id);
-        }
+      // Decide the action from current state, THEN fire side effects once.
+      // The state updater stays pure so Strict Mode's double-invoke can't
+      // duplicate the toast.
+      const exists = wishlist.some((i) => i.id === product.id);
+      if (exists) {
+        setWishlist((prev) => prev.filter((i) => i.id !== product.id));
+        addToast("Removed from wishlist", "info");
+      } else {
+        setWishlist((prev) => [...prev, product]);
         addToast(`${product.name} added to wishlist`, "success");
-        return [...prev, product];
-      });
+      }
     },
-    [setWishlist, addToast]
+    [wishlist, setWishlist, addToast]
   );
 
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);

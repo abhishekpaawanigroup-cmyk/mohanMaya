@@ -20,7 +20,7 @@ const Products = () => {
   const [price, setPrice] = useState("all");
   const [sort, setSort] = useState("featured");
   const [page, setPage] = useState(1);
-  const [quickView, setQuickView] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Show skeletons while the debounced search is catching up with typing.
@@ -176,7 +176,7 @@ const Products = () => {
                       <ProductCard
                         key={product.id}
                         product={product}
-                        onQuickView={() => setQuickView(true)}
+                        onQuickView={setQuickViewProduct}
                       />
                     ))}
                   </AnimatePresence>
@@ -250,7 +250,14 @@ const Products = () => {
         )}
       </AnimatePresence>
 
-      {quickView && <ProductModal onClose={() => setQuickView(false)} />}
+      <AnimatePresence>
+        {quickViewProduct && (
+          <ProductModal
+            product={quickViewProduct}
+            onClose={() => setQuickViewProduct(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

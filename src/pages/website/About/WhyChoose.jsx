@@ -7,7 +7,7 @@ import {
 
 const WhyChooseUs = () => {
   return (
-  <section className="py-20 bg-[#fff8fb] dark:bg-[#0d0508] relative overflow-hidden">
+  <section className="py-20 bg-[#f4edee] dark:bg-[#0d0508] relative overflow-hidden">
  
       {/* Background */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffecef] opacity-40 -left-40 top-20"></div>

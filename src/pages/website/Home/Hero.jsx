@@ -65,7 +65,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative pb-10 mt-20 bg-[#f0e0e3] dark:bg-[#0d0508]">
+    <div className="relative pb-10 mt-20 bg-[#f4edee] dark:bg-[#0d0508]">
       {/* Hero Video Section */}
       <div className="w-full h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
         <video

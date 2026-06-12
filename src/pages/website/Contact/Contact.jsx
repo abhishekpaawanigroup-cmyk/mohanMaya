@@ -6,8 +6,8 @@ import { useApp } from "../../../context/AppContext";
 const initialForm = { name: "", email: "", message: "" };
 
 const details = [
-  { icon: FiMapPin, label: "Address", value: "Vrindavan, Mathura, Uttar Pradesh" },
-  { icon: FiPhone, label: "Phone", value: "+91 98765 43210" },
+  { icon: FiMapPin, label: "Address", value: "Ganga Enclave, Roorkee, Uttarakhand, India" },
+  { icon: FiPhone, label: "Phone", value: "+91 99567 48903" },
   { icon: FiMail, label: "Email", value: "support@mohanmaya.in" },
 ];
 
@@ -47,7 +47,7 @@ export default function Contact() {
   const field = "w-full bg-gray-50 dark:bg-white/5 border rounded-xl px-4 py-3 outline-none transition focus:border-[#fe4462] dark:text-white";
 
   return (
-    <section className="pt-28 pb-20 bg-[#f0e0e3] dark:bg-[#0d0508] min-h-screen">
+    <section className="pt-28 pb-20 bg-[#f4edee] dark:bg-[#0d0508] min-h-screen">
       <div className="max-w-6xl mx-auto px-5">
         <ScrollReveal className="text-center mb-12">
           <span className="inline-block text-[#fe4462] border border-[#fe4462] px-4 py-2 text-sm font-bold uppercase rounded-full">

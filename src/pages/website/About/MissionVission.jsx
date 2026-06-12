@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const MissionVision = () => {
   return (
-    <section className="py-20 bg-[#f0e0e3] dark:bg-[#0d0508]">
+    <section className="py-20 bg-[#f4edee] dark:bg-[#0d0508]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}
