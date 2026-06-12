@@ -26,7 +26,7 @@ export const products = [
     id: 1,
     name: "Mohan Maya — Krishna",
     price: 200,
-    oldPrice: 260,
+    oldPrice: 300,
     rating: 4.8,
     category: "Festival Collection",
     badge: "Top Sale",

@@ -85,7 +85,7 @@ const WhyChooseUs = () => {
  
             <div className="relative">
  
-              <div className="absolute w-full h-full bg-[#ffd8df] rounded-3xl top-5 left-5"></div>
+              <div className="absolute w-full h-full bg-[#d2cccc] rounded-3xl top-3 left-3"></div>
  
               <img
                 src="/Shop/Product1.jpeg"

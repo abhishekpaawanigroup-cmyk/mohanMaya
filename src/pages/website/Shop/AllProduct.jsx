@@ -188,7 +188,7 @@ const Products = () => {
                     <button
                       onClick={() => setPage(Math.max(1, safePage - 1))}
                       disabled={safePage === 1}
-                      className="px-4 py-2 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
+                      className="px-3 py-1 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
                     >
                       Prev
                     </button>
@@ -196,7 +196,7 @@ const Products = () => {
                       <button
                         key={i}
                         onClick={() => setPage(i + 1)}
-                        className={`w-10 h-10 rounded-lg font-medium transition ${
+                        className={`w-8 h-8 rounded-lg font-medium transition ${
                           safePage === i + 1
                             ? "bg-[#fe4462] text-white"
                             : "border border-gray-300 dark:border-white/10 dark:text-white hover:border-[#fe4462] hover:text-[#fe4462]"
@@ -208,7 +208,7 @@ const Products = () => {
                     <button
                       onClick={() => setPage(Math.min(totalPages, safePage + 1))}
                       disabled={safePage === totalPages}
-                      className="px-4 py-2 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
+                      className="px-3 py-1 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
                     >
                       Next
                     </button>

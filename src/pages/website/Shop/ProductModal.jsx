@@ -311,6 +311,7 @@ export default function ProductModal({ product = {}, onClose }) {
         </div>
 
         {/* ── RIGHT: details ──────────────────────── */}
+        
         <div className="lg:max-h-[92vh] lg:overflow-y-auto p-6 sm:p-8 lg:p-10">
           {/* category + actions */}
           <div className="flex items-center justify-between gap-3">

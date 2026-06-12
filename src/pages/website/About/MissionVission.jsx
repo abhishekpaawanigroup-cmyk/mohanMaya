@@ -8,11 +8,11 @@ const MissionVision = () => {
         
         {/* Heading */}
         <div className="text-center mb-14">
-          <span className="text-[#fe4462] text-sm border border-[#fe4462] rounded-full px-4 py-2 font-semibold uppercase tracking-widest">
+          <span className="text-[#fe4462] text-sm border border-[#fe4462] rounded-full px-4 py-1 font-semibold uppercase tracking-widest">
             Who We Are
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-3">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-5">
             Our Mission & Vision
           </h2>
 
