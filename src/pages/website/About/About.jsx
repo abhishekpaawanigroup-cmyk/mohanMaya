@@ -1,4 +1,3 @@
-import React from 'react'
 import HeroSection from './Hero'
 import MissionVision from './MissionVission'
 import CraftingProcess from './Crafting'

@@ -1,35 +1,28 @@
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
-
-import React from "react";
+import { lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WebsiteLayout from "../layouts/WebsiteLayout";
-import Home from "../pages/website/Home/Home";
-import About from "../pages/website/About/About";
-import Shop from "../pages/website/Shop/Shop";
 
-const AppRoutes = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <WebsiteLayout />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-         {
-          path: "about",
-          element: <About />,
-        },
-        {
-          path: "shop",
-          element: <Shop />,
-        },
-      ],
-    },
-  ]);
+// Lazy-load pages so each route ships its own chunk (faster first paint).
+const Home = lazy(() => import("../pages/website/Home/Home"));
+const About = lazy(() => import("../pages/website/About/About"));
+const Shop = lazy(() => import("../pages/website/Shop/Shop"));
+const Contact = lazy(() => import("../pages/website/Contact/Contact"));
+const NotFound = lazy(() => import("../pages/website/NotFound"));
 
-  return <RouterProvider router={router} />;
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <WebsiteLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "shop", element: <Shop /> },
+      { path: "contact", element: <Contact /> },
+      { path: "*", element: <NotFound /> },
+    ],
+  },
+]);
+
+const AppRoutes = () => <RouterProvider router={router} />;
 
 export default AppRoutes;

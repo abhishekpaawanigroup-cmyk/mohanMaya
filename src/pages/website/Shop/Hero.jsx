@@ -1,10 +1,5 @@
-import React from "react";
-import {
-  FaArrowRight,
-  FaShieldAlt,
-  FaGlobe,
-} from "react-icons/fa";
-import { GiHeartWings } from "react-icons/gi";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
 
  
@@ -43,7 +38,7 @@ const Hero = () => {
  
             {/* Badge */}
  
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[fe4462] bg-pink-500/10 backdrop-blur-md text-[#fe4462] text-sm font-semibold">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#fe4462] bg-pink-500/10 backdrop-blur-md text-[#fe4462] text-sm font-semibold">
  
               <HiSparkles />
  
@@ -83,21 +78,21 @@ const Hero = () => {
  
             <div className="flex flex-wrap gap-4">
  
-              <button className="group px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold flex items-center gap-3 hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer">
- 
+              <a href="#products" className="group px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold flex items-center gap-3 hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer">
+
                 Shop Collection
- 
+
                 <FaArrowRight className="group-hover:translate-x-1 duration-300" />
- 
-              </button>
- 
-              <button className="px-8 py-4 rounded-full border border-[#c89a61] text-[#d9b47c] hover:bg-[#c89a61] hover:text-white duration-200 flex items-center gap-3 cursor-pointer">
- 
+
+              </a>
+
+              <Link to="/about" className="px-8 py-4 rounded-full border border-[#c89a61] text-[#d9b47c] hover:bg-[#c89a61] hover:text-white duration-200 flex items-center gap-3 cursor-pointer">
+
                 <HiSparkles />
- 
+
                 Explore More
- 
-              </button>
+
+              </Link>
  
             </div>
  

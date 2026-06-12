@@ -1,4 +1,3 @@
-import React from "react";
 import FeaturedProduct from "./FeaturedProduct";
 import TrendyCollection from "./TrendyCollection";
 import Hero from "./Hero";

@@ -1,52 +1,13 @@
-import React from "react";
-import {
-  FaClock,
-  FaHeart,
-  FaMagic,
-  FaSmile,
-} from "react-icons/fa";
 import {
   FaPaintBrush,
   FaGem,
   FaGift,
   FaHandsHelping,
 } from "react-icons/fa";
- 
- 
-const features = [
-  {
-    icon: <FaClock />,
-    title: "Exceptional Craftsmanship",
-    desc: "Every miniature is meticulously handcrafted with remarkable precision, ensuring stunning details and artistic excellence.",
-    color: "text-pink-500",
-    bg: "bg-pink-50",
-  },
-  {
-    icon: <FaHeart />,
-    title: "Crafted with Passion",
-    desc: "Our skilled artisans pour creativity and dedication into every piece, transforming imagination into timeless collectibles.",
-    color: "text-rose-500",
-    bg: "bg-rose-50",
-  },
-  {
-    icon: <FaMagic />,
-    title: "Exclusive & Unique Designs",
-    desc: "Discover limited-edition miniatures inspired by culture, mythology, and creativity, designed to make every collection truly special.",
-    color: "text-orange-500",
-    bg: "bg-orange-50",
-  },
-  {
-    icon: <FaSmile />,
-    title: "A Memorable Experience",
-    desc: "Whether for gifting or collecting, our miniatures bring joy, elegance, and lasting memories to every home and every occasion.",
-    color: "text-green-500",
-    bg: "bg-green-50",
-  },
-];
- 
+
 const WhyChooseUs = () => {
   return (
-  <section className="py-20 bg-[#fff8fb] relative overflow-hidden">
+  <section className="py-20 bg-[#fff8fb] dark:bg-[#0d0508] relative overflow-hidden">
  
       {/* Background */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffecef] opacity-40 -left-40 top-20"></div>
@@ -62,7 +23,7 @@ const WhyChooseUs = () => {
             WHY CHOOSE US
           </span>
  
-          <h2 className="text-5xl font-bold text-[#2b2626] mt-5">
+          <h2 className="text-5xl font-bold text-[#2b2626] dark:text-white mt-5">
             Discover the Art Behind
             <span className="text-[#fe4462]"> Every Miniature</span>
           </h2>
@@ -87,7 +48,7 @@ const WhyChooseUs = () => {
                 <FaPaintBrush />
               </div>
  
-              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626] dark:text-white">
                 Exceptional Craftsmanship
               </h3>
  
@@ -105,7 +66,7 @@ const WhyChooseUs = () => {
                 <FaGem />
               </div>
  
-              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626] dark:text-white">
                 Exclusive Designs
               </h3>
  
@@ -150,7 +111,7 @@ const WhyChooseUs = () => {
                 <FaGift />
               </div>
  
-              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626] dark:text-white">
                 Perfect for Gifting
               </h3>
  
@@ -167,7 +128,7 @@ const WhyChooseUs = () => {
                 <FaHandsHelping />
               </div>
  
-              <h3 className="font-bold text-2xl mt-4 text-[#2b2626]">
+              <h3 className="font-bold text-2xl mt-4 text-[#2b2626] dark:text-white">
                 Crafted with Passion
               </h3>
  

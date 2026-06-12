@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -24,13 +24,13 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="px-6 py-3 bg-[#fe4462] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] hover:border[#fe4462] rounded-full font-medium transition cursor-pointer">
+            <Link to="/shop" className="px-6 py-3 bg-[#fe4462] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
               Get Started
-            </button>
+            </Link>
 
-            <button className="px-6 py-3 border border-white hover:bg-[#fe4462] hover:text-[#fff] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
+            <Link to="/contact" className="px-6 py-3 border border-white hover:bg-[#fe4462] hover:text-[#fff] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
       </div>

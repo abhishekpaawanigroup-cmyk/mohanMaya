@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -28,7 +29,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-20 bg-[#f0e0e3]">
+    <section className="py-20 bg-[#f0e0e3] dark:bg-[#0d0508]">
       <div className="max-w-7xl mx-auto px-4">
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -39,30 +40,30 @@ const FAQSection = () => {
               FAQs
             </span>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-5 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-5 leading-tight">
               Frequently Asked
               <span className="text-[#fe4462] block">
                 Questions
               </span>
             </h2>
 
-            <p className="mt-5 text-gray-600 leading-relaxed">
+            <p className="mt-5 text-gray-600 dark:text-gray-300 leading-relaxed">
               Have questions about our products, delivery, customization,
               or returns? Find quick answers below.
             </p>
 
-            <div className="mt-8 p-6 rounded-2xl bg-[#fff8f9] border border-[#ffd8df]">
-              <h4 className="font-semibold text-lg mb-2">
+            <div className="mt-8 p-6 rounded-2xl bg-[#fff8f9] dark:bg-white/5 border border-[#ffd8df] dark:border-white/10">
+              <h4 className="font-semibold text-lg mb-2 dark:text-white">
                 Still have questions?
               </h4>
 
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                 Our support team is always ready to help you.
               </p>
 
-              <button className="bg-[#fe4462] text-white px-6 py-3 rounded-xl hover:opacity-90 transition">
+              <Link to="/contact" className="inline-block bg-[#fe4462] text-white px-6 py-3 rounded-xl hover:opacity-90 transition">
                 Contact Us
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -83,13 +84,13 @@ const FAQSection = () => {
                   }
                   className="w-full flex justify-between items-center p-6 text-left"
                 >
-                  <h3 className="font-semibold text-lg text-gray-800 pr-4">
+                  <h3 className="font-semibold text-lg text-gray-800 dark:text-white pr-4">
                     {faq.question}
                   </h3>
 
                   <ChevronDown
                     size={22}
-                    className={`transition-transform duration-300 ${
+                    className={`transition-transform duration-300 dark:text-white ${
                       openIndex === index ? "rotate-180" : ""
                     }`}
                   />
@@ -102,7 +103,7 @@ const FAQSection = () => {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="px-6 pb-6 text-gray-600 text-sm">
+                  <p className="px-6 pb-6 text-gray-600 dark:text-gray-300 text-sm">
                     {faq.answer}
                   </p>
                 </div>

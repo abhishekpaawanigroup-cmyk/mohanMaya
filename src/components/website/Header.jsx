@@ -1,431 +1,430 @@
+import { useState, useEffect, useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { LuShoppingBag } from "react-icons/lu";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
-import React, { useState, useEffect } from "react";
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from "react-icons/fa";
-import { FiMapPin, FiPhone, FiMail, FiX } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
+import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import { FiMapPin, FiPhone, FiMail, FiX, FiMoon, FiSun } from "react-icons/fi";
+import { useApp } from "../../context/AppContext";
+import { useScrollPosition } from "../../hooks/useHooks";
+
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Shop", path: "/shop" },
+  { label: "Contact", path: "/contact" },
+];
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [shopOpen, setShopOpen] = useState(false);
-  const [pagesOpen, setPagesOpen] = useState(false);
-  const [blogOpen, setBlogOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
+  const [localSearch, setLocalSearch] = useState("");
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
 
-  const [scrolled, setScrolled] = useState(false);
+  const scrollY = useScrollPosition();
+  const scrolled = scrollY > 50;
+  const { darkMode, toggleDarkMode, cartCount, cart, removeFromCart, wishlist, cartAnimating } = useApp();
 
-useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
+  useEffect(() => {
+    if (searchOpen) searchRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (openMenu) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [openMenu]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (localSearch.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(localSearch.trim())}`);
+      setSearchOpen(false);
+      setLocalSearch("");
     }
   };
 
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
+  const cartTotal = cart.reduce((sum, i) => sum + (parseFloat(i.price) || 0) * i.qty, 0);
 
   return (
     <>
-      <header
-  className={`w-full fixed top-0 z-50 transition-all duration-100 ${
-    scrolled
-      ? "bg-white/30 backdrop-blur-[8px] shadow-lg border-b border-white/20"
-      : "bg-[#f0e0e3]"
-  }`}
->
-        <div className="max-w-360 mx-auto flex items-center justify-between py-[10px]">
+      {/* ── Navbar ── */}
+      <motion.header
+        className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white/90 dark:bg-[#0d0508]/90 backdrop-blur-xl shadow-lg border-b border-white/20 dark:border-white/5"
+            : darkMode
+            ? "bg-[#1a0a0e]"
+            : "bg-[#f0e0e3]"
+        }`}
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img
-              src="/header/logo.png"
-              alt="logo"
-              className="w-16 h-16 rounded-full"
-            />
-            <h1 className="text-4xl font-bold">M&M</h1>
-          </div>
+          <NavLink to="/" className="flex items-center gap-2.5 group">
+            <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#fe4462]/30 group-hover:ring-[#fe4462] transition-all duration-300">
+              <img src="/header/logo.png" alt="Mohan Maya logo" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-2xl font-black text-gradient leading-none">M&M</h1>
+              <p className="text-[10px] tracking-widest text-gray-500 dark:text-gray-400 uppercase">Mohan Maya</p>
+            </div>
+          </NavLink>
 
-          {/* Navigation */}
+          {/* Desktop Nav */}
           <nav className="hidden lg:block">
-            <ul className="flex items-center gap-10 text-[17px]">
-              {/* Home */}
-              <li className="relative group">
-                <NavLink to="/" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>Home</NavLink>
-              </li>
-
-              {/* About */}
-              <li>
-               <NavLink
-  to="/about"
-  className={({ isActive }) =>
-    `font-medium hover:text-[#ef4462] ${
-      isActive ? "text-[#ef4462]" : ""
-    }`
-  }
->
-  About
-</NavLink>
-              </li>
-
-              {/* Shop */}
-              <li className="relative group">
-                <NavLink to="/shop" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Shop</NavLink>
-
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Product
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Product Details
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Wishlist
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Cart
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Checkout
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              {/* Pages */}
-              <li className="relative group">
-                <NavLink to="/pages" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : ""}`}>Pages</NavLink>
-
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Team
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      FAQ
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      404 Page
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              {/* Blog */}
-              <li className="relative group">
-                <NavLink to="/blog" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Blog</NavLink>
-
-                <ul className="absolute top-full left-0 mt-6 w-56 bg-[#f0e0e3] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 font-medium">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Blog Grid
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Blog List
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-6 py-3 hover:bg-[#ef4462] hover:text-[#fff]"
-                    >
-                      Blog Details
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              {/* Contact */}
-              <li>
-                <NavLink to="/contact" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>Contact
-                </NavLink>
-              </li>
+            <ul className="flex items-center gap-8">
+              {navLinks.map(({ label, path }) => (
+                <li key={path}>
+                  <NavLink
+                    to={path}
+                    end={path === "/"}
+                    className={({ isActive }) =>
+                      `relative font-semibold text-[15px] transition-colors duration-200 group
+                       ${isActive ? "text-[#fe4462]" : "text-gray-700 dark:text-gray-300 hover:text-[#fe4462]"}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        {label}
+                        <span
+                          className={`absolute -bottom-1 left-0 h-0.5 bg-[#fe4462] transition-all duration-300 ${
+                            isActive ? "w-full" : "w-0 group-hover:w-full"
+                          }`}
+                        />
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Right Side */}
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center border border-[#ef4462] rounded-full overflow-hidden">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="px-5 py-3 outline-none w-64 font-medium"
-              />
+          {/* Right icons */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Search toggle */}
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              aria-label="Search"
+            >
+              <IoSearch size={22} />
+            </button>
 
-              <button className="bg-[#ef4462] text-white text-lg p-4 rounded-full cursor-pointer">
-                <IoSearch />
-              </button>
-            </div>
+            {/* Dark mode */}
+            <motion.button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              whileTap={{ rotate: 180, scale: 0.8 }}
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
+            </motion.button>
 
-            <div className="relative text-2xl cursor-pointer">
-              <FaRegHeart />
-              <span className="absolute -top-2 -right-2 bg-[#ef4462] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                3
-              </span>
-            </div>
+            {/* Wishlist */}
+            <button
+              onClick={() => setWishlistOpen(true)}
+              className="relative p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              aria-label="Wishlist"
+            >
+              <FaRegHeart size={20} />
+              {wishlist.length > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-[#fe4462] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold leading-none">
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
 
-            <div className="relative text-2xl cursor-pointer">
-              <LuShoppingBag />
-              <span className="absolute -top-2 -right-2 bg-[#ef4462] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                12
-              </span>
-            </div>
+            {/* Cart */}
+            <button
+              onClick={() => setCartOpen(true)}
+              className={`relative p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300 ${cartAnimating ? "animate-cart-bounce" : ""}`}
+              aria-label="Cart"
+            >
+              <LuShoppingBag size={22} />
+              {cartCount > 0 && (
+                <motion.span
+                  key={cartCount}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-0.5 -right-0.5 bg-[#fe4462] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold"
+                >
+                  {cartCount}
+                </motion.span>
+              )}
+            </button>
 
+            {/* Mobile menu */}
             <button
               onClick={() => setOpenMenu(true)}
-              className="text-4xl cursor-pointer lg:hidden"
+              className="lg:hidden p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              aria-label="Open menu"
             >
-              <MdMenu />
+              <MdMenu size={28} />
             </button>
           </div>
         </div>
-      </header>
 
-      {/* Overlay */}
-      <div
-        onClick={() => setOpenMenu(false)}
-        className={`lg:hidden fixed inset-0 bg-black/50 z-[999] transition-all duration-300 ${
-          openMenu ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      />
+        {/* Search bar dropdown */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden border-t border-gray-100 dark:border-white/10 bg-white/95 dark:bg-[#1a0a0e]/95 backdrop-blur-xl"
+            >
+              <form onSubmit={handleSearch} className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
+                <input
+                  ref={searchRef}
+                  value={localSearch}
+                  onChange={(e) => setLocalSearch(e.target.value)}
+                  type="text"
+                  placeholder="Search miniatures, characters…"
+                  className="flex-1 bg-gray-100 dark:bg-white/10 rounded-full px-5 py-3 outline-none text-sm font-medium placeholder-gray-400 dark:text-white"
+                />
+                <button type="submit" className="btn-primary !py-3 !px-5 text-sm">
+                  <IoSearch size={18} />
+                </button>
+                <button type="button" onClick={() => setSearchOpen(false)} className="p-2 text-gray-500 hover:text-[#fe4462]">
+                  <FiX size={20} />
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
 
-      {/* Sidebar */}
-      <div
-        className={`lg:hidden fixed top-0 right-0 h-screen w-[375px] sm:w-[400px] bg-[#111111] text-white z-[1000] overflow-y-auto transition-transform duration-500 ${
-          openMenu ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex items-center justify-between p-8 border-b border-gray-800">
-          <div className="flex items-center gap-2">
-            <img src="/header/logo.png" alt="logo" className="w-12 h-12 rounded-full" />
-            <h2 className="text-4xl font-bold font-serif">MM</h2>
-          </div>
-
-          <button
-            onClick={() => setOpenMenu(false)}
-            className="text-[20px] p-[14px] rounded-full bg-[#fe4462] flex items-center justify-center cursor-pointer"
-          >
-            <FiX />
-          </button>
-        </div>
-
-        <div className="p-8">
-          <div className="border-b border-gray-700 pb-3 flex items-center justify-between">
-            <input
-              type="text"
-              placeholder="What are you searching for?"
-              className="bg-transparent outline-none text-lg w-full"
+      {/* ── Cart Drawer ── */}
+      <AnimatePresence>
+        {cartOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-[998]"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setCartOpen(false)}
             />
-            <IoSearch className="text-2xl hover:text-[#ff7f50] transition-colors duration-300 cursor-pointer" />
-          </div>
-
-          {/* Mobile Navigation Only */}
-          <div className="block lg:hidden mt-8 border-t border-gray-800">
-            {/* Home */}
-            <div className="py-3 border-b border-gray-800 ">
-              <NavLink to="/" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }` }>Home</NavLink>
-            </div>
-
-            {/* About */}
-            <div className="py-3 border-b border-gray-800">
-              <NavLink to="/about" className={({ isActive }) => `font-medium hover:text-[#ef4462] ${ isActive ? "text-[#ef4462]" : "" }`}>About</NavLink>
-            </div>
-
-            {/* Shop */}
-            <div className="border-b border-gray-800">
-              <button
-                onClick={() => setShopOpen(!shopOpen)}
-                className="w-full flex justify-between items-center py-3"
-              >
-                <span className="text-lg font-semibold">Shop</span>
-                <span className="text-3xl">{shopOpen ? "-" : "+"}</span>
-              </button>
-
-              {shopOpen && (
-                <div className="pb-4 pl-4 space-y-3 text-gray-400">
-                  <a href="#" className="block">
-                    Product
-                  </a>
-                  <a href="#" className="block">
-                    Product Details
-                  </a>
-                  <a href="#" className="block">
-                    Wishlist
-                  </a>
-                  <a href="#" className="block">
-                    Cart
-                  </a>
-                  <a href="#" className="block">
-                    Checkout
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Pages */}
-            <div className="border-b border-gray-800">
-              <button
-                onClick={() => setPagesOpen(!pagesOpen)}
-                className="w-full flex justify-between items-center py-3"
-              >
-                <span className="text-lg font-semibold">Pages</span>
-                <span className="text-3xl">{pagesOpen ? "-" : "+"}</span>
-              </button>
-
-              {pagesOpen && (
-                <div className="pb-4 pl-4 space-y-3 text-gray-400">
-                  <a href="#" className="block">
-                    Team
-                  </a>
-                  <a href="#" className="block">
-                    FAQ
-                  </a>
-                  <a href="#" className="block">
-                    Pricing
-                  </a>
-                  <a href="#" className="block">
-                    404 Page
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Blog */}
-            <div className="border-b border-gray-800">
-              <button
-                onClick={() => setBlogOpen(!blogOpen)}
-                className="w-full flex justify-between items-center py-3"
-              >
-                <span className="text-lg font-semibold">Blog</span>
-                <span className="text-3xl">{blogOpen ? "-" : "+"}</span>
-              </button>
-
-              {blogOpen && (
-                <div className="pb-4 pl-4 space-y-3 text-gray-400">
-                  <a href="#" className="block">
-                    Blog Grid
-                  </a>
-                  <a href="#" className="block">
-                    Blog List
-                  </a>
-                  <a href="#" className="block">
-                    Blog Details
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Contact */}
-           
-          </div>
-
-          <h3 className="text-[26px] font-bold mt-10 mb-6">Contact Info</h3>
-
-          <div className="space-y-8">
-            <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-                <FiMapPin />
+            <motion.div
+              className="fixed top-0 right-0 h-screen w-full max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="flex items-center justify-between p-6 border-b dark:border-white/10">
+                <h2 className="text-xl font-bold dark:text-white">Shopping Cart ({cartCount})</h2>
+                <button onClick={() => setCartOpen(false)} className="p-2 hover:text-[#fe4462] transition">
+                  <FiX size={22} />
+                </button>
               </div>
 
-              <p className="text-lg font-medium">
-                12/A, Mirnada City Tower, NYC
-              </p>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-                <FiPhone />
+              <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                {cart.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
+                    <LuShoppingBag size={48} className="text-gray-300" />
+                    <p className="text-gray-500 dark:text-gray-400">Your cart is empty</p>
+                    <button onClick={() => { setCartOpen(false); navigate("/shop"); }} className="btn-primary text-sm">
+                      Start Shopping
+                    </button>
+                  </div>
+                ) : (
+                  cart.map((item) => (
+                    <motion.div
+                      key={item.id}
+                      layout
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      className="flex items-center gap-4 bg-gray-50 dark:bg-white/5 rounded-2xl p-3"
+                    >
+                      <div className="w-16 h-16 rounded-xl bg-[#f0e0e3] flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" loading="lazy" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm truncate dark:text-white">{item.name}</p>
+                        <p className="text-[#fe4462] text-sm font-bold">₹{item.price} × {item.qty}</p>
+                      </div>
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className="text-gray-400 hover:text-[#fe4462] transition flex-shrink-0"
+                      >
+                        <FiX size={18} />
+                      </button>
+                    </motion.div>
+                  ))
+                )}
               </div>
 
-              <p className="text-lg font-medium">+088889797697</p>
-            </div>
+              {cart.length > 0 && (
+                <div className="p-6 border-t dark:border-white/10">
+                  <div className="flex justify-between mb-4">
+                    <span className="font-semibold dark:text-white">Total</span>
+                    <span className="font-bold text-[#fe4462] text-lg">₹{cartTotal.toFixed(2)}</span>
+                  </div>
+                  <button className="w-full btn-primary justify-center text-base">Checkout</button>
+                </div>
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
-            <div className="flex items-center gap-4">
-              <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-                <FiMail />
+      {/* ── Wishlist Drawer ── */}
+      <AnimatePresence>
+        {wishlistOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-[998]"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setWishlistOpen(false)}
+            />
+            <motion.div
+              className="fixed top-0 right-0 h-screen w-full max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="flex items-center justify-between p-6 border-b dark:border-white/10">
+                <h2 className="text-xl font-bold dark:text-white">Wishlist ({wishlist.length})</h2>
+                <button onClick={() => setWishlistOpen(false)} className="p-2 hover:text-[#fe4462] transition">
+                  <FiX size={22} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                {wishlist.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
+                    <FaRegHeart size={48} className="text-gray-300" />
+                    <p className="text-gray-500 dark:text-gray-400">No items in wishlist</p>
+                  </div>
+                ) : (
+                  wishlist.map((item) => (
+                    <motion.div
+                      key={item.id}
+                      layout
+                      className="flex items-center gap-4 bg-gray-50 dark:bg-white/5 rounded-2xl p-3"
+                    >
+                      <div className="w-16 h-16 rounded-xl bg-[#f0e0e3] flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" loading="lazy" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm truncate dark:text-white">{item.name}</p>
+                        <p className="text-[#fe4462] text-sm font-bold">₹{item.price}</p>
+                      </div>
+                      <FaHeart className="text-[#fe4462] flex-shrink-0" size={18} />
+                    </motion.div>
+                  ))
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ── Mobile Sidebar ── */}
+      <AnimatePresence>
+        {openMenu && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/60 z-[998] lg:hidden"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setOpenMenu(false)}
+            />
+            <motion.aside
+              className="fixed top-0 right-0 h-screen w-[320px] sm:w-[380px] bg-[#0d0508] text-white z-[999] overflow-y-auto lg:hidden"
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="flex items-center justify-between p-6 border-b border-gray-800">
+                <div className="flex items-center gap-3">
+                  <img src="/header/logo.png" alt="logo" className="w-12 h-12 rounded-full" />
+                  <span className="text-2xl font-black text-gradient">M&M</span>
+                </div>
+                <button
+                  onClick={() => setOpenMenu(false)}
+                  className="w-10 h-10 rounded-full bg-[#fe4462] flex items-center justify-center hover:bg-[#d93550] transition"
+                >
+                  <FiX size={18} />
+                </button>
               </div>
 
-              <p className="text-lg font-medium">support@mail.com</p>
-            </div>
-          </div>
+              <div className="p-6">
+                <form onSubmit={(e) => { e.preventDefault(); navigate(`/shop?search=${localSearch}`); setOpenMenu(false); }}
+                  className="flex items-center gap-2 border-b border-gray-700 pb-4 mb-6"
+                >
+                  <input
+                    value={localSearch}
+                    onChange={(e) => setLocalSearch(e.target.value)}
+                    placeholder="Search products…"
+                    className="bg-transparent flex-1 outline-none text-sm placeholder-gray-500"
+                  />
+                  <button type="submit"><IoSearch size={20} className="text-gray-400 hover:text-[#fe4462] transition" /></button>
+                </form>
 
-          <div className="flex gap-4 mt-10">
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-              <FaFacebookF />
-            </div>
+                <nav className="space-y-1">
+                  {navLinks.map(({ label, path }) => (
+                    <NavLink
+                      key={path}
+                      to={path}
+                      end={path === "/"}
+                      onClick={() => setOpenMenu(false)}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 ${
+                          isActive
+                            ? "bg-[#fe4462] text-white"
+                            : "text-gray-300 hover:bg-white/10"
+                        }`
+                      }
+                    >
+                      {label}
+                    </NavLink>
+                  ))}
+                </nav>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-              <FaTwitter />
-            </div>
+                <div className="mt-8 pt-8 border-t border-gray-800">
+                  <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: FiMapPin, text: "Vrindavan, Mathura, UP" },
+                      { icon: FiPhone, text: "+91 98765 43210" },
+                      { icon: FiMail, text: "support@mohanmaya.in" },
+                    ].map(({ icon: Icon, text }, i) => (
+                      <div key={i} className="flex items-center gap-3 text-gray-400">
+                        <div className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#fe4462] hover:border-[#fe4462] hover:text-white transition cursor-pointer">
+                          <Icon size={15} />
+                        </div>
+                        <span className="text-sm">{text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-              <FaYoutube />
-            </div>
+                <div className="flex gap-3 mt-8">
+                  {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+                    <button
+                      key={i}
+                      className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#fe4462] hover:border-[#fe4462] transition text-gray-400 hover:text-white"
+                    >
+                      <Icon size={14} />
+                    </button>
+                  ))}
+                </div>
 
-            <div className="text-[18px] p-[12px] border border-gray-700 rounded-full flex items-center justify-center hover:border-transparent hover:bg-[#fe4462] transition-colors duration-300 cursor-pointer">
-              <FaLinkedinIn />
-            </div>
-          </div>
-        </div>
-      </div>
+                <button
+                  onClick={toggleDarkMode}
+                  className="mt-6 flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-700 text-gray-300 hover:border-[#fe4462] hover:text-[#fe4462] transition w-full"
+                >
+                  {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
+                  <span className="text-sm font-medium">{darkMode ? "Light Mode" : "Dark Mode"}</span>
+                </button>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

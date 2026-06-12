@@ -1,10 +1,5 @@
-import React from "react";
-import {
-  Lightbulb,
-  PencilRuler,
-  Box,
-  Sparkles,
-} from "lucide-react";
+import { Lightbulb, PencilRuler, Box, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -35,9 +30,9 @@ const steps = [
 
 const CraftingProcess = () => {
   return (
-    <section className="py-20 bg-[#f5f0e8]">
+    <section className="py-20 bg-[#f5f0e8] dark:bg-[#0d0508]">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Heading */}
         <div className="text-center mb-16">
           <span className="text-[#c48212] border border-[#c48212] rounded-full px-4 py-2 font-semibold uppercase tracking-widest">
@@ -48,7 +43,7 @@ const CraftingProcess = () => {
             Our Crafting Process
           </h2>
 
-          <p className="max-w-2xl mx-auto text-gray-600 mt-4">
+          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mt-4">
             From imagination to reality, every miniature goes through a
             carefully crafted journey to ensure exceptional quality and detail.
           </p>
@@ -56,12 +51,16 @@ const CraftingProcess = () => {
 
         {/* Process Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step) => (
-            <div
+          {steps.map((step, index) => (
+            <motion.div
               key={step.id}
-              className="group relative bg-[#fafafa] p-8 rounded-3xl border border-gray-200 hover:border-[#ff8d36] hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative bg-[#fafafa] dark:bg-white/5 p-8 rounded-3xl border border-gray-200 dark:border-white/10 hover:border-[#ff8d36] hover:shadow-xl transition-all duration-300"
             >
-              <span className="absolute top-5 right-5 text-5xl font-bold text-[#ffeadb]">
+              <span className="absolute top-5 right-5 text-5xl font-bold text-[#ffeadb] dark:text-white/10">
                 {step.id}
               </span>
 
@@ -69,14 +68,14 @@ const CraftingProcess = () => {
                 {step.icon}
               </div>
 
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 {step.title}
               </h3>
 
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                 {step.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

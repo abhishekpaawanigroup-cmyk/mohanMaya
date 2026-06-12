@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 const UpcomingCollection = () => {
   return (
@@ -7,7 +7,7 @@ const UpcomingCollection = () => {
       style={{
         backgroundImage: "url('/upcoming-image/pic2.jpeg')",
         backgroundPosition: "bottom",
-        backgroundSize: "cover"
+        backgroundSize: "cover",
       }}
     >
       {/* Overlay */}
@@ -15,7 +15,13 @@ const UpcomingCollection = () => {
 
       {/* Content */}
       <div className="relative z-10 flex items-start justify-start h-full">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 md:py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 md:py-16"
+        >
           <span className="inline-block text-white text-xs sm:text-sm md:text-lg font-semibold uppercase tracking-wider border border-white px-3 py-2 sm:px-4 rounded-full">
             Upcoming Collection
           </span>
@@ -29,7 +35,7 @@ const UpcomingCollection = () => {
             featuring unique designs, intricate details, and imaginative
             characters that bring every collection to life.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

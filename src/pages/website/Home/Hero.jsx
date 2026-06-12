@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
@@ -64,7 +65,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative pb-10 mt-20 bg-[#f0e0e3]">
+    <div className="relative pb-10 mt-20 bg-[#f0e0e3] dark:bg-[#0d0508]">
       {/* Hero Video Section */}
       <div className="w-full h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
         <video
@@ -90,9 +91,12 @@ const Hero = () => {
             extraordinary detail and timeless craftsmanship.
           </p>
 
-          <button className="mt-6 px-6 py-3 bg-[#ef4462] border border-[#ef4462] rounded-[30px] hover:bg-transparent hover:border-[#fff] transition-all duration-300 cursor-pointer">
+          <Link
+            to="/shop"
+            className="mt-6 inline-block px-6 py-3 bg-[#ef4462] border border-[#ef4462] rounded-[30px] hover:bg-transparent hover:border-white transition-all duration-300 cursor-pointer"
+          >
             Explore Now
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -196,13 +200,13 @@ const Hero = () => {
                   {selectedCharacter.description}
                 </p>
 
-               <button
-  type="button"
-  onClick={() => console.log("Explore button clicked")}
-  className="mt-6 bg-[#fe4462] text-white px-6 py-3 rounded-[30px] hover:bg-[#da4059] transition cursor-pointer"
+               <Link
+  to="/shop"
+  onClick={() => setSelectedCharacter(null)}
+  className="mt-6 inline-block bg-[#fe4462] text-white px-6 py-3 rounded-[30px] hover:bg-[#da4059] transition cursor-pointer"
 >
   Explore Now
-</button>
+</Link>
               </div>
             </motion.div>
           </motion.div>

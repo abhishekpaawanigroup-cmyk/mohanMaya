@@ -1,25 +1,26 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
+import ScrollReveal from "../../../components/common/ScrollReveal";
 
 const SeasonalCollection = () => {
   return (
-    <section className="py-20 bg-[#f5f0e8]">
+    <section className="py-20 bg-[#f5f0e8] dark:bg-[#0d0508]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div className="text-center mb-14">
+        <ScrollReveal className="text-center mb-14">
           <span className="inline-block border border-[#c48212] text-[#c48212] px-5 py-2 rounded-full text-sm font-bold uppercase">
             Seasonal Collection
           </span>
 
-          <h2 className="text-5xl font-bold mt-5 text-[#c48212]">
+          <h2 className="text-4xl sm:text-5xl font-bold mt-5 text-[#c48212]">
             Shop By Season
           </h2>
 
-          <p className="mt-4 text-[#000] max-w-2xl mx-auto text-lg">
+          <p className="mt-4 text-[#000] dark:text-gray-300 max-w-2xl mx-auto text-lg">
             Explore exclusive seasonal products crafted for every celebration.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-3 gap-8">
 
@@ -62,10 +63,13 @@ const SeasonalCollection = () => {
                   celebration.
                 </p>
 
-                <button className="inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold hover:bg-[#ef4462] hover:text-white transition-all duration-300 cursor-pointer">
+                <Link
+                  to="/shop"
+                  className="inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold hover:bg-[#ef4462] hover:text-white transition-all duration-300 cursor-pointer"
+                >
                   Shop Collection
                   <FiArrowRight />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
