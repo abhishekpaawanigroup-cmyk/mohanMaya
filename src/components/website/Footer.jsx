@@ -20,6 +20,7 @@ const company = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
   { label: "Shop", to: "/shop" },
+  { label: "Privacy Policy", to: "/privacy" },
   { label: "Contact Us", to: "/contact" },
 ];
 
@@ -106,7 +107,7 @@ export default function Footer() {
           <div className="flex gap-4 text-gray-400">
             <a href="#" className="hover:text-white transition">Terms &amp; Conditions</a>
             <span>|</span>
-            <a href="#" className="hover:text-white transition">Privacy Policy</a>
+            <Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link>
           </div>
         </div>
       </div>

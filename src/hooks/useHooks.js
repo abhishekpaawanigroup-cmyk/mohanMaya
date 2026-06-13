@@ -29,7 +29,7 @@ export function useScrollPosition() {
 
 /**
  * Returns the page scroll progress as a value between 0 and 1.
- */
+*/
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
 

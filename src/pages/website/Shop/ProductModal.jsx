@@ -24,11 +24,11 @@ import {
 } from "lucide-react";
 import { useApp } from "../../../context/AppContext";
 
-useGLTF.preload("/Modal/carModel.glb");
+useGLTF.preload("/Modal/model.glb");
 
 /* ── 3D model + loader ─────────────────────────────────── */
 function Model() {
-  const { scene } = useGLTF("/Modal/carModel.glb");
+  const { scene } = useGLTF("/Modal/model.glb");
   return (
     <Center>
       <primitive object={scene} scale={0.1} />

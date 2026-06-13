@@ -7,6 +7,7 @@ const Home = lazy(() => import("../pages/website/Home/Home"));
 const About = lazy(() => import("../pages/website/About/About"));
 const Shop = lazy(() => import("../pages/website/Shop/Shop"));
 const Contact = lazy(() => import("../pages/website/Contact/Contact"));
+const PrivacyPolicy = lazy(() => import("../pages/website/Privacy/PrivacyPolicy"));
 const NotFound = lazy(() => import("../pages/website/NotFound"));
 
 const router = createBrowserRouter([
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "shop", element: <Shop /> },
       { path: "contact", element: <Contact /> },
+      { path: "privacy", element: <PrivacyPolicy /> },
       { path: "*", element: <NotFound /> },
     ],
   },
