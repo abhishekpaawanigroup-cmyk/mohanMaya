@@ -6,19 +6,24 @@ import BestSellers from "./Best-seller";
 import SeasonalCollection from "./Season-collection";
 import UpcomingCollection from "./Upcoming";
 import FeaturesSection from "./Feature";
-
+import RecentlyViewed from "../../../components/product/RecentlyViewed";
+import RecommendedProducts from "../../../components/product/RecommendedProducts";
+import Newsletter from "../../../components/common/Newsletter";
 
 const Home = () => {
   return (
     <>
-    <Hero />
-     <FeaturedProduct />
-     <FeaturesSection />
-     <SeasonalCollection />
-     <UpcomingCollection />
+      <Hero />
+      <FeaturedProduct />
+      <FeaturesSection />
+      <SeasonalCollection />
+      <UpcomingCollection />
       <TrendyCollection />
+      <RecentlyViewed />
       <Testimonials />
       <BestSellers />
+      <RecommendedProducts />
+      <Newsletter />
     </>
   );
 };

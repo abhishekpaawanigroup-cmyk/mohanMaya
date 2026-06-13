@@ -1,14 +1,20 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useLocalStorage } from "../hooks/useHooks";
+import { COUPONS, computeTotals } from "../data/shop";
 
 const AppContext = createContext(null);
 
 let toastId = 0;
+const MAX_RECENT = 8;
 
 export function AppProvider({ children }) {
   const [darkMode, setDarkMode] = useLocalStorage("mm-dark-mode", false);
   const [cart, setCart] = useLocalStorage("mm-cart", []);
   const [wishlist, setWishlist] = useLocalStorage("mm-wishlist", []);
+  const [couponCode, setCouponCode] = useLocalStorage("mm-coupon", null);
+  const [recentlyViewed, setRecentlyViewed] = useLocalStorage("mm-recent", []);
+  const [orders, setOrders] = useLocalStorage("mm-orders", []);
+  const [user, setUser] = useLocalStorage("mm-user", null);
   const [cartAnimating, setCartAnimating] = useState(false);
   const [toasts, setToasts] = useState([]);
   const animTimer = useRef(null);
@@ -74,7 +80,10 @@ export function AppProvider({ children }) {
     [setCart]
   );
 
-  const clearCart = useCallback(() => setCart([]), [setCart]);
+  const clearCart = useCallback(() => {
+    setCart([]);
+    setCouponCode(null);
+  }, [setCart, setCouponCode]);
 
   // ── Wishlist ────────────────────────────────────────────
   const isWishlisted = useCallback((id) => wishlist.some((i) => i.id === id), [wishlist]);
@@ -96,6 +105,94 @@ export function AppProvider({ children }) {
     [wishlist, setWishlist, addToast]
   );
 
+  // ── Coupons ─────────────────────────────────────────────
+  const coupon = couponCode ? COUPONS[couponCode] : null;
+
+  const applyCoupon = useCallback(
+    (code) => {
+      const key = (code || "").trim().toUpperCase();
+      if (!key) return false;
+      if (!COUPONS[key]) {
+        addToast("Invalid coupon code", "error");
+        return false;
+      }
+      setCouponCode(key);
+      addToast(`Coupon ${key} applied — ${COUPONS[key].label}`, "success");
+      return true;
+    },
+    [setCouponCode, addToast]
+  );
+
+  const removeCoupon = useCallback(() => {
+    setCouponCode(null);
+    addToast("Coupon removed", "info");
+  }, [setCouponCode, addToast]);
+
+  const totals = computeTotals(cart, coupon);
+
+  // ── Recently viewed ─────────────────────────────────────
+  const addRecentlyViewed = useCallback(
+    (product) => {
+      if (!product?.id) return;
+      setRecentlyViewed((prev) => {
+        const next = [product, ...prev.filter((p) => p.id !== product.id)];
+        return next.slice(0, MAX_RECENT);
+      });
+    },
+    [setRecentlyViewed]
+  );
+
+  // ── Orders ──────────────────────────────────────────────
+  const placeOrder = useCallback(
+    (customer) => {
+      const id = `MM${Date.now().toString(36).toUpperCase().slice(-7)}`;
+      const order = {
+        id,
+        items: cart,
+        customer,
+        totals: computeTotals(cart, coupon),
+        coupon: couponCode,
+        createdAt: Date.now(),
+      };
+      setOrders((prev) => [order, ...prev]);
+      clearCart();
+      addToast("Order placed successfully!", "success");
+      return id;
+    },
+    [cart, coupon, couponCode, setOrders, clearCart, addToast]
+  );
+
+  const getOrder = useCallback(
+    (id) => orders.find((o) => o.id?.toUpperCase() === (id || "").trim().toUpperCase()) || null,
+    [orders]
+  );
+
+  // ── Auth (lightweight mock — persisted to localStorage) ──
+  const login = useCallback(
+    ({ name, email }) => {
+      const u = { name: name || email.split("@")[0], email };
+      setUser(u);
+      addToast(`Welcome back, ${u.name}!`, "success");
+      return u;
+    },
+    [setUser, addToast]
+  );
+
+  const register = useCallback(
+    ({ name, email }) => {
+      const u = { name, email };
+      setUser(u);
+      addToast(`Welcome to Mohan-Maya, ${u.name}!`, "success");
+      return u;
+    },
+    [setUser, addToast]
+  );
+
+  const logout = useCallback(() => {
+    setUser(null);
+    addToast("You've been logged out", "info");
+  }, [setUser, addToast]);
+
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
 
   const value = {
@@ -114,6 +211,22 @@ export function AppProvider({ children }) {
     toasts,
     addToast,
     removeToast,
+    // shopping experience
+    coupon,
+    couponCode,
+    applyCoupon,
+    removeCoupon,
+    totals,
+    recentlyViewed,
+    addRecentlyViewed,
+    orders,
+    placeOrder,
+    getOrder,
+    // auth
+    user,
+    login,
+    register,
+    logout,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

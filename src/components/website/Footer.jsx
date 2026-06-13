@@ -11,7 +11,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 const services = [
   { label: "Shop", to: "/shop" },
-  { label: "Wishlist", to: "/shop" },
+  { label: "Track Order", to: "/track" },
   { label: "FAQs", to: "/shop" },
   { label: "Contact", to: "/contact" },
 ];
@@ -81,7 +81,7 @@ export default function Footer() {
               <br />
               Roorke, Uttarakhand, India
             </p>
-            <div className="flex gap-4 mb-6">
+            <div className="flex gap-4 mb-6 items-center">
               <div className="w-10 h-10 rounded-full bg-[#fe4462] flex items-center justify-center shrink-0">
                 <FaMapMarkerAlt />
               </div>
@@ -105,7 +105,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6">
           <p className="text-gray-400">© {new Date().getFullYear()} Mohan-Maya. All rights reserved.</p>
           <div className="flex gap-4 text-gray-400">
-            <a href="#" className="hover:text-white transition">Terms &amp; Conditions</a>
+            <Link to="/terms" className="hover:text-white transition">Terms &amp; Conditions</Link>
             <span>|</span>
             <Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link>
           </div>

@@ -1,4 +1,4 @@
-import { useRef, useState, Suspense, lazy } from "react";
+import { useRef, useState, useEffect, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -31,9 +31,15 @@ function InlineCanvasSkeleton() {
 }
 
 export default function ProductQuickViewModal({ product = {}, onClose }) {
-  const { addToCart, toggleWishlist, isWishlisted } = useApp();
+  const { addToCart, toggleWishlist, isWishlisted, addRecentlyViewed } = useApp();
   const dialogRef = useModalA11y(onClose);
   const controlsRef = useRef(null);
+
+  // Record this product in the user's recently-viewed history.
+  useEffect(() => {
+    addRecentlyViewed(product);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id]);
 
   const gallery = product.gallery?.length ? product.gallery : [product.image].filter(Boolean);
   const [mediaTab, setMediaTab] = useState("images"); // 'images' | '3d'

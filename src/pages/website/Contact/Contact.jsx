@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiMapPin, FiPhone, FiMail, FiSend } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
+import PageHero from "../../../components/common/PageHero";
 import { useApp } from "../../../context/AppContext";
 
 const initialForm = { name: "", email: "", message: "" };
@@ -47,19 +48,15 @@ export default function Contact() {
   const field = "w-full bg-gray-50 dark:bg-white/5 border rounded-xl px-4 py-3 outline-none transition focus:border-[#fe4462] dark:text-white";
 
   return (
-    <section className="pt-28 pb-20 bg-[#f4edee] dark:bg-[#0d0508] min-h-screen">
-      <div className="max-w-6xl mx-auto px-5">
-        <ScrollReveal className="text-center mb-12">
-          <span className="inline-block text-[#fe4462] border border-[#fe4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
-            Get In Touch
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-4">Contact Us</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-xl mx-auto">
-            Have a question or a custom request? Send us a message and our team will respond shortly.
-          </p>
-        </ScrollReveal>
+    <>
+      <PageHero
+        title="Contact Us"
+        subtitle="We're here to help. Reach out to us for any questions, support, or feedback."
+      />
 
-        <div className="grid lg:grid-cols-2 gap-10">
+      <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="grid lg:grid-cols-2 gap-10">
           {/* Info */}
           <ScrollReveal direction="right" className="space-y-6">
             {details.map(({ icon: Icon, label, value }) => (
@@ -137,8 +134,9 @@ export default function Contact() {
               </button>
             </form>
           </ScrollReveal>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

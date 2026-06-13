@@ -23,7 +23,7 @@ const TrendyCollection = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-8 mb-14">
           <div>
-            <span className="bg-transparent text-[#ef4462] border border-[#ef4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
+            <span className="bg-transparent text-[#ef4462] border border-[#ef4462] px-4 py-1 text-sm font-bold uppercase rounded-full">
               This Month
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#ef4462] mt-4">

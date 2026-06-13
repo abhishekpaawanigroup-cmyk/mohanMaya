@@ -11,6 +11,7 @@ import {
   FiRefreshCw,
 } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
+import PageHero from "../../../components/common/PageHero";
 
 const LAST_UPDATED = "June 13, 2026";
 
@@ -176,21 +177,19 @@ const sections = [
 
 export default function PrivacyPolicy() {
   return (
-    <section className="pt-28 pb-20 bg-[#f4edee] dark:bg-[#0d0508] min-h-screen">
-      <div className="max-w-6xl mx-auto px-5">
-        {/* Header */}
-        <ScrollReveal className="text-center mb-12">
-          <span className="inline-block text-[#fe4462] border border-[#fe4462] px-4 py-2 text-sm font-bold uppercase rounded-full">
-            Your Privacy
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-4">Privacy Policy</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">
-            How we collect, use, and protect your information when you shop with Mohan-Maya.
-          </p>
-          <p className="text-sm text-gray-400 mt-3">Last updated: {LAST_UPDATED}</p>
-        </ScrollReveal>
+    <>
+      <PageHero
+        title="Privacy Policy"
+        subtitle="Learn how we collect, use, and protect your information."
+      />
 
-        <div className="grid lg:grid-cols-[260px_1fr] gap-10 items-start">
+      <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">
+        <div className="max-w-6xl mx-auto px-5">
+          <ScrollReveal className="mb-8">
+            <p className="text-sm text-gray-400">Last updated: {LAST_UPDATED}</p>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-[260px_1fr] gap-10 items-start">
           {/* Table of contents (sticky on desktop) */}
           <ScrollReveal direction="right" className="hidden lg:block lg:sticky lg:top-28">
             <nav
@@ -252,7 +251,8 @@ export default function PrivacyPolicy() {
             </ScrollReveal>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

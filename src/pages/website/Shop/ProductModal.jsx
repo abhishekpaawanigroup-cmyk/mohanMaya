@@ -67,9 +67,15 @@ const shipping = [
 ];
 
 export default function ProductModal({ product = {}, onClose }) {
-  const { addToCart, toggleWishlist, isWishlisted, addToast } = useApp();
+  const { addToCart, toggleWishlist, isWishlisted, addToast, addRecentlyViewed } = useApp();
   const controlsRef = useRef(null);
   const dialogRef = useRef(null);
+
+  // Record this product in the user's recently-viewed history.
+  useEffect(() => {
+    addRecentlyViewed(product);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id]);
 
   const gallery = product.gallery?.length ? product.gallery : [product.image].filter(Boolean);
   const [mediaTab, setMediaTab] = useState("photos"); // 'photos' | '3d'

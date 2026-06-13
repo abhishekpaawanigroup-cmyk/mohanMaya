@@ -103,6 +103,26 @@ export function useDebounce(value, delay = 300) {
   return debounced;
 }
 
+/**
+ * Calls `handler` when a pointer/touch event occurs outside the ref element.
+ * Useful for closing dropdowns and popovers.
+ */
+export function useClickOutside(handler) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const onDown = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) handler();
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("touchstart", onDown);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("touchstart", onDown);
+    };
+  }, [handler]);
+  return ref;
+}
+
 // Ref-counted body scroll lock so nested modals don't unlock each other.
 let scrollLockCount = 0;
 function lockScroll() {

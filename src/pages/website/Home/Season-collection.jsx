@@ -9,7 +9,7 @@ const SeasonalCollection = () => {
 
         {/* Heading */}
         <ScrollReveal className="text-center mb-14">
-          <span className="inline-block border border-[#c48212] text-[#c48212] px-5 py-2 rounded-full text-sm font-bold uppercase">
+          <span className="inline-block border border-[#c48212] text-[#c48212] px-5 py-1 rounded-full text-sm font-bold uppercase">
             Seasonal Collection
           </span>
 

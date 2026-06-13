@@ -6,9 +6,10 @@ import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
-import { FiMapPin, FiPhone, FiMail, FiX, FiMoon, FiSun } from "react-icons/fi";
+import { FiMapPin, FiPhone, FiMail, FiX, FiMoon, FiSun, FiPlus, FiMinus, FiUser, FiLogOut, FiPackage, FiSettings, FiHeart } from "react-icons/fi";
 import { useApp } from "../../context/AppContext";
-import { useScrollPosition } from "../../hooks/useHooks";
+import { useScrollPosition, useClickOutside } from "../../hooks/useHooks";
+import AuthModal from "../common/AuthModal";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -26,9 +27,31 @@ export default function Header() {
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
+  const [couponInput, setCouponInput] = useState("");
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [authModal, setAuthModal] = useState(null); // null | "login" | "register"
+  const profileRef = useClickOutside(() => setProfileOpen(false));
+
   const scrollY = useScrollPosition();
   const scrolled = scrollY > 50;
-  const { darkMode, toggleDarkMode, cartCount, cart, removeFromCart, wishlist, cartAnimating } = useApp();
+  const {
+    darkMode,
+    toggleDarkMode,
+    cartCount,
+    cart,
+    removeFromCart,
+    updateQty,
+    wishlist,
+    cartAnimating,
+    coupon,
+    couponCode,
+    applyCoupon,
+    removeCoupon,
+    totals,
+    user,
+    logout,
+    addToast,
+  } = useApp();
 
   useEffect(() => {
     if (searchOpen) searchRef.current?.focus();
@@ -49,7 +72,31 @@ export default function Header() {
     }
   };
 
-  const cartTotal = cart.reduce((sum, i) => sum + (parseFloat(i.price) || 0) * i.qty, 0);
+  const goToCheckout = () => {
+    setCartOpen(false);
+    navigate("/checkout");
+  };
+
+  const handleApplyCoupon = (e) => {
+    e.preventDefault();
+    if (applyCoupon(couponInput)) setCouponInput("");
+  };
+
+  const openAuth = (mode) => {
+    setProfileOpen(false);
+    setOpenMenu(false);
+    setAuthModal(mode);
+  };
+
+  // Menu items for a logged-in user. `action` runs on click.
+  const accountMenu = [
+    { label: "My Profile", icon: FiUser, action: () => addToast("Profile page coming soon", "info") },
+    { label: "My Orders", icon: FiPackage, action: () => navigate("/track") },
+    { label: "Wishlist", icon: FiHeart, action: () => setWishlistOpen(true) },
+    { label: "Settings", icon: FiSettings, action: () => addToast("Settings page coming soon", "info") },
+  ];
+
+  const initials = user?.name?.trim()?.[0]?.toUpperCase() || "U";
 
   return (
     <>
@@ -161,6 +208,85 @@ export default function Header() {
               )}
             </button>
 
+            {/* Profile (desktop) */}
+            <div className="relative hidden lg:block" ref={profileRef}>
+              <button
+                onClick={() => setProfileOpen((v) => !v)}
+                className="flex items-center gap-2 p-1 pr-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+                aria-label="Account menu"
+                aria-haspopup="true"
+                aria-expanded={profileOpen}
+              >
+                {user ? (
+                  <span className="w-9 h-9 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold text-sm">
+                    {initials}
+                  </span>
+                ) : (
+                  <span className="w-9 h-9 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center">
+                    <FiUser size={18} />
+                  </span>
+                )}
+                {user && <span className="text-sm font-semibold max-w-[90px] truncate">{user.name}</span>}
+              </button>
+
+              <AnimatePresence>
+                {profileOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute right-0 mt-3 w-60 bg-white dark:bg-[#1a0a0e] rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden z-50"
+                    role="menu"
+                  >
+                    {user ? (
+                      <>
+                        <div className="flex items-center gap-3 p-4 border-b dark:border-white/10">
+                          <span className="w-10 h-10 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold">
+                            {initials}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-sm truncate dark:text-white">{user.name}</p>
+                            <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                          </div>
+                        </div>
+                        <div className="py-2">
+                          {accountMenu.map(({ label, icon: Icon, action }) => (
+                            <button
+                              key={label}
+                              role="menuitem"
+                              onClick={() => { setProfileOpen(false); action(); }}
+                              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-[#fe4462]/10 hover:text-[#fe4462] transition"
+                            >
+                              <Icon size={16} /> {label}
+                            </button>
+                          ))}
+                          <button
+                            role="menuitem"
+                            onClick={() => { setProfileOpen(false); logout(); }}
+                            className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-500/10 transition border-t dark:border-white/10 mt-1"
+                          >
+                            <FiLogOut size={16} /> Logout
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="p-4">
+                        <p className="text-sm font-semibold dark:text-white">Welcome 👋</p>
+                        <p className="text-xs text-gray-500 mb-4">Login to access your orders & wishlist.</p>
+                        <button onClick={() => openAuth("login")} className="btn-primary w-full justify-center text-sm !py-2.5 mb-2">
+                          Login
+                        </button>
+                        <button onClick={() => openAuth("register")} className="btn-outline w-full justify-center text-sm !py-2.5">
+                          Register
+                        </button>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Mobile menu */}
             <button
               onClick={() => setOpenMenu(true)}
@@ -240,18 +366,41 @@ export default function Header() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
-                      className="flex items-center gap-4 bg-gray-50 dark:bg-white/5 rounded-2xl p-3"
+                      className="flex gap-4 bg-gray-50 dark:bg-white/5 rounded-2xl p-3"
                     >
                       <div className="w-16 h-16 rounded-xl bg-[#f0e0e3] flex items-center justify-center overflow-hidden flex-shrink-0">
                         <img src={item.image} alt={item.name} className="w-full h-full object-contain" loading="lazy" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-sm truncate dark:text-white">{item.name}</p>
-                        <p className="text-[#fe4462] text-sm font-bold">₹{item.price} × {item.qty}</p>
+                        <p className="text-[#fe4462] text-sm font-bold">₹{item.price * item.qty}</p>
+
+                        {/* Quantity controls */}
+                        <div className="flex items-center gap-2 mt-2">
+                          <div className="inline-flex items-center rounded-lg border border-gray-200 dark:border-white/15 overflow-hidden">
+                            <button
+                              onClick={() => updateQty(item.id, item.qty - 1)}
+                              disabled={item.qty <= 1}
+                              className="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-[#fe4462] disabled:opacity-40"
+                              aria-label={`Decrease ${item.name} quantity`}
+                            >
+                              <FiMinus size={13} />
+                            </button>
+                            <span className="w-8 text-center text-sm font-semibold dark:text-white">{item.qty}</span>
+                            <button
+                              onClick={() => updateQty(item.id, item.qty + 1)}
+                              className="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-[#fe4462]"
+                              aria-label={`Increase ${item.name} quantity`}
+                            >
+                              <FiPlus size={13} />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-gray-400 hover:text-[#fe4462] transition flex-shrink-0"
+                        className="text-gray-400 hover:text-[#fe4462] transition flex-shrink-0 self-start"
+                        aria-label={`Remove ${item.name}`}
                       >
                         <FiX size={18} />
                       </button>
@@ -261,12 +410,52 @@ export default function Header() {
               </div>
 
               {cart.length > 0 && (
-                <div className="p-6 border-t dark:border-white/10">
-                  <div className="flex justify-between mb-4">
-                    <span className="font-semibold dark:text-white">Total</span>
-                    <span className="font-bold text-[#fe4462] text-lg">₹{cartTotal.toFixed(2)}</span>
+                <div className="p-6 border-t dark:border-white/10 space-y-4">
+                  {/* Coupon */}
+                  {coupon ? (
+                    <div className="flex items-center justify-between bg-green-50 dark:bg-green-500/10 rounded-xl px-3 py-2">
+                      <span className="text-sm font-medium text-green-700 dark:text-green-400">
+                        {couponCode} — {coupon.label}
+                      </span>
+                      <button onClick={removeCoupon} className="text-green-700 dark:text-green-400 hover:text-red-500" aria-label="Remove coupon">
+                        <FiX size={16} />
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleApplyCoupon} className="flex gap-2">
+                      <input
+                        value={couponInput}
+                        onChange={(e) => setCouponInput(e.target.value)}
+                        placeholder="Coupon code"
+                        className="flex-1 bg-gray-100 dark:bg-white/10 rounded-lg px-3 py-2 text-sm outline-none dark:text-white uppercase placeholder:normal-case"
+                      />
+                      <button type="submit" className="btn-outline !py-2 !px-4 text-sm">Apply</button>
+                    </form>
+                  )}
+
+                  {/* Totals */}
+                  <div className="space-y-1.5 text-sm">
+                    <div className="flex justify-between text-gray-600 dark:text-gray-300">
+                      <span>Subtotal</span><span>₹{totals.subtotal}</span>
+                    </div>
+                    {totals.discount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Discount</span><span>−₹{totals.discount}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-gray-600 dark:text-gray-300">
+                      <span>Shipping</span>
+                      <span>{totals.shipping === 0 ? "Free" : `₹${totals.shipping}`}</span>
+                    </div>
+                    <div className="flex justify-between pt-2 border-t dark:border-white/10 font-bold text-base dark:text-white">
+                      <span>Total</span>
+                      <span className="text-[#fe4462]">₹{totals.total}</span>
+                    </div>
                   </div>
-                  <button className="w-full btn-primary justify-center text-base">Checkout</button>
+
+                  <button onClick={goToCheckout} className="w-full btn-primary justify-center text-base">
+                    Checkout
+                  </button>
                 </div>
               )}
             </motion.div>
@@ -384,6 +573,47 @@ export default function Header() {
                   ))}
                 </nav>
 
+                {/* Account section (mobile) */}
+                <div className="mt-6 pt-6 border-t border-gray-800">
+                  {user ? (
+                    <>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="w-11 h-11 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold">
+                          {initials}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="font-semibold truncate text-white">{user.name}</p>
+                          <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        {accountMenu.map(({ label, icon: Icon, action }) => (
+                          <button
+                            key={label}
+                            onClick={() => { setOpenMenu(false); action(); }}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-gray-300 hover:bg-white/10 transition"
+                          >
+                            <Icon size={18} /> {label}
+                          </button>
+                        ))}
+                        <button
+                          onClick={() => { setOpenMenu(false); logout(); }}
+                          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-red-400 hover:bg-red-500/10 transition"
+                        >
+                          <FiLogOut size={18} /> Logout
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="space-y-3">
+                      <button onClick={() => openAuth("login")} className="btn-primary w-full justify-center">Login</button>
+                      <button onClick={() => openAuth("register")} className="w-full py-3 rounded-xl border border-gray-700 text-gray-200 hover:border-[#fe4462] hover:text-[#fe4462] transition font-medium">
+                        Register
+                      </button>
+                    </div>
+                  )}
+                </div>
+
                 <div className="mt-8 pt-8 border-t border-gray-800">
                   <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
                   <div className="space-y-4">
@@ -424,6 +654,11 @@ export default function Header() {
             </motion.aside>
           </>
         )}
+      </AnimatePresence>
+
+      {/* ── Auth Modal ── */}
+      <AnimatePresence>
+        {authModal && <AuthModal mode={authModal} onClose={() => setAuthModal(null)} />}
       </AnimatePresence>
     </>
   );

@@ -55,7 +55,7 @@ function Testimonials() {
       <div className="relative z-10 max-w-7xl mx-auto px-5">
         {/* Heading */}
         <div className="text-center mb-16">
-          <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-2 text-sm font-semibold uppercase rounded-full">
+          <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-1 text-sm font-semibold uppercase rounded-full">
             Testimonials
           </span>
 

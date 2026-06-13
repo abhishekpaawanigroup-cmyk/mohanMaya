@@ -6,7 +6,6 @@ import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 
 
-import Radha from "../../../assets/website/RadhaJi.jpeg";
 import madhav from "../../../assets/website/Madhav.jpeg";
 import mother from "../../../assets/website/Mother.jpeg";
 import maya from "../../../assets/website/Maya.jpeg";
@@ -28,7 +27,7 @@ const Hero = () => {
     },
     {
       name: "Radha Ji",
-      image: Radha,
+      image: "/hero/radhaji.jpg",
       description:
         "Radha symbolizes pure devotion and eternal love. Her bond with Krishna represents the highest form of spiritual connection.",
     },

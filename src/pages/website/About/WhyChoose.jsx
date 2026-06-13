@@ -10,8 +10,8 @@ const WhyChooseUs = () => {
   <section className="py-20 bg-[#f4edee] dark:bg-[#0d0508] relative overflow-hidden">
  
       {/* Background */}
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffecef] opacity-40 -left-40 top-20"></div>
-      <div className="absolute w-[400px] h-[400px] rounded-full bg-[#ffecef] opacity-30 -right-32 bottom-10"></div>
+      {/* <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffecef] opacity-1 -left-40 top-20"></div>
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-[#ffecef] opacity-1 -right-32 bottom-10"></div> */}
  
       <div className="max-w-7xl mx-auto px-5 relative z-10">
  

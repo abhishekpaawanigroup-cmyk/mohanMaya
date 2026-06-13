@@ -10,7 +10,7 @@ const BestSellers = () => {
     <section className="bg-[#f5f0e8] dark:bg-[#0d0508] py-24">
       <div className="max-w-7xl mx-auto px-5">
         <ScrollReveal className="mb-12">
-          <span className="inline-block bg-transparent text-[#c48212] border border-[#c48212] px-4 py-2 text-sm font-semibold uppercase rounded-full">
+          <span className="inline-block bg-transparent text-[#c48212] border border-[#c48212] px-4 py-1 text-sm font-semibold uppercase rounded-full">
             This Week
           </span>
           <h2 className="mt-5 text-4xl sm:text-5xl font-bold text-[#c48212]">Best Sellers</h2>

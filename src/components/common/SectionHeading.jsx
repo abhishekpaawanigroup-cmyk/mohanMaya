@@ -19,7 +19,7 @@ export default function SectionHeading({
       <div className={alignment}>
         {badge && (
           <span
-            className="inline-block bg-transparent border px-4 py-2 text-sm font-bold uppercase rounded-full tracking-wide"
+            className="inline-block bg-transparent border px-4 py-1 text-sm font-bold uppercase rounded-full tracking-wide"
             style={{ color: accent, borderColor: accent }}
           >
             {badge}
