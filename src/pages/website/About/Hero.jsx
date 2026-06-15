@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div className="relative z-10 h-full flex items-center">
         <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 text-white">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-            Every Miniature Has <br/> A Story
+            Every Miniature Has <br/> <span className="text-[#fe4462]">A Story</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">

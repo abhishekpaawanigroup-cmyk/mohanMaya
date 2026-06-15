@@ -1,10 +1,14 @@
+import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
 
- 
+// Lazy so the heavy three.js bundle only downloads with the hero, never blocking
+// initial page render.
+const Hero3DModel = lazy(() => import("./Hero3DModel"));
+
 const Hero = () => {
- 
+
   return (
     <section className="relative h-screen max-h-[1000px]  overflow-hidden pt-30 ">
  
@@ -101,18 +105,18 @@ const Hero = () => {
  
           {/* Right */}
  
-          <div className="relative hidden lg:flex justify-center items-end self-end overflow-hidden">
+          <div className="relative flex justify-center items-center self-center lg:self-stretch h-[300px] sm:h-[420px] lg:h-full">
  
          
  
      
-            {/* Character */}
- 
-            <img
-              src= "/hero/mm4.png"
-              alt="Miniature Character"
-              className="relative z-10 w-[500px] object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,.6)] translate-y-[80px]"
-            />
+            {/* Soft glow behind the model for a premium, lit look */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] aspect-square rounded-full bg-transparent blur-3xl" />
+
+            {/* Auto-rotating 3D model (replaces the character image) */}
+            <Suspense fallback={null}>
+              <Hero3DModel className="!absolute inset-0 z-10 !w-[80%] !h-[80%]" />
+            </Suspense>
  
           </div>
  

@@ -21,6 +21,7 @@ const Product3DCanvas = lazy(() => import("./Product3DCanvas"));
 
 const MODEL_PATH = "/Modal/mohan-model.glb";
 
+
 function InlineCanvasSkeleton() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
@@ -177,7 +178,7 @@ export default function ProductQuickViewModal({ product = {}, onClose }) {
                     </div>
                   ) : (
                     <Suspense fallback={<InlineCanvasSkeleton />}>
-                      <Product3DCanvas modelPath={MODEL_PATH} autoRotate controlsRef={controlsRef} />
+                      <Product3DCanvas modelPath={MODEL_PATH} controlsRef={controlsRef} />
                     </Suspense>
                   )}
 

@@ -27,7 +27,7 @@ function CanvasLoader() {
 /**
  * Loads the GLTF and auto-fits it responsively:
  *  - measures the model's bounding sphere (rotation-invariant, so it never
- *    crops while auto-rotating),
+ *    crops while the user rotates it),
  *  - scales it to fill ~FILL of the smaller visible viewport dimension at the
  *    reference camera distance, recomputed whenever the canvas resizes
  *    (desktop / tablet / mobile),
@@ -42,7 +42,7 @@ function Model({ modelPath, fill }) {
   // "steal" the model from the first (inline) one — making it vanish on return.
   const object = useMemo(() => scene.clone(true), [scene]);
 
-  // Bounding-sphere radius (rotation-invariant → never crops while spinning).
+  // Bounding-sphere radius (rotation-invariant → never crops while rotating).
   const radius = useMemo(() => {
     const box = new THREE.Box3().setFromObject(object);
     return box.getBoundingSphere(new THREE.Sphere()).radius || 1;
@@ -98,7 +98,9 @@ function ErrorFallback() {
 
 /**
  * Reusable interactive 3D product canvas.
- * - Click/touch drag to rotate, wheel/pinch to zoom (OrbitControls).
+ * - Click/touch drag to rotate, right-drag/two-finger to pan, wheel/pinch to
+ *   zoom (OrbitControls). No auto-rotation: the model stays still until the
+ *   user interacts with it.
  * - Auto-fits any model; `controlsRef` lets a parent drive zoom / reset.
  * - `dpr={[1, 2]}` caps device pixel ratio for smooth rendering on mobile.
  */
@@ -127,11 +129,11 @@ export default function Product3DCanvas({
         <OrbitControls
           ref={controlsRef}
           makeDefault
+          autoRotate={false}
           enableZoom
-          enablePan={false}
+          enablePan
           enableDamping
           target={[0, 0, 0]}
-          
           minDistance={14}
           maxDistance={70}
         />

@@ -5,7 +5,6 @@ import {
   Minus,
   RotateCcw,
   X,
-  RefreshCw,
   Maximize2,
   Minimize2,
   Move3d,
@@ -32,7 +31,6 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
   const dialogRef = useModalA11y(onClose);
   const stageRef = useRef(null);
   const controlsRef = useRef(null);
-  const [autoRotate, setAutoRotate] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Keep local state in sync with the browser fullscreen status.
@@ -116,7 +114,7 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
         <div ref={stageRef} className="absolute inset-0 bg-gradient-to-br from-[#1b1016] to-[#0d0508]">
           <Suspense fallback={<CanvasSkeleton />}>
             {/* Larger fill so the model is prominent in the wide Big-Screen canvas. */}
-            <Product3DCanvas modelPath={modelPath} autoRotate={autoRotate} controlsRef={controlsRef} fill={1.15} />
+            <Product3DCanvas modelPath={modelPath} controlsRef={controlsRef} fill={1.15} />
           </Suspense>
 
           <p className="absolute bottom-20 inset-x-0 text-center text-xs text-white/40 pointer-events-none">
@@ -136,14 +134,6 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
             <RotateCcw size={18} />
           </button>
           <span className="w-px h-6 bg-white/15 mx-1" />
-          <button
-            onClick={() => setAutoRotate((v) => !v)}
-            className={`${ctrlBtn} ${autoRotate ? "bg-[#fe4462] text-white" : ""}`}
-            aria-label="Toggle auto-rotate"
-            aria-pressed={autoRotate}
-          >
-            <RefreshCw size={18} />
-          </button>
           <button
             onClick={toggleFullscreen}
             className={ctrlBtn}

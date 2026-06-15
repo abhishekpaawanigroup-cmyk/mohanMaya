@@ -81,8 +81,8 @@ const Hero = () => {
         </video>
 
         <div className="absolute top-1/2 left-1/2 z-20 w-full px-4 text-center text-white -translate-x-1/2 -translate-y-1/2">
-          <h1 className="font-bold text-3xl md:text-5xl">
-            Where Tiny Art Comes to Life
+          <h1 className="font-bold text-4xl md:text-6xl">
+            Where Tiny Art Comes <br/> <span className="text-[#fe4462]">to Life</span>
           </h1>
 
           <p className="text-lg leading-relaxed max-w-[650px] mx-auto mt-4">

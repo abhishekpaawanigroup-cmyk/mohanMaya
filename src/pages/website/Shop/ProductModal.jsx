@@ -222,7 +222,6 @@ export default function ProductModal({ product = {}, onClose }) {
                 >
                   <Product3DCanvas
                     modelPath="/Modal/mohan-model.glb"
-                    autoRotate
                     controlsRef={controlsRef}
                   />
 
