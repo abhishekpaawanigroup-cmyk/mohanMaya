@@ -50,7 +50,7 @@ const Hero = () => {
  
             <div className="space-y-5">
  
-              <h1 className="text-white text-4xl md:text-6xl xl:text-7xl leading-[1.05] font-bold font-serif">
+              <h1 className="text-white text-4xl md:text-6xl xl:text-7xl leading-[1.05] font-bold">
  
                 Where Tiny Art
  

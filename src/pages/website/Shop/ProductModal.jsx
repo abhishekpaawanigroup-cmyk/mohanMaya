@@ -1,7 +1,6 @@
-import { useRef, useState, useEffect, Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF, Center, Html, useProgress } from "@react-three/drei";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Product3DCanvas from "../../../components/product/Product3DCanvas";
 import {
   Plus,
   Minus,
@@ -23,32 +22,6 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { useApp } from "../../../context/AppContext";
-
-useGLTF.preload("/Modal/model.glb");
-
-/* ── 3D model + loader ─────────────────────────────────── */
-function Model() {
-  const { scene } = useGLTF("/Modal/model.glb");
-  return (
-    <Center>
-      <primitive object={scene} scale={0.1} />
-    </Center>
-  );
-}
-
-function ModelLoader() {
-  const { progress } = useProgress();
-  return (
-    <Html center>
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 rounded-full border-4 border-[#fe4462]/30 border-t-[#fe4462] animate-spin" />
-        <span className="text-xs font-medium text-gray-500 whitespace-nowrap">
-          Loading 3D · {Math.round(progress)}%
-        </span>
-      </div>
-    </Html>
-  );
-}
 
 /* ── Static spec / feature data (synthesised for the demo) ── */
 const SIZES = ["Small", "Medium", "Large"];
@@ -247,23 +220,11 @@ export default function ProductModal({ product = {}, onClose }) {
                   exit={{ opacity: 0 }}
                   className="w-full h-full"
                 >
-                  <Canvas camera={{ position: [0, 2, 40], fov: 75 }}>
-                    <ambientLight intensity={2} />
-                    <directionalLight position={[5, 5, 5]} intensity={2} />
-                    <Suspense fallback={<ModelLoader />}>
-                      <Model />
-                      <Environment preset="city" />
-                    </Suspense>
-                    <OrbitControls
-                      ref={controlsRef}
-                      enableZoom
-                      enablePan={false}
-                      autoRotate
-                      autoRotateSpeed={1.5}
-                      minDistance={5}
-                      maxDistance={100}
-                    />
-                  </Canvas>
+                  <Product3DCanvas
+                    modelPath="/Modal/mohan-model.glb"
+                    autoRotate
+                    controlsRef={controlsRef}
+                  />
 
                   {/* 3D controls */}
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2 bg-white/80 dark:bg-white/10 backdrop-blur px-2 py-1.5 rounded-full shadow">

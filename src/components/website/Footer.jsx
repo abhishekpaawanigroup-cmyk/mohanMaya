@@ -51,7 +51,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
           {/* Logo */}
           <div>
-            <h2 className="text-4xl font-bold mb-6 text-gradient">M&M</h2>
+            <div className="flex justify-start items-center gap-3 mb-3">
+             <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#fe4462]/30 group-hover:ring-[#fe4462] transition-all duration-300">
+              <img src="/header/logo2.png" alt="Mohan Maya logo" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-2xl font-black text-gradient leading-none">M&M</h1>
+              <p className="text-[10px] tracking-widest text-gray-500 dark:text-gray-400 uppercase">Mohan Maya</p>
+            </div>
+            </div>
             <p className="text-gray-400 leading-6 mb-8">
               Handcrafted miniature art that captures extraordinary detail and timeless
               craftsmanship — created with love in Vrindavan.

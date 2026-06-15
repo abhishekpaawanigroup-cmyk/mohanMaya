@@ -19,7 +19,7 @@ import Product3DViewerModal from "./Product3DViewerModal";
 // Lazy 3D — Home page stays light until a shopper opens the 3D view.
 const Product3DCanvas = lazy(() => import("./Product3DCanvas"));
 
-const MODEL_PATH = "/Modal/carModel.glb";
+const MODEL_PATH = "/Modal/mohan-model.glb";
 
 function InlineCanvasSkeleton() {
   return (
@@ -168,9 +168,18 @@ export default function ProductQuickViewModal({ product = {}, onClose }) {
                   exit={{ opacity: 0 }}
                   className="w-full h-full"
                 >
-                  <Suspense fallback={<InlineCanvasSkeleton />}>
-                    <Product3DCanvas modelPath={MODEL_PATH} autoRotate controlsRef={controlsRef} />
-                  </Suspense>
+                  {/* While the Big-Screen viewer is open, unmount the inline
+                      canvas so only one WebGL context is live; it remounts
+                      fresh (and renders correctly) the moment you return. */}
+                  {viewerOpen ? (
+                    <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-400">
+                      Viewing in full screen…
+                    </div>
+                  ) : (
+                    <Suspense fallback={<InlineCanvasSkeleton />}>
+                      <Product3DCanvas modelPath={MODEL_PATH} autoRotate controlsRef={controlsRef} />
+                    </Suspense>
+                  )}
 
                   {/* inline controls */}
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1 bg-white/80 dark:bg-white/10 backdrop-blur px-2 py-1.5 rounded-full shadow">

@@ -115,7 +115,8 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
         {/* Stage (this element goes fullscreen) */}
         <div ref={stageRef} className="absolute inset-0 bg-gradient-to-br from-[#1b1016] to-[#0d0508]">
           <Suspense fallback={<CanvasSkeleton />}>
-            <Product3DCanvas modelPath={modelPath} autoRotate={autoRotate} controlsRef={controlsRef} />
+            {/* Larger fill so the model is prominent in the wide Big-Screen canvas. */}
+            <Product3DCanvas modelPath={modelPath} autoRotate={autoRotate} controlsRef={controlsRef} fill={1.15} />
           </Suspense>
 
           <p className="absolute bottom-20 inset-x-0 text-center text-xs text-white/40 pointer-events-none">

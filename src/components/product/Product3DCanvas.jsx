@@ -1,8 +1,13 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Suspense, useMemo, Component } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment, useGLTF, Center, Html, useProgress } from "@react-three/drei";
+import * as THREE from "three";
 
-const DEFAULT_MODEL = "/Modal/carModel.glb";
+const DEFAULT_MODEL = "/Modal/mohan-model.glb";
+// Reference (default / reset) camera distance from the model.
+const REF_DISTANCE = 40;
+// Fraction of the smaller viewport dimension the model should fill.
+const FILL = 0.92;
 
 /** In-canvas loader shown while the GLTF + environment stream in. */
 function CanvasLoader() {
@@ -19,53 +24,119 @@ function CanvasLoader() {
   );
 }
 
-function Model({ modelPath, scale }) {
+/**
+ * Loads the GLTF and auto-fits it responsively:
+ *  - measures the model's bounding sphere (rotation-invariant, so it never
+ *    crops while auto-rotating),
+ *  - scales it to fill ~FILL of the smaller visible viewport dimension at the
+ *    reference camera distance, recomputed whenever the canvas resizes
+ *    (desktop / tablet / mobile),
+ *  - <Center>s it at the origin so the camera always frames it.
+ */
+function Model({ modelPath, fill }) {
   const { scene } = useGLTF(modelPath);
+  const { size, camera } = useThree();
+
+  // Clone the cached scene PER INSTANCE. A THREE.Object3D can only live in one
+  // scene graph at a time, so without this a second canvas (Big Screen) would
+  // "steal" the model from the first (inline) one — making it vanish on return.
+  const object = useMemo(() => scene.clone(true), [scene]);
+
+  // Bounding-sphere radius (rotation-invariant → never crops while spinning).
+  const radius = useMemo(() => {
+    const box = new THREE.Box3().setFromObject(object);
+    return box.getBoundingSphere(new THREE.Sphere()).radius || 1;
+  }, [object]);
+
+  // Responsive scale: fill `fill` of the smaller visible viewport dimension
+  // at the reference camera distance; recomputed on every resize.
+  const scale = useMemo(() => {
+    const fov = (camera.fov * Math.PI) / 180;
+    const visibleHeight = 2 * REF_DISTANCE * Math.tan(fov / 2);
+    const aspect = size.width / Math.max(1, size.height);
+    const visibleWidth = visibleHeight * aspect;
+    const minDim = Math.min(visibleHeight, visibleWidth);
+    return (fill * minDim) / (2 * radius);
+  }, [radius, size.width, size.height, camera.fov, fill]);
+
   return (
-    <Center>
-      <primitive object={scene} scale={scale} />
-    </Center>
+    <group scale={scale}>
+      <Center>
+        {/* dispose={null}: never dispose the geometry/material shared with the
+            cached source when this instance unmounts (prevents the other
+            canvas from going blank). */}
+        <primitive object={object} dispose={null} />
+      </Center>
+    </group>
+  );
+}
+
+/** Catches GLTF load failures (bad file, network) and shows a DOM fallback. */
+class ModelErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+function ErrorFallback() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-6">
+      <div className="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xl">!</div>
+      <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">Couldn't load the 3D model</p>
+      <p className="text-xs text-gray-400">Please check your connection and try again.</p>
+    </div>
   );
 }
 
 /**
  * Reusable interactive 3D product canvas.
  * - Click/touch drag to rotate, wheel/pinch to zoom (OrbitControls).
- * - `controlsRef` lets a parent drive zoom / reset.
+ * - Auto-fits any model; `controlsRef` lets a parent drive zoom / reset.
  * - `dpr={[1, 2]}` caps device pixel ratio for smooth rendering on mobile.
  */
 export default function Product3DCanvas({
-  modelPath = DEFAULT_MODEL,
-  autoRotate = true,
-  scale = 0.1,
-  controlsRef,
+  modelPath = DEFAULT_MODEL, controlsRef,
+  fill = FILL,
 }) {
   return (
-    <Canvas
-      camera={{ position: [0, 2, 40], fov: 75 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
-      frameloop="always"
-    >
-      <ambientLight intensity={2} />
-      <directionalLight position={[5, 5, 5]} intensity={2} />
+    <ModelErrorBoundary fallback={<ErrorFallback />}>
+      <Canvas
+        camera={{ position: [0, 0.5, REF_DISTANCE], fov: 45, near: 0.1, far: 1000 }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+      >
+        {/* Lighting — bright enough that any model is clearly visible */}
+        <ambientLight intensity={1.2} />
+        <hemisphereLight intensity={0.8} groundColor="#b58a8a" />
+        <directionalLight position={[5, 8, 5]} intensity={2.2} />
+        <directionalLight position={[-5, 3, -5]} intensity={0.8} />
 
-      <Suspense fallback={<CanvasLoader />}>
-        <Model modelPath={modelPath} scale={scale} />
-        <Environment preset="city" />
-      </Suspense>
+        <Suspense fallback={<CanvasLoader />}>
+          <Model modelPath={modelPath} fill={fill} />
+          <Environment preset="city" />
+        </Suspense>
 
-      <OrbitControls
-        ref={controlsRef}
-        enableZoom
-        enablePan={false}
-        enableDamping
-        autoRotate={autoRotate}
-        autoRotateSpeed={1.6}
-        minDistance={5}
-        maxDistance={100}
-      />
-    </Canvas>
+        <OrbitControls
+          ref={controlsRef}
+          makeDefault
+          enableZoom
+          enablePan={false}
+          enableDamping
+          target={[0, 0, 0]}
+          
+          minDistance={14}
+          maxDistance={70}
+        />
+      </Canvas>
+    </ModelErrorBoundary>
   );
 }
 
