@@ -8,7 +8,7 @@ import { MdMenu } from "react-icons/md";
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import { FiMapPin, FiPhone, FiMail, FiX, FiMoon, FiSun, FiPlus, FiMinus, FiUser, FiLogOut, FiPackage, FiSettings, FiHeart } from "react-icons/fi";
 import { useApp } from "../../context/AppContext";
-import { useScrollPosition, useClickOutside } from "../../hooks/useHooks";
+import { useScrollThreshold, useClickOutside } from "../../hooks/useHooks";
 import AuthModal from "../common/AuthModal";
 
 const navLinks = [
@@ -32,8 +32,8 @@ export default function Header() {
   const [authModal, setAuthModal] = useState(null); // null | "login" | "register"
   const profileRef = useClickOutside(() => setProfileOpen(false));
 
-  const scrollY = useScrollPosition();
-  const scrolled = scrollY > 50;
+  // Boolean-only scroll state → Header no longer re-renders every scroll frame.
+  const scrolled = useScrollThreshold(50);
   const {
     darkMode,
     toggleDarkMode,

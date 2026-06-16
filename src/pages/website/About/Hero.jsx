@@ -1,37 +1,65 @@
+import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
+
+// Lazy so the heavy three.js bundle only downloads with the hero, never blocking
+// initial page render. Reuses the Shop hero's exact 3D presentation.
+const Hero3DModel = lazy(() => import("../Shop/Hero3DModel"));
 
 const HeroSection = () => {
   return (
-    <section
-      className="relative h-screen max-h-[1000px] bg-cover bg-bottom"
-      style={{
-        backgroundImage:
-          "url('/About/Hero/about-banner.jpeg')",
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+    <section className="relative h-screen max-h-[1000px] overflow-hidden pt-30">
+      {/* Background */}
+      <img
+        src="/About/Hero/about-bg.png"
+        alt="About Hero Background"
+        className="absolute inset-0 w-full h-full object-cover scale-105"
+      />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 text-white">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-            Every Miniature Has <br/> <span className="text-[#fe4462]">A Story</span>
-          </h1>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/55"></div>
 
-          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
-            We transform imagination into handcrafted miniatures, designed to capture emotions , memories and timeless moments.
-          </p>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/95 via-[#090909]/60 to-transparent"></div>
 
-          <div className="flex flex-wrap gap-4">
-            <Link to="/shop" className="px-6 py-3 bg-[#fe4462] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
-              Get Started
-            </Link>
+      {/* Main Content */}
+      <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
+        <div className="grid lg:grid-cols-2 gap-10 items-center w-full h-full">
 
-            <Link to="/contact" className="px-6 py-3 border border-white hover:bg-[#fe4462] hover:text-[#fff] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
-              Learn More
-            </Link>
+          {/* Left — existing About text (unchanged) */}
+          <div className="text-white">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
+              Every Miniature Has <br/> <span className="text-[#fe4462]">A Story</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
+              We transform imagination into handcrafted miniatures, designed to capture emotions , memories and timeless moments.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <Link to="/shop" className="px-6 py-3 bg-[#fe4462] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
+                Get Started
+              </Link>
+
+              <Link to="/contact" className="px-6 py-3 border border-white hover:bg-[#fe4462] hover:text-[#fff] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
+                Learn More
+              </Link>
+            </div>
           </div>
+
+          {/* Right — auto-rotating mm-modal.glb, vertically centered (matches Shop hero) */}
+          <div className="relative flex justify-center items-center self-center lg:self-stretch h-[420px] sm:h-[520px] lg:h-full">
+            <Suspense fallback={null}>
+              {/* Canvas fills the container so the model stays centered; the
+                  pulled-back camera (z=4.8) adds top/bottom margin so the full
+                  model is visible without clipping. */}
+              <Hero3DModel
+                modelPath="/models/mm-modal.glb"
+                cameraPosition={[0, 0, 4.8]}
+                className="!absolute inset-0 z-10 !w-full !h-full"
+              />
+            </Suspense>
+          </div>
+
         </div>
       </div>
     </section>

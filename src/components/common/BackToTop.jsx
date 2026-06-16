@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowUp } from "react-icons/fi";
-import { useScrollPosition } from "../../hooks/useHooks";
+import { useScrollThreshold } from "../../hooks/useHooks";
 
 /** Floating button that appears after scrolling and returns to the top. */
 export default function BackToTop() {
-  const scrollY = useScrollPosition();
-  const visible = scrollY > 500;
+  // Only re-renders when crossing 500px, not on every scroll frame.
+  const visible = useScrollThreshold(500);
 
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });

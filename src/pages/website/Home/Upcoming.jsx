@@ -5,7 +5,7 @@ const UpcomingCollection = () => {
     <section
       className="relative min-h-[350px] sm:min-h-[450px] md:min-h-[500px] w-full bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
-        backgroundImage: "url('/upcoming-image/pic2.jpeg')",
+        backgroundImage: "url('/upcoming-image/up-bg.png')",
         backgroundPosition: "bottom",
         backgroundSize: "cover",
       }}

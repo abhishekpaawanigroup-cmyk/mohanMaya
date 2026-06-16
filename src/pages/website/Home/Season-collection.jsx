@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
+import LazyVideo from "../../../components/common/LazyVideo";
 
 const SeasonalCollection = () => {
   return (
@@ -28,19 +29,11 @@ const SeasonalCollection = () => {
           <div className="lg:col-span-2">
             <div className="relative overflow-hidden rounded-lg h-[600px] shadow-2xl">
 
-              {/* Video */}
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
+              {/* Video — lazy-loaded & paused when off-screen */}
+              <LazyVideo
+                src="/hero/mohan-maya.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source
-                  src="/hero/mohan-maya.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              />
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
@@ -82,6 +75,8 @@ const SeasonalCollection = () => {
               <img
                 src="/season/mm5.png"
                 alt="Winter"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
               />
 
@@ -103,6 +98,8 @@ const SeasonalCollection = () => {
               <img
                 src="/season/mm6.png"
                 alt="Summer"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
               />
 
@@ -124,6 +121,8 @@ const SeasonalCollection = () => {
               <img
                 src="/season/mm7.png"
                 alt="Christmas"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-contain transition duration-700 group-hover:scale-110"
               />
 

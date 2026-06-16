@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
-
+import LazyVideo from "../../../components/common/LazyVideo";
 
 import madhav from "../../../assets/website/Madhav.jpeg";
 import mother from "../../../assets/website/Mother.jpeg";
@@ -15,6 +15,9 @@ import Madhvi from "../../../assets/website/Madhvi.jpeg";
 import "swiper/css";
 import "swiper/css/navigation";
 
+// Lazy so the three.js bundle only downloads when a popup is opened.
+const CharacterModelViewer = lazy(() => import("./CharacterModelViewer"));
+
 const Hero = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
 
@@ -22,42 +25,49 @@ const Hero = () => {
     {
       name: "Mohan Maya",
       image: "/hero/mm.jpeg",
+      model: "/models/mohan-maya.glb",
       description:
         "Lord Krishna is revered as the embodiment of love, wisdom, and divine guidance. His teachings in the Bhagavad Gita continue to inspire millions around the world.",
     },
     {
       name: "Radha Ji",
       image: "/hero/radhaji.jpg",
+      model: "/models/radha-ji.glb",
       description:
         "Radha symbolizes pure devotion and eternal love. Her bond with Krishna represents the highest form of spiritual connection.",
     },
     {
       name: "Madhav",
       image: madhav,
+      model: "/models/madhav.glb",
       description:
         "Madhav is a representation of grace, compassion, and inner strength. His presence brings peace and inspiration.",
     },
     {
       name: "Mother",
       image: mother,
+      model: "/models/mother.glb",
       description:
         "A symbol of unconditional love, sacrifice, and nurturing care. Mothers hold a special place in every heart.",
     },
     {
       name: "Maya",
       image: maya,
+      model: "/models/maya.glb",
       description:
         "Maya represents beauty, mystery, and the fascinating illusionary nature of life and existence.",
     },
     {
       name: "Shiva",
       image: Shiva,
+      model: "/models/shiva.glb",
       description:
         "Lord Shiva is known as the destroyer of negativity and the transformer of life. He symbolizes power, meditation, and balance.",
     },
     {
       name: "Madhvi",
       image: Madhvi,
+      model: "/models/madhvi.glb",
       description:
         "Madhvi represents elegance, devotion, and strength. Her character reflects resilience and grace.",
     },
@@ -67,18 +77,10 @@ const Hero = () => {
     <div className="relative pb-10 mt-20 bg-[#f4edee] dark:bg-[#0d0508]">
       {/* Hero Video Section */}
       <div className="w-full h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <LazyVideo
+          src="/hero/mohan-maya.mp4"
           className="w-full h-full object-cover"
-        >
-          <source
-            src="/hero/mohan-maya.mp4"
-            type="video/mp4"
-          />
-        </video>
+        />
 
         <div className="absolute top-1/2 left-1/2 z-20 w-full px-4 text-center text-white -translate-x-1/2 -translate-y-1/2">
           <h1 className="font-bold text-4xl md:text-6xl">
@@ -141,6 +143,8 @@ const Hero = () => {
                 <img
                   src={char.image}
                   alt={char.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
                 />
 
@@ -175,16 +179,26 @@ const Hero = () => {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-2xl overflow-hidden max-w-lg w-full shadow-2xl"
             >
-              <div className="relative">
-                <img
-                  src={selectedCharacter.image}
-                  alt={selectedCharacter.name}
-                  className="w-full h-[400px] object-cover"
-                />
+              <div className="relative h-[300px] sm:h-[360px] md:h-[400px] bg-gradient-to-br from-[#f4edee] to-white">
+                {/* 3D model (replaces the popup image). `key` forces a clean
+                    remount so it renders correctly on every open/close/reopen. */}
+                <Suspense
+                  fallback={
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                      <div className="w-10 h-10 rounded-full border-4 border-[#fe4462]/30 border-t-[#fe4462] animate-spin" />
+                      <span className="text-xs font-medium text-gray-500">Loading 3D…</span>
+                    </div>
+                  }
+                >
+                  <CharacterModelViewer
+                    key={selectedCharacter.model}
+                    modelPath={selectedCharacter.model}
+                  />
+                </Suspense>
 
                 <button
                   onClick={() => setSelectedCharacter(null)}
-                  className="absolute top-4 right-4 bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#fe4462] hover:text-white transition"
+                  className="absolute top-4 right-4 z-10 bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#fe4462] hover:text-white transition"
                 >
                   <FiX size={22} />
                 </button>

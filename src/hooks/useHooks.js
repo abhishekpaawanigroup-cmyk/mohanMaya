@@ -1,60 +1,37 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 /**
- * Tracks the vertical scroll position of the window.
- * Uses requestAnimationFrame to avoid layout thrashing on scroll.
+ * Returns whether the page is scrolled past `threshold` px as a boolean.
+ * Unlike useScrollPosition this only triggers a re-render when the boolean
+ * actually flips — so consumers (Header, BackToTop) don't re-render on every
+ * scroll frame, which is critical for smooth 60fps scrolling.
  */
-export function useScrollPosition() {
-  const [scrollY, setScrollY] = useState(0);
+export function useScrollThreshold(threshold = 0) {
+  const [passed, setPassed] = useState(
+    () => typeof window !== "undefined" && window.scrollY > threshold
+  );
 
   useEffect(() => {
     let frame = null;
-    const handleScroll = () => {
+    const check = () => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
-        setScrollY(window.scrollY);
+        setPassed((prev) => {
+          const next = window.scrollY > threshold;
+          return prev === next ? prev : next; // bail out if unchanged
+        });
         frame = null;
       });
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener("scroll", check, { passive: true });
+    check();
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", check);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [threshold]);
 
-  return scrollY;
-}
-
-/**
- * Returns the page scroll progress as a value between 0 and 1.
-*/
-export function useScrollProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    let frame = null;
-    const update = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        const scrollTop = window.scrollY;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        setProgress(height > 0 ? Math.min(scrollTop / height, 1) : 0);
-        frame = null;
-      });
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    update();
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
-  return progress;
+  return passed;
 }
 
 /**

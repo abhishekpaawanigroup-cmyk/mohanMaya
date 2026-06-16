@@ -19,9 +19,9 @@ const Home = () => {
       <SeasonalCollection />
       <UpcomingCollection />
       <TrendyCollection />
-      <RecentlyViewed />
-      <Testimonials />
       <BestSellers />
+      <Testimonials />
+      <RecentlyViewed />
       <RecommendedProducts />
       <Newsletter />
     </>

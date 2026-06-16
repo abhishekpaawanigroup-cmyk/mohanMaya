@@ -35,9 +35,9 @@ function Loader() {
  * spins it continuously about the Y axis via useFrame — frame-rate independent
  * (delta-based) so it stays smooth on any device, with no user interaction.
  */
-function RotatingModel({ speed = 0.45 }) {
+function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
   const groupRef = useRef(null);
-  const { scene } = useGLTF(MODEL_PATH);
+  const { scene } = useGLTF(modelPath);
 
   // Clone per instance so the cached source scene is never mutated/stolen.
   const object = useMemo(() => scene.clone(true), [scene]);
@@ -86,14 +86,23 @@ function RotatingModel({ speed = 0.45 }) {
 /**
  * Auto-rotating hero 3D model. Transparent background so it sits over the hero
  * artwork. Fills its parent — size it via the parent container.
+ * `modelPath` lets other heroes (e.g. About) reuse the exact same presentation
+ * with a different GLB.
  */
-export default function Hero3DModel({ className = "" }) {
+export default function Hero3DModel({
+  className = "",
+  modelPath = MODEL_PATH,
+  // Camera position. y=0 keeps the origin-centered model vertically centred in
+  // the frame; a larger z adds top/bottom margin so nothing clips. Callers can
+  // override (e.g. About uses [0, 0, 4.8]) without affecting the Shop hero.
+  cameraPosition = [0, 0.5, 4.4],
+}) {
   return (
     <Canvas
       className={className}
       shadows
       dpr={[1, 2]}
-      camera={{ position: [0, 0.5, 4.4], fov: 42, near: 0.1, far: 100 }}
+      camera={{ position: cameraPosition, fov: 42, near: 0.1, far: 100 }}
       gl={{ antialias: true, powerPreference: "high-performance", alpha: true }}
     >
       {/* Premium lighting rig */}
@@ -109,7 +118,7 @@ export default function Hero3DModel({ className = "" }) {
       <directionalLight position={[-6, 4, -5]} intensity={0.7} />
 
       <Suspense fallback={<Loader />}>
-        <RotatingModel />
+        <RotatingModel modelPath={modelPath} />
         <Environment preset="city" />
       </Suspense>
     </Canvas>

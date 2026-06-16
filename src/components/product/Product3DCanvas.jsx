@@ -1,9 +1,11 @@
-import { Suspense, useMemo, Component } from "react";
+import { Suspense, useMemo, useState, Component } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment, useGLTF, Center, Html, useProgress } from "@react-three/drei";
 import * as THREE from "three";
 
 const DEFAULT_MODEL = "/Modal/mohan-model.glb";
+// Shown whenever the requested model is missing / fails to load.
+const FALLBACK_MODEL = "/models/mm-modal.glb";
 // Reference (default / reset) camera distance from the model.
 const REF_DISTANCE = 40;
 // Fraction of the smaller viewport dimension the model should fill.
@@ -71,7 +73,10 @@ function Model({ modelPath, fill }) {
   );
 }
 
-/** Catches GLTF load failures (bad file, network) and shows a DOM fallback. */
+/**
+ * Catches GLTF load failures (bad file, network), logs the real error for
+ * debugging and notifies the parent so it can swap in the fallback model.
+ */
 class ModelErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -80,8 +85,12 @@ class ModelErrorBoundary extends Component {
   static getDerivedStateFromError() {
     return { hasError: true };
   }
+  componentDidCatch(error, info) {
+    console.error("[Product3DCanvas] 3D model failed to load:", error, info);
+    this.props.onError?.(error);
+  }
   render() {
-    if (this.state.hasError) return this.props.fallback;
+    if (this.state.hasError) return null;
     return this.props.children;
   }
 }
@@ -104,42 +113,60 @@ function ErrorFallback() {
  * - Auto-fits any model; `controlsRef` lets a parent drive zoom / reset.
  * - `dpr={[1, 2]}` caps device pixel ratio for smooth rendering on mobile.
  */
+/** The canvas + scene for a given model path. */
+function CanvasScene({ modelPath, controlsRef, fill }) {
+  return (
+    <Canvas
+      // Static model → render only on interaction/load, not a continuous loop.
+      frameloop="demand"
+      camera={{ position: [0, 0.5, REF_DISTANCE], fov: 45, near: 0.1, far: 1000 }}
+      dpr={[1, 2]}
+      gl={{ antialias: true, powerPreference: "high-performance" }}
+    >
+      {/* Lighting — bright enough that any model is clearly visible */}
+      <ambientLight intensity={1.2} />
+      <hemisphereLight intensity={0.8} groundColor="#b58a8a" />
+      <directionalLight position={[5, 8, 5]} intensity={2.2} />
+      <directionalLight position={[-5, 3, -5]} intensity={0.8} />
+
+      <Suspense fallback={<CanvasLoader />}>
+        <Model modelPath={modelPath} fill={fill} />
+        <Environment preset="city" />
+      </Suspense>
+
+      <OrbitControls
+        ref={controlsRef}
+        makeDefault
+        autoRotate={false}
+        enableZoom
+        enablePan
+        enableDamping
+        target={[0, 0, 0]}
+        minDistance={14}
+        maxDistance={70}
+      />
+    </Canvas>
+  );
+}
+
 export default function Product3DCanvas({
   modelPath = DEFAULT_MODEL, controlsRef,
   fill = FILL,
 }) {
+  // 0 = requested model, 1 = mm-modal fallback, 2 = give up (text fallback).
+  const [stage, setStage] = useState(modelPath ? 0 : 1);
+
+  if (stage >= 2) return <ErrorFallback />;
+
+  const activeModel = stage === 0 ? modelPath : FALLBACK_MODEL;
+
   return (
-    <ModelErrorBoundary fallback={<ErrorFallback />}>
-      <Canvas
-        camera={{ position: [0, 0.5, REF_DISTANCE], fov: 45, near: 0.1, far: 1000 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, powerPreference: "high-performance" }}
-      >
-        {/* Lighting — bright enough that any model is clearly visible */}
-        <ambientLight intensity={1.2} />
-        <hemisphereLight intensity={0.8} groundColor="#b58a8a" />
-        <directionalLight position={[5, 8, 5]} intensity={2.2} />
-        <directionalLight position={[-5, 3, -5]} intensity={0.8} />
-
-        <Suspense fallback={<CanvasLoader />}>
-          <Model modelPath={modelPath} fill={fill} />
-          <Environment preset="city" />
-        </Suspense>
-
-        <OrbitControls
-          ref={controlsRef}
-          makeDefault
-          autoRotate={false}
-          enableZoom
-          enablePan
-          enableDamping
-          target={[0, 0, 0]}
-          minDistance={14}
-          maxDistance={70}
-        />
-      </Canvas>
+    // `key` remounts the boundary cleanly when we escalate to the fallback.
+    <ModelErrorBoundary key={activeModel} onError={() => setStage((s) => s + 1)}>
+      <CanvasScene modelPath={activeModel} controlsRef={controlsRef} fill={fill} />
     </ModelErrorBoundary>
   );
 }
 
 useGLTF.preload(DEFAULT_MODEL);
+useGLTF.preload(FALLBACK_MODEL);
