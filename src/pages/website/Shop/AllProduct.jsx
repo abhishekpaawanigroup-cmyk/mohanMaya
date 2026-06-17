@@ -6,7 +6,7 @@ import ProductFilters from "./Filter";
 import ProductModal from "./ProductModal";
 import ProductCard from "../../../components/common/ProductCard";
 import { ProductGridSkeleton } from "../../../components/common/Skeleton";
-import { products, categories } from "../../../data/products";
+import { products, categories, characters } from "../../../data/products";
 import { useDebounce } from "../../../hooks/useHooks";
 
 const PAGE_SIZE = 6;
@@ -17,6 +17,7 @@ const Products = () => {
   const debouncedSearch = useDebounce(search, 300);
 
   const [selectedCategory, setSelectedCategory] = useState("All Products");
+  const [selectedCharacter, setSelectedCharacter] = useState("All Characters");
   const [price, setPrice] = useState("all");
   const [sort, setSort] = useState("featured");
   const [page, setPage] = useState(1);
@@ -44,6 +45,7 @@ const Products = () => {
 
   // Filter changes always send the user back to the first page.
   const changeCategory = (c) => { setSelectedCategory(c); setPage(1); };
+  const changeCharacter = (c) => { setSelectedCharacter(c); setPage(1); };
   const changePrice = (p) => { setPrice(p); setPage(1); };
   const changeSort = (s) => { setSort(s); setPage(1); };
   const changeSearch = (v) => { setSearch(v); setPage(1); };
@@ -60,6 +62,10 @@ const Products = () => {
 
     if (selectedCategory !== "All Products") {
       list = list.filter((p) => p.category === selectedCategory);
+    }
+
+    if (selectedCharacter !== "All Characters") {
+      list = list.filter((p) => p.character === selectedCharacter);
     }
 
     if (price !== "all") {
@@ -85,7 +91,7 @@ const Products = () => {
     }
 
     return list;
-  }, [debouncedSearch, selectedCategory, price, sort]);
+  }, [debouncedSearch, selectedCategory, selectedCharacter, price, sort]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE) || 1;
   const safePage = Math.min(page, totalPages);
@@ -93,6 +99,7 @@ const Products = () => {
 
   const resetFilters = () => {
     setSelectedCategory("All Products");
+    setSelectedCharacter("All Characters");
     setPrice("all");
     setSort("featured");
     setSearch("");
@@ -103,6 +110,9 @@ const Products = () => {
     categories,
     selectedCategory,
     onCategoryChange: changeCategory,
+    characters,
+    selectedCharacter,
+    onCharacterChange: changeCharacter,
     price,
     onPriceChange: changePrice,
     sort,

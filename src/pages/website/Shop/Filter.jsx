@@ -15,6 +15,9 @@ const ProductFilters = ({
   categories,
   selectedCategory,
   onCategoryChange,
+  characters,
+  selectedCharacter,
+  onCharacterChange,
   price,
   onPriceChange,
   sort,
@@ -36,6 +39,27 @@ const ProductFilters = ({
                 name="category"
                 checked={selectedCategory === item}
                 onChange={() => onCategoryChange(item)}
+                className="h-4 w-4 accent-[#fe4462]"
+              />
+              <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <hr className="my-5 border-gray-200 dark:border-white/10" />
+
+      {/* Character */}
+      <div className="mb-6">
+        <h3 className="font-semibold text-[#fe4462] mb-3">Character</h3>
+        <div className="space-y-3">
+          {characters.map((item) => (
+            <label key={item} className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                name="character"
+                checked={selectedCharacter === item}
+                onChange={() => onCharacterChange(item)}
                 className="h-4 w-4 accent-[#fe4462]"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>

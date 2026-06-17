@@ -14,30 +14,30 @@ import { FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
   {
-    name: "Ralph Edwards",
-    role: "UI/UX Designer",
-    image: "/testimonials-images/pic1.png",
+    name: "Rohit Sharma",
+    role: "Cricketer",
+    image: "/testimonials-images/pic4.png",
     review:
       "Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum viverra eget felis interdum.",
   },
   {
-    name: "Jerome Bell",
-    role: "Web Designer",
+    name: "Abhishek Sharma",
+    role: "Cricketer",
     image: "/testimonials-images/pic2.png",
     review:
       "Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum viverra eget felis interdum.",
   },
   {
-    name: "Annette Black",
-    role: "Web Designer",
-    image: "/testimonials-images/pic3.png",
+    name: "Virat Kohli",
+    role: "Cricketer",
+    image: "/testimonials-images/pic4.png",
     review:
       "Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum viverra eget felis interdum.",
   },
   {
-    name: "John Smith",
-    role: "Interior Designer",
-    image: "/testimonials-images/pic4.png",
+    name: "Hardik Pandya",
+    role: "Cricketer",
+    image: "/testimonials-images/pic2.png",
     review:
       "Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum viverra eget felis interdum.",
   },
