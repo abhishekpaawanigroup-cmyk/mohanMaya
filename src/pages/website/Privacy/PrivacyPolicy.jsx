@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import PageHero from "../../../components/common/PageHero";
+import { usePageMeta } from "../../../hooks/useHooks";
 
 const LAST_UPDATED = "June 13, 2026";
 
@@ -176,6 +177,7 @@ const sections = [
 ];
 
 export default function PrivacyPolicy() {
+  usePageMeta("Privacy Policy — Mohan Maya", "How Mohan Maya collects, uses, and protects your information.");
   return (
     <>
       <PageHero

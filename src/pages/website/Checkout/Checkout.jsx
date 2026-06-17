@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FiCreditCard, FiTruck, FiSmartphone, FiLock, FiShoppingBag, FiX } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import { useApp } from "../../../context/AppContext";
+import { usePageMeta } from "../../../hooks/useHooks";
 
 const initialForm = {
   fullName: "",
@@ -22,6 +23,7 @@ const paymentMethods = [
 ];
 
 export default function Checkout() {
+  usePageMeta("Checkout — Mohan Maya", "Securely complete your Mohan Maya order.");
   const navigate = useNavigate();
   const { cart, totals, coupon, couponCode, applyCoupon, removeCoupon, placeOrder, addToast } = useApp();
   const [form, setForm] = useState(initialForm);

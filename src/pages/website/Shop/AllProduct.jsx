@@ -184,7 +184,7 @@ const Products = () => {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-2 mt-12">
+                  <nav aria-label="Pagination" className="flex items-center justify-center gap-2 mt-12">
                     <button
                       onClick={() => setPage(Math.max(1, safePage - 1))}
                       disabled={safePage === 1}
@@ -194,8 +194,10 @@ const Products = () => {
                     </button>
                     {Array.from({ length: totalPages }).map((_, i) => (
                       <button
-                        key={i}
+                        key={`page-${i + 1}`}
                         onClick={() => setPage(i + 1)}
+                        aria-label={`Go to page ${i + 1}`}
+                        aria-current={safePage === i + 1 ? "page" : undefined}
                         className={`w-8 h-8 rounded-lg font-medium transition ${
                           safePage === i + 1
                             ? "bg-[#fe4462] text-white"
@@ -212,7 +214,7 @@ const Products = () => {
                     >
                       Next
                     </button>
-                  </div>
+                  </nav>
                 )}
               </>
             )}

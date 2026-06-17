@@ -55,7 +55,7 @@ const HeroSection = () => {
               <Hero3DModel
                 modelPath="/models/mm-modal.glb"
                 cameraPosition={[0, 0, 4.8]}
-                className="!absolute inset-0 z-10 !w-full !h-full"
+                className="!absolute inset-0 z-10 !w-full !h-[90%]"
               />
             </Suspense>
           </div>

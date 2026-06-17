@@ -9,8 +9,13 @@ import FeaturesSection from "./Feature";
 import RecentlyViewed from "../../../components/product/RecentlyViewed";
 import RecommendedProducts from "../../../components/product/RecommendedProducts";
 import Newsletter from "../../../components/common/Newsletter";
+import { usePageMeta } from "../../../hooks/useHooks";
 
 const Home = () => {
+  usePageMeta(
+    "Mohan Maya — Handcrafted Miniature Art & Divine Figurines",
+    "Discover beautifully handcrafted miniature creations designed with precision, passion, and timeless artistry. Every piece tells a unique story."
+  );
   return (
     <>
       <Hero />

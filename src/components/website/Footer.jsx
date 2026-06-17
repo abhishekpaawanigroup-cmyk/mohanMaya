@@ -24,7 +24,12 @@ const company = [
   { label: "Contact Us", to: "/contact" },
 ];
 
-const socials = [FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram];
+const socials = [
+  { Icon: FaFacebookF, label: "Facebook", href: "https://facebook.com/mohanmaya" },
+  { Icon: FaTwitter, label: "Twitter", href: "https://twitter.com/mohanmaya" },
+  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://linkedin.com/company/mohanmaya" },
+  { Icon: FaInstagram, label: "Instagram", href: "https://instagram.com/mohanmaya" },
+];
 
 const LinkColumn = ({ title, links }) => (
   <div>
@@ -56,7 +61,7 @@ export default function Footer() {
               <img src="/header/logo2.png" alt="Mohan Maya logo" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-black text-gradient leading-none">M&M</h1>
+              <span className="block text-2xl font-black text-gradient leading-none">M&amp;M</span>
               <p className="text-[10px] tracking-widest text-gray-500 dark:text-gray-400 uppercase">Mohan Maya</p>
             </div>
             </div>
@@ -65,11 +70,13 @@ export default function Footer() {
               craftsmanship — created with love in Vrindavan.
             </p>
             <div className="flex gap-4">
-              {socials.map((Icon, index) => (
+              {socials.map(({ Icon, label, href }) => (
                 <a
-                  key={index}
-                  href="#"
-                  aria-label="Social link"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow Mohan Maya on ${label}`}
                   className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center cursor-pointer hover:bg-[#fe4462] hover:text-white transition-all duration-300"
                 >
                   <Icon />

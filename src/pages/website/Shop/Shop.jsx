@@ -3,8 +3,13 @@ import Products from './AllProduct'
 import FAQSection from './FAQ'
 import RecentlyViewed from '../../../components/product/RecentlyViewed'
 import RecommendedProducts from '../../../components/product/RecommendedProducts'
+import { usePageMeta } from '../../../hooks/useHooks'
 
 const Shop = () => {
+  usePageMeta(
+    "Shop Handcrafted Miniatures — Mohan Maya",
+    "Browse our collection of handcrafted miniature figurines and divine characters, made with precision and timeless artistry."
+  );
   return (
     <>
       <Hero />

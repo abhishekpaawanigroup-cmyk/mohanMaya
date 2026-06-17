@@ -117,10 +117,10 @@ export default function Header() {
           {/* Logo */}
           <NavLink to="/" className="flex items-center gap-2.5 group">
             <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#fe4462]/30 group-hover:ring-[#fe4462] transition-all duration-300">
-              <img src="/header/logo2.png" alt="Mohan Maya logo" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/header/logo.png" alt="Mohan Maya logo" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-black text-gradient leading-none">M&M</h1>
+              <span className="block text-2xl font-black text-gradient leading-none">M&amp;M</span>
               <p className="text-[10px] tracking-widest text-gray-500 dark:text-gray-400 uppercase">Mohan Maya</p>
             </div>
           </NavLink>
@@ -314,7 +314,7 @@ export default function Header() {
                   onChange={(e) => setLocalSearch(e.target.value)}
                   type="text"
                   placeholder="Search miniatures, characters…"
-                  className="flex-1 bg-gray-100 dark:bg-white/10 rounded-full px-5 py-3 outline-none text-sm font-medium placeholder-gray-400 dark:text-white"
+                  className="flex-1 bg-gray-100 dark:bg-white/10 !rounded-full px-5 py-3 text-sm font-medium placeholder-gray-400 dark:text-white border border-transparent outline-none focus:outline-none focus-visible:!outline-none focus:bg-gray-200/70 dark:focus:bg-white/15 focus:border-gray-300 dark:focus:border-white/20 transition-colors"
                 />
                 <button type="submit" className="btn-primary !py-3 !px-5 text-sm">
                   <IoSearch size={18} />
@@ -338,7 +338,7 @@ export default function Header() {
               onClick={() => setCartOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 h-screen w-full max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-screen w-full max-w-[90vw] sm:max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
@@ -473,7 +473,7 @@ export default function Header() {
               onClick={() => setWishlistOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 h-screen w-full max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-screen w-full max-w-[90vw] sm:max-w-[420px] bg-white dark:bg-[#1a0a0e] z-[999] flex flex-col shadow-2xl"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
@@ -548,7 +548,7 @@ export default function Header() {
                     value={localSearch}
                     onChange={(e) => setLocalSearch(e.target.value)}
                     placeholder="Search products…"
-                    className="bg-transparent flex-1 outline-none text-sm placeholder-gray-500"
+                    className="bg-transparent flex-1 text-sm placeholder-gray-500 outline-none focus:outline-none focus-visible:!outline-none"
                   />
                   <button type="submit"><IoSearch size={20} className="text-gray-400 hover:text-[#fe4462] transition" /></button>
                 </form>
@@ -618,8 +618,8 @@ export default function Header() {
                   <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
                   <div className="space-y-4">
                     {[
-                      { icon: FiMapPin, text: "Vrindavan, Mathura, UP" },
-                      { icon: FiPhone, text: "+91 98765 43210" },
+                      { icon: FiMapPin, text: "Ganga Enclave, Roorkee, Uttarakhand, India" },
+                      { icon: FiPhone, text: "+91 99567 48903" },
                       { icon: FiMail, text: "support@mohanmaya.in" },
                     ].map(({ icon: Icon, text }, i) => (
                       <div key={i} className="flex items-center gap-3 text-gray-400">

@@ -20,6 +20,7 @@ import {
 } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import PageHero from "../../../components/common/PageHero";
+import { usePageMeta } from "../../../hooks/useHooks";
 
 const LAST_UPDATED = "June 13, 2026";
 
@@ -290,6 +291,7 @@ const sections = [
 ];
 
 export default function TermsConditions() {
+  usePageMeta("Terms & Conditions — Mohan Maya", "The terms governing your use of the Mohan Maya website and purchases.");
   return (
     <>
       <PageHero

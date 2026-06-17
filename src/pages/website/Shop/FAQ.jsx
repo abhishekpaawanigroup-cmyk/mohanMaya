@@ -71,7 +71,7 @@ const FAQSection = () => {
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
-                key={index}
+                key={faq.question}
                 className={`rounded-2xl border transition-all duration-300 ${
                   openIndex === index
                     ? "border-[#fe4462] shadow-lg"
@@ -82,6 +82,8 @@ const FAQSection = () => {
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-panel-${index}`}
                   className="w-full flex justify-between items-center p-6 text-left"
                 >
                   <h3 className="font-semibold text-lg text-gray-800 dark:text-white pr-4">
@@ -97,9 +99,11 @@ const FAQSection = () => {
                 </button>
 
                 <div
+                  id={`faq-panel-${index}`}
+                  role="region"
                   className={`overflow-hidden transition-all duration-300 ${
                     openIndex === index
-                      ? "max-h-30 opacity-100"
+                      ? "max-h-96 opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >

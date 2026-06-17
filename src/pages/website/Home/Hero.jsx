@@ -76,7 +76,7 @@ const Hero = () => {
   return (
     <div className="relative pb-10 mt-20 bg-[#f4edee] dark:bg-[#0d0508]">
       {/* Hero Video Section */}
-      <div className="w-full h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
+      <div className="w-full h-[480px] sm:h-[600px] lg:h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
         <LazyVideo
           src="/hero/mohan-maya.mp4"
           className="w-full h-full object-cover"
@@ -102,7 +102,7 @@ const Hero = () => {
       </div>
 
       {/* Slider Section */}
-      <div className="relative z-20 mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
+      <div className="relative z-20 mt-[-100px] sm:mt-[-130px] lg:mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
         <button className="custom-hero-prev absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
           <FiChevronLeft size={26} />
         </button>

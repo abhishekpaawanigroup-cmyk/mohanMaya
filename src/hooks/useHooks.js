@@ -81,6 +81,42 @@ export function useDebounce(value, delay = 300) {
 }
 
 /**
+ * Sets the document <title> and meta description for the current page, and
+ * restores the previous values on unmount. A tiny dependency-free alternative
+ * to react-helmet for per-route SEO metadata.
+ */
+export function usePageMeta(title, description) {
+  useEffect(() => {
+    const prevTitle = document.title;
+    if (title) document.title = title;
+
+    let meta = null;
+    let createdMeta = false;
+    let prevDesc = null;
+    if (description) {
+      meta = document.querySelector('meta[name="description"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute("name", "description");
+        document.head.appendChild(meta);
+        createdMeta = true;
+      } else {
+        prevDesc = meta.getAttribute("content");
+      }
+      meta.setAttribute("content", description);
+    }
+
+    return () => {
+      document.title = prevTitle;
+      if (meta) {
+        if (createdMeta) meta.remove();
+        else if (prevDesc != null) meta.setAttribute("content", prevDesc);
+      }
+    };
+  }, [title, description]);
+}
+
+/**
  * Calls `handler` when a pointer/touch event occurs outside the ref element.
  * Useful for closing dropdowns and popovers.
  */

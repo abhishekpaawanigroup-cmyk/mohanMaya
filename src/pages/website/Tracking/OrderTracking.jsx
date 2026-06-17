@@ -5,6 +5,7 @@ import { FiSearch, FiCheck, FiPackage, FiTruck, FiHome, FiClipboard, FiMapPin } 
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import { useApp } from "../../../context/AppContext";
 import { ORDER_STEPS } from "../../../data/shop";
+import { usePageMeta } from "../../../hooks/useHooks";
 
 const STEP_ICONS = [FiClipboard, FiPackage, FiTruck, FiMapPin, FiHome];
 const STEP_MS = 1000 * 60 * 30; // advance one step every 30 minutes (demo pacing)
@@ -15,6 +16,7 @@ function currentStep(order) {
 }
 
 export default function OrderTracking() {
+  usePageMeta("Track Your Order — Mohan Maya", "Track the status of your Mohan Maya order in real time.");
   const { getOrder, orders } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
   // Initialise straight from the URL so ?order= (e.g. right after checkout)
