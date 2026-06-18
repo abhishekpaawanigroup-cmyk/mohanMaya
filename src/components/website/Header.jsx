@@ -9,7 +9,6 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import { FiMapPin, FiPhone, FiMail, FiX, FiMoon, FiSun, FiPlus, FiMinus, FiUser, FiLogOut, FiPackage, FiSettings, FiHeart } from "react-icons/fi";
 import { useApp } from "../../context/AppContext";
 import { useScrollThreshold, useClickOutside } from "../../hooks/useHooks";
-import AuthModal from "../common/AuthModal";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -29,7 +28,6 @@ export default function Header() {
 
   const [couponInput, setCouponInput] = useState("");
   const [profileOpen, setProfileOpen] = useState(false);
-  const [authModal, setAuthModal] = useState(null); // null | "login" | "register"
   const profileRef = useClickOutside(() => setProfileOpen(false));
 
   // Boolean-only scroll state → Header no longer re-renders every scroll frame.
@@ -82,10 +80,11 @@ export default function Header() {
     if (applyCoupon(couponInput)) setCouponInput("");
   };
 
-  const openAuth = (mode) => {
+  // Navigate to the dedicated full-page auth screen (login/register tab).
+  const goToAuth = (mode) => {
     setProfileOpen(false);
     setOpenMenu(false);
-    setAuthModal(mode);
+    navigate(`/auth?mode=${mode}`);
   };
 
   // Menu items for a logged-in user. `action` runs on click.
@@ -104,7 +103,7 @@ export default function Header() {
       <motion.header
         className={`w-full fixed top-0 z-50 border-b-0 transition-all duration-300 ${
           scrolled
-            ? "bg-white/90 dark:bg-[#0d0508]/90 backdrop-blur-xl shadow-lg border-b border-white/20 dark:border-white/5"
+            ? "bg-[#e8d3d3b8] dark:bg-[#0d0508]/90 backdrop-blur-lg shadow-lg border-b border-white/20 dark:border-white/5"
             : darkMode
             ? "bg-[#1a0a0e]"
             : "bg-[#f0e0e3]"
@@ -211,11 +210,11 @@ export default function Header() {
             {/* Profile (desktop) */}
             <div className="relative hidden lg:block" ref={profileRef}>
               <button
-                onClick={() => setProfileOpen((v) => !v)}
+                onClick={() => (user ? setProfileOpen((v) => !v) : goToAuth("login"))}
                 className="flex items-center gap-2 p-1 pr-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
-                aria-label="Account menu"
-                aria-haspopup="true"
-                aria-expanded={profileOpen}
+                aria-label={user ? "Account menu" : "Sign in"}
+                aria-haspopup={user ? "true" : undefined}
+                aria-expanded={user ? profileOpen : undefined}
               >
                 {user ? (
                   <span className="w-9 h-9 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold text-sm">
@@ -230,7 +229,7 @@ export default function Header() {
               </button>
 
               <AnimatePresence>
-                {profileOpen && (
+                {profileOpen && user && (
                   <motion.div
                     initial={{ opacity: 0, y: 8, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -239,49 +238,34 @@ export default function Header() {
                     className="absolute right-0 mt-3 w-60 bg-white dark:bg-[#1a0a0e] rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden z-50"
                     role="menu"
                   >
-                    {user ? (
-                      <>
-                        <div className="flex items-center gap-3 p-4 border-b dark:border-white/10">
-                          <span className="w-10 h-10 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold">
-                            {initials}
-                          </span>
-                          <div className="min-w-0">
-                            <p className="font-semibold text-sm truncate dark:text-white">{user.name}</p>
-                            <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                          </div>
-                        </div>
-                        <div className="py-2">
-                          {accountMenu.map(({ label, icon: Icon, action }) => (
-                            <button
-                              key={label}
-                              role="menuitem"
-                              onClick={() => { setProfileOpen(false); action(); }}
-                              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-[#fe4462]/10 hover:text-[#fe4462] transition"
-                            >
-                              <Icon size={16} /> {label}
-                            </button>
-                          ))}
-                          <button
-                            role="menuitem"
-                            onClick={() => { setProfileOpen(false); logout(); }}
-                            className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-500/10 transition border-t dark:border-white/10 mt-1"
-                          >
-                            <FiLogOut size={16} /> Logout
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="p-4">
-                        <p className="text-sm font-semibold dark:text-white">Welcome 👋</p>
-                        <p className="text-xs text-gray-500 mb-4">Login to access your orders & wishlist.</p>
-                        <button onClick={() => openAuth("login")} className="btn-primary w-full justify-center text-sm !py-2.5 mb-2">
-                          Login
-                        </button>
-                        <button onClick={() => openAuth("register")} className="btn-outline w-full justify-center text-sm !py-2.5">
-                          Register
-                        </button>
+                    <div className="flex items-center gap-3 p-4 border-b dark:border-white/10">
+                      <span className="w-10 h-10 rounded-full bg-[#fe4462] text-white flex items-center justify-center font-bold">
+                        {initials}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-sm truncate dark:text-white">{user.name}</p>
+                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
                       </div>
-                    )}
+                    </div>
+                    <div className="py-2">
+                      {accountMenu.map(({ label, icon: Icon, action }) => (
+                        <button
+                          key={label}
+                          role="menuitem"
+                          onClick={() => { setProfileOpen(false); action(); }}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-[#fe4462]/10 hover:text-[#fe4462] transition"
+                        >
+                          <Icon size={16} /> {label}
+                        </button>
+                      ))}
+                      <button
+                        role="menuitem"
+                        onClick={() => { setProfileOpen(false); logout(); }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-500/10 transition border-t dark:border-white/10 mt-1"
+                      >
+                        <FiLogOut size={16} /> Logout
+                      </button>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -606,8 +590,8 @@ export default function Header() {
                     </>
                   ) : (
                     <div className="space-y-3">
-                      <button onClick={() => openAuth("login")} className="btn-primary w-full justify-center">Login</button>
-                      <button onClick={() => openAuth("register")} className="w-full py-3 rounded-xl border border-gray-700 text-gray-200 hover:border-[#fe4462] hover:text-[#fe4462] transition font-medium">
+                      <button onClick={() => goToAuth("login")} className="btn-primary w-full justify-center">Login</button>
+                      <button onClick={() => goToAuth("register")} className="w-full py-3 rounded-xl border border-gray-700 text-gray-200 hover:border-[#fe4462] hover:text-[#fe4462] transition font-medium">
                         Register
                       </button>
                     </div>
@@ -654,11 +638,6 @@ export default function Header() {
             </motion.aside>
           </>
         )}
-      </AnimatePresence>
-
-      {/* ── Auth Modal ── */}
-      <AnimatePresence>
-        {authModal && <AuthModal mode={authModal} onClose={() => setAuthModal(null)} />}
       </AnimatePresence>
     </>
   );

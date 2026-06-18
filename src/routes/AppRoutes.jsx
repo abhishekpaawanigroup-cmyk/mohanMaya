@@ -11,6 +11,7 @@ const PrivacyPolicy = lazy(() => import("../pages/website/Privacy/PrivacyPolicy"
 const TermsConditions = lazy(() => import("../pages/website/Terms/TermsConditions"));
 const Checkout = lazy(() => import("../pages/website/Checkout/Checkout"));
 const OrderTracking = lazy(() => import("../pages/website/Tracking/OrderTracking"));
+const Auth = lazy(() => import("../pages/website/Auth/Auth"));
 const NotFound = lazy(() => import("../pages/website/NotFound"));
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "terms", element: <TermsConditions /> },
       { path: "checkout", element: <Checkout /> },
       { path: "track", element: <OrderTracking /> },
+      { path: "auth", element: <Auth /> },
       { path: "*", element: <NotFound /> },
     ],
   },

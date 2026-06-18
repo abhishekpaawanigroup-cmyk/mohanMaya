@@ -1,5 +1,6 @@
 import { FiStar, FiShoppingBag } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
+import SectionHeading from "../../../components/common/SectionHeading";
 import { bestSellers } from "../../../data/products";
 import { useApp } from "../../../context/AppContext";
 
@@ -9,12 +10,12 @@ const BestSellers = () => {
   return (
     <section className="bg-[#f5f0e8] dark:bg-[#0d0508] py-24">
       <div className="max-w-7xl mx-auto px-5">
-        <ScrollReveal className="mb-12">
-          <span className="inline-block bg-transparent text-[#c48212] border border-[#c48212] px-4 py-1 text-sm font-semibold uppercase rounded-full">
-            This Week
-          </span>
-          <h2 className="mt-5 text-4xl sm:text-5xl font-bold text-[#c48212]">Best Sellers</h2>
-        </ScrollReveal>
+        <SectionHeading
+          badge="This Week"
+          title="Best Sellers"
+          accent="#c48212"
+          className="mb-12"
+        />
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-x-16 gap-y-8">
           {bestSellers.map((item, idx) => (

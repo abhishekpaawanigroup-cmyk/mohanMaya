@@ -11,6 +11,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaQuoteRight } from "react-icons/fa";
+import SectionHeading from "../../../components/common/SectionHeading";
 
 const testimonials = [
   {
@@ -54,15 +55,7 @@ function Testimonials() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-5">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-1 text-sm font-semibold uppercase rounded-full">
-            Testimonials
-          </span>
-
-          <h2 className="text-white text-4xl md:text-5xl font-bold mt-5">
-            Client Feedback
-          </h2>
-        </div>
+        <SectionHeading badge="Testimonials" title="Client Feedback" className="mb-16" />
 
         {/* Slider */}
         <Swiper

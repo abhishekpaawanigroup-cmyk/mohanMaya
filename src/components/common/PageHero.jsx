@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Breadcrumb from "./Breadcrumb";
 
 const ABOUT_HERO_IMAGE = "/About/Hero/about-banner.jpeg";
 
@@ -7,16 +8,18 @@ const ABOUT_HERO_IMAGE = "/About/Hero/about-banner.jpeg";
  * (same background image, dark overlay, typography and spacing).
  *
  * Props:
- *  - title:     main heading (rendered as the page <h1>)
- *  - subtitle:  supporting line below the title
- *  - image:     background image (defaults to the About hero banner)
- *  - align:     "left" (default, matches About) or "center"
+ *  - title:      main heading (rendered as the page <h1>)
+ *  - subtitle:   supporting line below the title
+ *  - image:      background image (defaults to the About hero banner)
+ *  - align:      "left" (default, matches About) or "center"
+ *  - breadcrumb: optional [{ label, to? }] rendered above the title
  */
 export default function PageHero({
   title,
   subtitle,
   image = ABOUT_HERO_IMAGE,
   align = "left",
+  breadcrumb,
 }) {
   const alignment = align === "center" ? "text-center mx-auto items-center" : "text-left";
 
@@ -41,6 +44,18 @@ export default function PageHero({
               show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
             }}
           >
+            {breadcrumb?.length > 0 && (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
+                className="mb-4"
+              >
+                <Breadcrumb items={breadcrumb} light className={align === "center" ? "flex justify-center" : ""} />
+              </motion.div>
+            )}
+
             <motion.h1
               variants={{
                 hidden: { opacity: 0, y: 24 },

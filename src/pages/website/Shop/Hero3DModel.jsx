@@ -44,12 +44,6 @@ function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
 
   // Normalise scale + find the base Y so contact shadows sit under the model.
   const { scale, bottomY } = useMemo(() => {
-    object.traverse((c) => {
-      if (c.isMesh) {
-        c.castShadow = true;
-        c.receiveShadow = true;
-      }
-    });
     const box = new THREE.Box3().setFromObject(object);
     const size = box.getSize(new THREE.Vector3());
     const maxDim = Math.max(size.x, size.y, size.z) || 1;
@@ -76,7 +70,7 @@ function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
         opacity={0.5}
         blur={2.6}
         far={5}
-        resolution={1024}
+        resolution={512}
         color="#000000"
       />
     </>
@@ -100,21 +94,15 @@ export default function Hero3DModel({
   return (
     <Canvas
       className={className}
-      shadows
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       camera={{ position: cameraPosition, fov: 42, near: 0.1, far: 100 }}
       gl={{ antialias: true, powerPreference: "high-performance", alpha: true }}
     >
-      {/* Premium lighting rig */}
+      {/* Premium lighting rig. Real-time shadow maps are off (they recompute
+          every frame as the model spins → stutter); ContactShadows grounds it. */}
       <ambientLight intensity={0.9} />
       <hemisphereLight intensity={0.6} groundColor="#b58a8a" />
-      <directionalLight
-        castShadow
-        position={[5, 9, 6]}
-        intensity={2.4}
-        shadow-mapSize={[2048, 2048]}
-        shadow-bias={-0.0001}
-      />
+      <directionalLight position={[5, 9, 6]} intensity={2.4} />
       <directionalLight position={[-6, 4, -5]} intensity={0.7} />
 
       <Suspense fallback={<Loader />}>

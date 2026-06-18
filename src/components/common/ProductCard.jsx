@@ -56,7 +56,7 @@ export default function ProductCard({ product, onQuickView }) {
           {onQuickView && (
             <button
               onClick={() => onQuickView(product)}
-              className="bg-white dark:bg-[#1a0a0e] p-2 rounded-full shadow-md hover:scale-110 transition opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
+              className="bg-white dark:bg-[#1a0a0e] p-2 rounded-full shadow-md hover:scale-110 transition opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100"
               aria-label="Quick view"
             >
               <FiEye size={18} className="text-gray-500" />

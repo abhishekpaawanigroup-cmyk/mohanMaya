@@ -1,7 +1,6 @@
 import { Suspense, lazy } from "react";
-import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi2";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 
 // Lazy so the heavy three.js bundle only downloads with the hero, never blocking
 // initial page render.
@@ -40,14 +39,15 @@ const Hero = () => {
  
           <div className="flex flex-col items-start gap-8">
  
+            {/* Breadcrumb — above all hero text */}
+            <Breadcrumb items={[{ label: "Home", to: "/" }, { label: "Shop" }]} light />
+
             {/* Badge */}
- 
+
             <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#fe4462] bg-pink-500/10 backdrop-blur-md text-[#fe4462] text-sm font-semibold">
- 
-              <HiSparkles />
- 
+
               HANDCRAFTED MINIATURES
- 
+
             </div>
  
             {/* Heading */}
@@ -90,14 +90,6 @@ const Hero = () => {
 
               </a>
 
-              <Link to="/about" className="px-8 py-4 rounded-full border border-[#c89a61] text-[#d9b47c] hover:bg-[#c89a61] hover:text-white duration-200 flex items-center gap-3 cursor-pointer">
-
-                <HiSparkles />
-
-                Explore More
-
-              </Link>
- 
             </div>
  
  

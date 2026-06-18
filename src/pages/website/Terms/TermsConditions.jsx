@@ -297,6 +297,7 @@ export default function TermsConditions() {
       <PageHero
         title="Terms & Conditions"
         subtitle="Please read these terms carefully before using Mohan-Maya or placing an order."
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Terms & Conditions" }]}
       />
 
       <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">

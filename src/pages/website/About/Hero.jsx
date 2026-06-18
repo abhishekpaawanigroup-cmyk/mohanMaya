@@ -1,5 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 
 // Lazy so the heavy three.js bundle only downloads with the hero, never blocking
 // initial page render. Reuses the Shop hero's exact 3D presentation.
@@ -27,6 +29,9 @@ const HeroSection = () => {
 
           {/* Left — existing About text (unchanged) */}
           <div className="text-white">
+            {/* Breadcrumb — above all hero text */}
+            <Breadcrumb items={[{ label: "Home", to: "/" }, { label: "About" }]} light className="mb-4" />
+
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
               Every Miniature Has <br/> <span className="text-[#fe4462]">A Story</span>
             </h1>
@@ -36,12 +41,15 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link to="/shop" className="px-6 py-3 bg-[#fe4462] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
+              <Link to="/shop" className="px-6 py-3 bg-[#fe4462] text-[#fff] border border-[#fe4462] hover:bg-transparent hover:text-[#fe4462] rounded-full font-semibold transition cursor-pointer mt-8 inline-flex group items-center gap-1">
                 Get Started
+                <FiArrowRight className="group-hover:translate-x-1 duration-300" />
               </Link>
 
-              <Link to="/contact" className="px-6 py-3 border border-white hover:bg-[#fe4462] hover:text-[#fff] hover:border-[#fe4462] rounded-full font-medium transition cursor-pointer">
+              <Link to="/contact" className="px-6 py-3 bg-transparent text-[#fe4462] border border-[#fe4462] hover:bg-[#fe4462] hover:text-[#fff] rounded-full font-semibold transition cursor-pointer mt-8 inline-flex group items-center gap-1">
                 Learn More
+                <FiArrowRight className="group-hover:translate-x-1 duration-300" />
+                
               </Link>
             </div>
           </div>

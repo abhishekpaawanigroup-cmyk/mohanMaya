@@ -3,6 +3,7 @@ import Products from './AllProduct'
 import FAQSection from './FAQ'
 import RecentlyViewed from '../../../components/product/RecentlyViewed'
 import RecommendedProducts from '../../../components/product/RecommendedProducts'
+import Reviews from '../../../components/product/Reviews'
 import { usePageMeta } from '../../../hooks/useHooks'
 
 const Shop = () => {
@@ -16,6 +17,7 @@ const Shop = () => {
       <Products />
       <RecentlyViewed />
       <RecommendedProducts title="Recommended For You" />
+      <Reviews />
       <FAQSection />
     </>
   )

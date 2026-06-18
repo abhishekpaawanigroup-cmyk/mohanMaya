@@ -1,4 +1,5 @@
 import HeroSection from './Hero'
+import OurStory from './OurStory'
 import MissionVision from './MissionVission'
 import CraftingProcess from './Crafting'
 import WhyChooseUs from './WhyChoose'
@@ -13,6 +14,7 @@ const About = () => {
   return (
     <>
     <HeroSection />
+    <OurStory />
     <MissionVision />
     <CraftingProcess />
     <WhyChooseUs />

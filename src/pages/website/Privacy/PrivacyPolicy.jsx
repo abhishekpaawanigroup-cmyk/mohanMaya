@@ -183,6 +183,7 @@ export default function PrivacyPolicy() {
       <PageHero
         title="Privacy Policy"
         subtitle="Learn how we collect, use, and protect your information."
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Privacy Policy" }]}
       />
 
       <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">

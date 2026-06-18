@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import ScrollReveal from "../../../components/common/ScrollReveal";
+import SectionHeading from "../../../components/common/SectionHeading";
 import LazyVideo from "../../../components/common/LazyVideo";
 
 const SeasonalCollection = () => {
@@ -9,19 +9,13 @@ const SeasonalCollection = () => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <ScrollReveal className="text-center mb-14">
-          <span className="inline-block border border-[#c48212] text-[#c48212] px-5 py-1 rounded-full text-sm font-bold uppercase">
-            Seasonal Collection
-          </span>
-
-          <h2 className="text-4xl sm:text-5xl font-bold mt-5 text-[#c48212]">
-            Shop By Season
-          </h2>
-
-          <p className="mt-4 text-[#000] dark:text-gray-300 max-w-2xl mx-auto text-lg">
-            Explore exclusive seasonal products crafted for every celebration.
-          </p>
-        </ScrollReveal>
+        <SectionHeading
+          badge="Seasonal Collection"
+          title="Shop By Season"
+          subtitle="Explore exclusive seasonal products crafted for every celebration."
+          accent="#c48212"
+          className="mb-14"
+        />
 
         <div className="grid lg:grid-cols-3 gap-8">
 

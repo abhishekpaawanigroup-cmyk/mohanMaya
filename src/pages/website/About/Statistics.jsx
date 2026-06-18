@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import SectionHeading from "../../../components/common/SectionHeading";
 
 const stats = [
   {
@@ -25,20 +26,13 @@ const Statistics = () => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div className="text-center mb-14">
-          <span className="text-[#c48212] border border-[#c48212] rounded-full px-4 py-1 font-semibold uppercase tracking-widest">
-            Our Impact
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-[#c48212] mt-5">
-            Numbers That Speak
-          </h2>
-
-          <p className="max-w-2xl mx-auto text-gray-600 mt-4">
-            Our journey is reflected through the trust of our customers
-            and the passion behind every miniature we create.
-          </p>
-        </div>
+        <SectionHeading
+          badge="Our Impact"
+          title="Numbers That Speak"
+          subtitle="Our journey is reflected through the trust of our customers and the passion behind every miniature we create."
+          accent="#c48212"
+          className="mb-14"
+        />
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">

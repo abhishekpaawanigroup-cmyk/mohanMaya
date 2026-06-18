@@ -1,5 +1,6 @@
 import { Target, Eye } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeading from "../../../components/common/SectionHeading";
 
 const MissionVision = () => {
   return (
@@ -7,21 +8,12 @@ const MissionVision = () => {
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}
-        <div className="text-center mb-14">
-          <span className="text-[#fe4462] text-sm border border-[#fe4462] rounded-full px-4 py-1 font-semibold uppercase tracking-widest">
-            Who We Are
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-[#fe4462] mt-5">
-            Our Mission & Vision
-          </h2>
-
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
-            We are committed to creating meaningful experiences and
-            delivering exceptional value through innovation, creativity,
-            and dedication.
-          </p>
-        </div>
+        <SectionHeading
+          badge="Who We Are"
+          title="Our Mission & Vision"
+          subtitle="We are committed to creating meaningful experiences and delivering exceptional value through innovation, creativity, and dedication."
+          className="mb-14"
+        />
 
         {/* Cards */}
         <div className="w-full gap-8 lg:flex justify-center">

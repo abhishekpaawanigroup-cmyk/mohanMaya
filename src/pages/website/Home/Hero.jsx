@@ -6,7 +6,6 @@ import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import LazyVideo from "../../../components/common/LazyVideo";
 
-import madhav from "../../../assets/website/Madhav.jpeg";
 import mother from "../../../assets/website/Mother.jpeg";
 import maya from "../../../assets/website/Maya.jpeg";
 import Shiva from "../../../assets/website/Shiva.jpeg";
@@ -38,7 +37,7 @@ const Hero = () => {
     },
     {
       name: "Madhav",
-      image: madhav,
+      image: "/hero/Madhav.jpeg",
       model: "/models/madhav.glb",
       description:
         "Madhav is a representation of grace, compassion, and inner strength. His presence brings peace and inspiration.",
@@ -101,8 +100,9 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Slider Section */}
-      <div className="relative z-20 mt-[-100px] sm:mt-[-130px] lg:mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
+      {/* Slider Section — small overlap on mobile so the cards never touch the
+          hero's "Explore" button; fuller overlap on larger screens. */}
+      <div className="relative z-20 mt-6 sm:mt-[-90px] lg:mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
         <button className="custom-hero-prev absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
           <FiChevronLeft size={26} />
         </button>

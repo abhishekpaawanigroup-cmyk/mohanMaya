@@ -16,24 +16,24 @@ const WhyChooseUs = () => {
       <div className="max-w-7xl mx-auto px-5 relative z-10">
  
         {/* Heading */}
- 
+
         <div className="text-center mb-16">
- 
+
           <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-1 rounded-full text-sm font-semibold">
             WHY CHOOSE US
           </span>
- 
+
           <h2 className="text-5xl font-bold text-[#2b2626] dark:text-white mt-5">
             Discover the Art Behind
             <span className="text-[#fe4462]"> Every Miniature</span>
           </h2>
- 
+
           <p className="max-w-2xl mx-auto mt-4 text-gray-500">
             We create handcrafted miniature masterpieces with exceptional
             precision, premium quality, and timeless artistry that collectors
             cherish forever.
           </p>
- 
+
         </div>
  
         <div className="grid lg:grid-cols-3 gap-10 items-center">

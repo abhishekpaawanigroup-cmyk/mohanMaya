@@ -1,5 +1,6 @@
 import { Lightbulb, PencilRuler, Box, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeading from "../../../components/common/SectionHeading";
 
 const steps = [
   {
@@ -34,20 +35,13 @@ const CraftingProcess = () => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div className="text-center mb-16">
-          <span className="text-[#c48212] border border-[#c48212] rounded-full px-4 py-1 font-semibold uppercase tracking-widest">
-            Behind The Magic
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-[#c48212] mt-5">
-            Our Crafting Process
-          </h2>
-
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mt-4">
-            From imagination to reality, every miniature goes through a
-            carefully crafted journey to ensure exceptional quality and detail.
-          </p>
-        </div>
+        <SectionHeading
+          badge="Behind The Magic"
+          title="Our Crafting Process"
+          subtitle="From imagination to reality, every miniature goes through a carefully crafted journey to ensure exceptional quality and detail."
+          accent="#c48212"
+          className="mb-16"
+        />
 
         {/* Process Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
