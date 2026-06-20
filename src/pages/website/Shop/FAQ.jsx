@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { FaArrowRight } from "react-icons/fa";
 
 const faqs = [
   {
@@ -61,8 +62,9 @@ const FAQSection = () => {
                 Our support team is always ready to help you.
               </p>
 
-              <Link to="/contact" className="inline-block bg-[#fe4462] text-white px-6 py-3 rounded-xl hover:opacity-90 transition">
+              <Link to="/contact" className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer">
                 Contact Us
+                <FaArrowRight className="group-hover:translate-x-1 duration-300" />
               </Link>
             </div>
           </div>

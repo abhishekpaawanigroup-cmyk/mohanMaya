@@ -10,6 +10,7 @@ import {
   FiMail,
   FiRefreshCw,
 } from "react-icons/fi";
+import { FaArrowRight } from "react-icons/fa";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import PageHero from "../../../components/common/PageHero";
 import { usePageMeta } from "../../../hooks/useHooks";
@@ -184,6 +185,7 @@ export default function PrivacyPolicy() {
         title="Privacy Policy"
         subtitle="Learn how we collect, use, and protect your information."
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Privacy Policy" }]}
+        cta={{ label: "Contact Us", to: "/contact" }}
       />
 
       <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">
@@ -247,8 +249,12 @@ export default function PrivacyPolicy() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 mb-5">
                   We're happy to explain how your data is handled.
                 </p>
-                <Link to="/contact" className="btn-primary inline-flex">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer"
+                >
                   Contact Us
+                  <FaArrowRight className="group-hover:translate-x-1 duration-300" />
                 </Link>
               </div>
             </ScrollReveal>

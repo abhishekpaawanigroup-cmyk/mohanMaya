@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 import Breadcrumb from "./Breadcrumb";
 
 const ABOUT_HERO_IMAGE = "/About/Hero/about-banner.jpeg";
@@ -13,6 +15,7 @@ const ABOUT_HERO_IMAGE = "/About/Hero/about-banner.jpeg";
  *  - image:      background image (defaults to the About hero banner)
  *  - align:      "left" (default, matches About) or "center"
  *  - breadcrumb: optional [{ label, to? }] rendered above the title
+ *  - cta:        optional { label, to } rendered as a primary button below the subtitle
  */
 export default function PageHero({
   title,
@@ -20,6 +23,7 @@ export default function PageHero({
   image = ABOUT_HERO_IMAGE,
   align = "left",
   breadcrumb,
+  cta,
 }) {
   const alignment = align === "center" ? "text-center mx-auto items-center" : "text-left";
 
@@ -76,6 +80,24 @@ export default function PageHero({
               >
                 {subtitle}
               </motion.p>
+            )}
+
+            {cta?.to && (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+                }}
+                className={`mt-8 ${align === "center" ? "flex justify-center" : ""}`}
+              >
+                <Link
+                  to={cta.to}
+                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer"
+                >
+                  {cta.label}
+                  <FaArrowRight className="group-hover:translate-x-1 duration-300" />
+                </Link>
+              </motion.div>
             )}
           </motion.div>
         </div>

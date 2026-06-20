@@ -150,7 +150,7 @@ const Hero = () => {
 
                 <div className="absolute inset-0 bg-black/20"></div>
 
-                <h2 className="text-xl font-semibold text-white absolute bottom-0 left-0 right-0 z-10 bg-[#f04764] text-center py-2">
+                <h2 className="text-xl font-semibold text-white absolute bottom-0 left-0 right-0 z-10 bg-[#00000082] text-center py-2">
                   {char.name}
                 </h2>
               </div>

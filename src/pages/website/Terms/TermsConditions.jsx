@@ -18,6 +18,7 @@ import {
   FiMail,
   FiHome,
 } from "react-icons/fi";
+import { FaArrowRight } from "react-icons/fa";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 import PageHero from "../../../components/common/PageHero";
 import { usePageMeta } from "../../../hooks/useHooks";
@@ -298,6 +299,7 @@ export default function TermsConditions() {
         title="Terms & Conditions"
         subtitle="Please read these terms carefully before using Mohan-Maya or placing an order."
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Terms & Conditions" }]}
+        cta={{ label: "Contact Us", to: "/contact" }}
       />
 
       <section className="py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">
@@ -370,7 +372,10 @@ export default function TermsConditions() {
                     Our team is happy to walk you through any of these terms.
                   </p>
                   <div className="flex flex-wrap justify-center gap-3">
-                    <Link to="/contact" className="btn-primary inline-flex">Contact Us</Link>
+                    <Link to="/contact" className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#fe4462] border border-[#fe4462] text-white font-semibold hover:bg-transparent hover:text-[#fe4462] duration-200 shadow-xl cursor-pointer">
+                      Contact Us
+                      <FaArrowRight className="group-hover:translate-x-1 duration-300" />
+                    </Link>
                     <Link to="/privacy" className="btn-outline inline-flex">Privacy Policy</Link>
                   </div>
                 </div>

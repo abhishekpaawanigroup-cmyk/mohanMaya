@@ -12,7 +12,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 const services = [
   { label: "Shop", to: "/shop" },
   { label: "Track Order", to: "/track" },
-  { label: "FAQs", to: "/shop" },
+  { label: "FAQs", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -20,7 +20,6 @@ const company = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
   { label: "Shop", to: "/shop" },
-  { label: "Privacy Policy", to: "/privacy" },
   { label: "Contact Us", to: "/contact" },
 ];
 
