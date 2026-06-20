@@ -11,7 +11,7 @@ const UpcomingCollection = () => {
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
 
       {/* Content */}
       <div className="relative z-10 flex items-start justify-start h-full">

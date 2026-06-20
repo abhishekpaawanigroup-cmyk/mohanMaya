@@ -66,7 +66,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-400 leading-6 mb-8">
               Handcrafted miniature art that captures extraordinary detail and timeless
-              craftsmanship — created with love in Vrindavan.
+              craftsmanship - created with love in Vrindavan.
             </p>
             <div className="flex gap-4">
               {socials.map(({ Icon, label, href }) => (

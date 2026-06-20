@@ -22,7 +22,7 @@ const SEED_REVIEWS = [
     name: "Ananya Verma",
     rating: 5,
     title: "Absolutely stunning craftsmanship",
-    text: "The detailing on this miniature is incredible — far beyond what I expected. Packaging was premium and delivery was quick. Worth every rupee!",
+    text: "The detailing on this miniature is incredible - far beyond what I expected. Packaging was premium and delivery was quick. Worth every rupee!",
     date: "2026-05-28",
     verified: true,
     helpful: 24,
@@ -281,7 +281,7 @@ function ReviewForm({ onSubmit }) {
       setRating(0);
       setTitle("");
       setText("");
-      setImages([]); // keep URLs — they're now owned by the rendered review
+      setImages([]); // keep URLs - they're now owned by the rendered review
       setErrors({});
       addToast("Thanks! Your review has been posted.", "success");
     }, 800);
@@ -603,7 +603,7 @@ export default function Reviews({ title = "Customer Reviews & Ratings" }) {
   const [lightbox, setLightbox] = useState(-1); // index into gallery, -1 = closed
   const [page, setPage] = useState(1);
 
-  // Mock async fetch on mount — state is only set inside the timeout (async),
+  // Mock async fetch on mount - state is only set inside the timeout (async),
   // never synchronously in the effect body.
   useEffect(() => {
     let cancelled = false;

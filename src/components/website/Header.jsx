@@ -399,7 +399,7 @@ export default function Header() {
                   {coupon ? (
                     <div className="flex items-center justify-between bg-green-50 dark:bg-green-500/10 rounded-xl px-3 py-2">
                       <span className="text-sm font-medium text-green-700 dark:text-green-400">
-                        {couponCode} — {coupon.label}
+                        {couponCode} - {coupon.label}
                       </span>
                       <button onClick={removeCoupon} className="text-green-700 dark:text-green-400 hover:text-red-500" aria-label="Remove coupon">
                         <FiX size={16} />

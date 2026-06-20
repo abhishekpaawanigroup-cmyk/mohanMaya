@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 
 /**
- * Accessible breadcrumb trail. `items` = [{ label, to? }] — the last item is the
+ * Accessible breadcrumb trail. `items` = [{ label, to? }] - the last item is the
  * current page (rendered as plain text with aria-current).
  * `light` switches link colours for use over a dark hero background.
  */

@@ -16,11 +16,11 @@ function currentStep(order) {
 }
 
 export default function OrderTracking() {
-  usePageMeta("Track Your Order — Mohan Maya", "Track the status of your Mohan Maya order in real time.");
+  usePageMeta("Track Your Order - Mohan Maya", "Track the status of your Mohan Maya order in real time.");
   const { getOrder, orders } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
   // Initialise straight from the URL so ?order= (e.g. right after checkout)
-  // resolves on first render — no effect / cascading render needed.
+  // resolves on first render - no effect / cascading render needed.
   const initialId = searchParams.get("order") || "";
   const [query, setQuery] = useState(initialId);
   const [order, setOrder] = useState(() => (initialId ? getOrder(initialId) : null));

@@ -44,10 +44,10 @@ const sections = [
       <>
         <p>We collect information to provide a better shopping experience, including:</p>
         <ul>
-          <li><strong>Personal details</strong> — name, email address, phone number, and shipping address you provide at checkout or via our contact form.</li>
-          <li><strong>Order information</strong> — products purchased, order value, and payment status (we never store full card details).</li>
-          <li><strong>Usage data</strong> — pages visited, items viewed or added to your cart/wishlist, and approximate location.</li>
-          <li><strong>Device data</strong> — browser type, operating system, and screen size used to optimise the experience.</li>
+          <li><strong>Personal details</strong> - name, email address, phone number, and shipping address you provide at checkout or via our contact form.</li>
+          <li><strong>Order information</strong> - products purchased, order value, and payment status (we never store full card details).</li>
+          <li><strong>Usage data</strong> - pages visited, items viewed or added to your cart/wishlist, and approximate location.</li>
+          <li><strong>Device data</strong> - browser type, operating system, and screen size used to optimise the experience.</li>
         </ul>
       </>
     ),
@@ -62,7 +62,7 @@ const sections = [
         <ul>
           <li>Process and deliver your orders accurately and on time.</li>
           <li>Personalise your browsing and product recommendations.</li>
-          <li>Send order updates, and — with your consent — offers and announcements.</li>
+          <li>Send order updates, and - with your consent - offers and announcements.</li>
           <li>Improve our website, products, and customer support.</li>
           <li>Prevent fraud and keep our platform secure.</li>
         </ul>
@@ -76,8 +76,8 @@ const sections = [
     body: (
       <>
         <p>
-          We use industry-standard safeguards — encrypted connections (HTTPS), secure payment gateways,
-          and restricted access controls — to protect your data against unauthorised access, loss, or
+          We use industry-standard safeguards - encrypted connections (HTTPS), secure payment gateways,
+          and restricted access controls - to protect your data against unauthorised access, loss, or
           misuse.
         </p>
         <p>
@@ -98,9 +98,9 @@ const sections = [
           your cart, wishlist, and theme preference, and to understand how the site is used.
         </p>
         <ul>
-          <li><strong>Essential cookies</strong> — required for core features like the cart.</li>
-          <li><strong>Preference storage</strong> — remembers your dark/light mode and saved items.</li>
-          <li><strong>Analytics</strong> — helps us improve performance and content.</li>
+          <li><strong>Essential cookies</strong> - required for core features like the cart.</li>
+          <li><strong>Preference storage</strong> - remembers your dark/light mode and saved items.</li>
+          <li><strong>Analytics</strong> - helps us improve performance and content.</li>
         </ul>
         <p>You can clear or block cookies in your browser settings at any time.</p>
       </>
@@ -178,7 +178,7 @@ const sections = [
 ];
 
 export default function PrivacyPolicy() {
-  usePageMeta("Privacy Policy — Mohan Maya", "How Mohan Maya collects, uses, and protects your information.");
+  usePageMeta("Privacy Policy - Mohan Maya", "How Mohan Maya collects, uses, and protects your information.");
   return (
     <>
       <PageHero

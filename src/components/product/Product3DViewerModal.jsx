@@ -63,8 +63,19 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
       if (!document.fullscreenElement) await stageRef.current?.requestFullscreen?.();
       else await document.exitFullscreen?.();
     } catch {
-      /* fullscreen denied — keep windowed */
+      /* fullscreen denied - keep windowed */
     }
+  };
+
+  // Exit native fullscreen first (if active), then close the viewer so the user
+  // always returns to the page underneath.
+  const handleClose = async () => {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen?.();
+    } catch {
+      /* ignore - close regardless */
+    }
+    onClose();
   };
 
   const ctrlBtn =
@@ -79,7 +90,7 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
       onClick={(e) => {
         // Stop the click bubbling to a parent Quick View backdrop.
         e.stopPropagation();
-        onClose();
+        handleClose();
       }}
       role="dialog"
       aria-modal="true"
@@ -102,7 +113,7 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
             <span className="font-semibold text-sm sm:text-base">{product.name || "3D Preview"}</span>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-[#fe4462] transition"
             aria-label="Close 3D viewer"
           >
@@ -116,6 +127,18 @@ export default function Product3DViewerModal({ product = {}, modelPath, onClose 
             {/* Larger fill so the model is prominent in the wide Big-Screen canvas. */}
             <Product3DCanvas modelPath={modelPath} controlsRef={controlsRef} fill={1.15} />
           </Suspense>
+
+          {/* Close button rendered INSIDE the stage so it stays visible during
+              native fullscreen (where sibling header/controls are not shown). */}
+          {isFullscreen && (
+            <button
+              onClick={handleClose}
+              aria-label="Close fullscreen viewer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[60] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 backdrop-blur-md text-white ring-1 ring-white/25 flex items-center justify-center hover:bg-[#fe4462] hover:scale-105 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <X size={22} />
+            </button>
+          )}
 
           <p className="absolute bottom-20 inset-x-0 text-center text-xs text-white/40 pointer-events-none">
             Drag to rotate · scroll or pinch to zoom

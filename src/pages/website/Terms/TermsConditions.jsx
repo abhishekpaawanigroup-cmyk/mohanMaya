@@ -175,7 +175,7 @@ const sections = [
     body: (
       <>
         <p>
-          All content on this website — including logos, product designs, images, text, and graphics — is
+          All content on this website - including logos, product designs, images, text, and graphics - is
           the property of Mohan-Maya and protected by intellectual property laws.
         </p>
         <p>
@@ -292,7 +292,7 @@ const sections = [
 ];
 
 export default function TermsConditions() {
-  usePageMeta("Terms & Conditions — Mohan Maya", "The terms governing your use of the Mohan Maya website and purchases.");
+  usePageMeta("Terms & Conditions - Mohan Maya", "The terms governing your use of the Mohan Maya website and purchases.");
   return (
     <>
       <PageHero

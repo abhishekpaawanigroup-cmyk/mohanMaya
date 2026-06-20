@@ -33,7 +33,7 @@ export default function AnimatedSearchInput({
   const [caretOn, setCaretOn] = useState(true);
   const [focused, setFocused] = useState(false);
 
-  // Only animate while the field is empty and unfocused — pausing keeps both the
+  // Only animate while the field is empty and unfocused - pausing keeps both the
   // UX (no animation under the user's cursor) and CPU usage sensible.
   const animate = !value && !focused;
 

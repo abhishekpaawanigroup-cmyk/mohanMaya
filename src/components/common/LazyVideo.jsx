@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
  * - Defers the download until the video is ~200px from entering the viewport
  *   (so a below-the-fold video never blocks initial load).
  * - Plays only while visible and PAUSES when scrolled off-screen, which stops
- *   continuous offscreen video decoding — a common cause of scroll FPS drops.
+ *   continuous offscreen video decoding - a common cause of scroll FPS drops.
  * Appearance is identical to a normal autoplay/muted/loop video when in view.
  */
 export default function LazyVideo({ src, type = "video/mp4", className = "", poster, ...rest }) {

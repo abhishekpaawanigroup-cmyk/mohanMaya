@@ -45,7 +45,7 @@ function Model({ modelPath, fill }) {
   const { size, camera } = useThree();
 
   // Clone per instance so reopening the popup (a fresh canvas) never "steals"
-  // the cached source scene — it renders correctly every time.
+  // the cached source scene - it renders correctly every time.
   const object = useMemo(() => scene.clone(true), [scene]);
 
   const radius = useMemo(() => {
@@ -116,7 +116,7 @@ function ModelCanvas({ modelPath, fill }) {
       dpr={[1, 2]}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
-      {/* Lighting — bright enough that any model is clearly visible */}
+      {/* Lighting - bright enough that any model is clearly visible */}
       <ambientLight intensity={1.2} />
       <hemisphereLight intensity={0.8} groundColor="#b58a8a" />
       <directionalLight position={[5, 8, 5]} intensity={2.2} />
@@ -147,7 +147,7 @@ function ModelCanvas({ modelPath, fill }) {
  * - No auto-rotation: the model stays static until the user interacts.
  * - If a character's own model fails to load, the mm-modal.glb fallback is
  *   rendered instead; only if that ALSO fails do we show the text fallback.
- * Fills its parent — size it via the parent container.
+ * Fills its parent - size it via the parent container.
  */
 export default function CharacterModelViewer({ modelPath, fill = FILL }) {
   // 0 = requested model, 1 = mm-modal fallback, 2 = give up (text fallback).

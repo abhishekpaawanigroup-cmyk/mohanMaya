@@ -27,9 +27,9 @@ const HeroSection = () => {
       <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
         <div className="grid lg:grid-cols-2 gap-10 items-center w-full h-full">
 
-          {/* Left — existing About text (unchanged) */}
+          {/* Left - existing About text (unchanged) */}
           <div className="text-white">
-            {/* Breadcrumb — above all hero text */}
+            {/* Breadcrumb - above all hero text */}
             <Breadcrumb items={[{ label: "Home", to: "/" }, { label: "About" }]} light className="mb-4" />
 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
@@ -54,7 +54,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right — auto-rotating mm-modal.glb, vertically centered (matches Shop hero) */}
+          {/* Right - auto-rotating mm-modal.glb, vertically centered (matches Shop hero) */}
           <div className="relative flex justify-center items-center self-center lg:self-stretch h-[420px] sm:h-[520px] lg:h-full">
             <Suspense fallback={null}>
               {/* Canvas fills the container so the model stays centered; the

@@ -1,4 +1,4 @@
-// Centralized product catalog — single source of truth for the whole app.
+// Centralized product catalog - single source of truth for the whole app.
 // Each product has a stable id, category, price, rating and gallery so that
 // the Shop (filter/sort/search/pagination) and the Home sliders all stay in sync.
 
@@ -36,7 +36,7 @@ export const sortOptions = [
 export const products = [
   {
     id: 1,
-    name: "Mohan Maya — Krishna",
+    name: "Mohan Maya - Krishna",
     price: 200,
     oldPrice: 300,
     rating: 4.8,
@@ -48,7 +48,7 @@ export const products = [
   },
   {
     id: 2,
-    name: "Mohan Maya — Radha",
+    name: "Mohan Maya - Radha",
     price: 249,
     oldPrice: 320,
     rating: 4.9,
@@ -60,7 +60,7 @@ export const products = [
   },
   {
     id: 3,
-    name: "Mohan Maya — Madhav",
+    name: "Mohan Maya - Madhav",
     price: 150,
     oldPrice: 199,
     rating: 4.6,
@@ -71,7 +71,7 @@ export const products = [
   },
   {
     id: 4,
-    name: "Mohan Maya — Maya",
+    name: "Mohan Maya - Maya",
     price: 180,
     oldPrice: 240,
     rating: 4.7,
@@ -83,7 +83,7 @@ export const products = [
   },
   {
     id: 5,
-    name: "Mohan Maya — Shiva",
+    name: "Mohan Maya - Shiva",
     price: 220,
     oldPrice: 290,
     rating: 4.9,
@@ -95,7 +95,7 @@ export const products = [
   },
   {
     id: 6,
-    name: "Mohan Maya — Madhvi",
+    name: "Mohan Maya - Madhvi",
     price: 175,
     oldPrice: 215,
     rating: 4.5,
@@ -106,7 +106,7 @@ export const products = [
   },
   {
     id: 7,
-    name: "Mohan Maya — Mohini",
+    name: "Mohan Maya - Mohini",
     price: 280,
     oldPrice: 350,
     rating: 4.8,
@@ -118,7 +118,7 @@ export const products = [
   },
   {
     id: 8,
-    name: "Mohan Maya — Govinda",
+    name: "Mohan Maya - Govinda",
     price: 149,
     oldPrice: 199,
     rating: 4.4,
@@ -129,7 +129,7 @@ export const products = [
   },
   {
     id: 9,
-    name: "Mohan Maya — Banke Bihari",
+    name: "Mohan Maya - Banke Bihari",
     price: 350,
     oldPrice: 430,
     rating: 5.0,
@@ -141,7 +141,7 @@ export const products = [
   },
   {
     id: 10,
-    name: "Mohan Maya — Giridhari",
+    name: "Mohan Maya - Giridhari",
     price: 210,
     oldPrice: 270,
     rating: 4.6,
@@ -152,7 +152,7 @@ export const products = [
   },
   {
     id: 11,
-    name: "Mohan Maya — Murari",
+    name: "Mohan Maya - Murari",
     price: 330,
     oldPrice: 410,
     rating: 4.9,
@@ -164,7 +164,7 @@ export const products = [
   },
   {
     id: 12,
-    name: "Mohan Maya — Keshava",
+    name: "Mohan Maya - Keshava",
     price: 199,
     oldPrice: 259,
     rating: 4.7,

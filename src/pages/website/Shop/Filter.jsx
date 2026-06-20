@@ -97,7 +97,7 @@ const ProductFilters = ({
         <select
           value={sort}
           onChange={(e) => onSortChange(e.target.value)}
-          className="w-full border border-gray-300 dark:border-white/10 dark:bg-[#1a0a0e] dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-[#fe4462]"
+          className="w-full border border-gray-300 dark:border-white/10 dark:bg-[#1a0a0e] dark:text-white rounded-xl px-4 py-3 focus:outline-none"
         >
           {sortOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -109,7 +109,7 @@ const ProductFilters = ({
 
       <button
         onClick={onReset}
-        className="w-full py-3 rounded-xl border border-[#fe4462] bg-transparent text-[#fe4462] hover:bg-[#fe4462] hover:text-white transition-all duration-300 cursor-pointer font-medium"
+        className="w-full py-3 rounded-xl border border-[#fe4462] bg-transparent text-[#fe4462] hover:bg-[#fe4462] hover:text-white transition-all duration-200 cursor-pointer font-medium"
       >
         Reset Filters
       </button>

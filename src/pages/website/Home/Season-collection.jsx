@@ -23,7 +23,7 @@ const SeasonalCollection = () => {
           <div className="lg:col-span-2">
             <div className="relative overflow-hidden rounded-lg h-[380px] sm:h-[500px] lg:h-[600px] shadow-2xl">
 
-              {/* Video — lazy-loaded & paused when off-screen */}
+              {/* Video - lazy-loaded & paused when off-screen */}
               <LazyVideo
                 src="/hero/mohan-maya.mp4"
                 className="absolute inset-0 w-full h-full object-cover"

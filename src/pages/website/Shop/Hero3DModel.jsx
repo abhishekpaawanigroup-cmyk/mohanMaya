@@ -32,7 +32,7 @@ function Loader() {
 
 /**
  * Loads the GLB, normalises its size, enables shadow casting on every mesh and
- * spins it continuously about the Y axis via useFrame — frame-rate independent
+ * spins it continuously about the Y axis via useFrame - frame-rate independent
  * (delta-based) so it stays smooth on any device, with no user interaction.
  */
 function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
@@ -63,7 +63,7 @@ function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
         </Center>
       </group>
 
-      {/* Soft grounding shadow — works on a transparent canvas, no floor mesh. */}
+      {/* Soft grounding shadow - works on a transparent canvas, no floor mesh. */}
       <ContactShadows
         position={[0, bottomY, 0]}
         scale={TARGET_SIZE * 2.6}
@@ -79,7 +79,7 @@ function RotatingModel({ speed = 0.45, modelPath = MODEL_PATH }) {
 
 /**
  * Auto-rotating hero 3D model. Transparent background so it sits over the hero
- * artwork. Fills its parent — size it via the parent container.
+ * artwork. Fills its parent - size it via the parent container.
  * `modelPath` lets other heroes (e.g. About) reuse the exact same presentation
  * with a different GLB.
  */

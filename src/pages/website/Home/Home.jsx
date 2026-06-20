@@ -13,7 +13,7 @@ import { usePageMeta } from "../../../hooks/useHooks";
 
 const Home = () => {
   usePageMeta(
-    "Mohan Maya — Handcrafted Miniature Art & Divine Figurines",
+    "Mohan Maya - Handcrafted Miniature Art & Divine Figurines",
     "Discover beautifully handcrafted miniature creations designed with precision, passion, and timeless artistry. Every piece tells a unique story."
   );
   return (

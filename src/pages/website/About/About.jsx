@@ -8,7 +8,7 @@ import { usePageMeta } from '../../../hooks/useHooks'
 
 const About = () => {
   usePageMeta(
-    "About Us — Mohan Maya",
+    "About Us - Mohan Maya",
     "Learn how Mohan Maya transforms imagination into handcrafted miniatures, capturing emotions, memories and timeless moments."
   );
   return (

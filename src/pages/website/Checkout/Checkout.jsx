@@ -23,7 +23,7 @@ const paymentMethods = [
 ];
 
 export default function Checkout() {
-  usePageMeta("Checkout — Mohan Maya", "Securely complete your Mohan Maya order.");
+  usePageMeta("Checkout - Mohan Maya", "Securely complete your Mohan Maya order.");
   const navigate = useNavigate();
   const { cart, totals, coupon, couponCode, applyCoupon, removeCoupon, placeOrder, addToast } = useApp();
   const [form, setForm] = useState(initialForm);
@@ -96,7 +96,7 @@ export default function Checkout() {
       <div className="max-w-6xl mx-auto px-5">
         <ScrollReveal className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-[#fe4462]">Checkout</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">Almost there — just a few details to complete your order.</p>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Almost there - just a few details to complete your order.</p>
         </ScrollReveal>
 
         <form onSubmit={handleSubmit} noValidate className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
@@ -200,7 +200,7 @@ export default function Checkout() {
               <div className="mt-5 pt-5 border-t dark:border-white/10">
                 {coupon ? (
                   <div className="flex items-center justify-between bg-green-50 dark:bg-green-500/10 rounded-xl px-3 py-2">
-                    <span className="text-sm font-medium text-green-700 dark:text-green-400">{couponCode} — {coupon.label}</span>
+                    <span className="text-sm font-medium text-green-700 dark:text-green-400">{couponCode} - {coupon.label}</span>
                     <button type="button" onClick={removeCoupon} className="text-green-700 dark:text-green-400 hover:text-red-500" aria-label="Remove coupon">
                       <FiX size={16} />
                     </button>

@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 
 /**
- * "Our Story" — 50/50 content + image, stacks on mobile, fades up on scroll.
+ * "Our Story" - 50/50 content + image, stacks on mobile, fades up on scroll.
  */
 export default function OurStory() {
   return (
@@ -11,7 +11,7 @@ export default function OurStory() {
       <div className="max-w-7xl mx-auto px-5">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          {/* Left — content */}
+          {/* Left - content */}
           <ScrollReveal direction="up">
             <span className="inline-block text-[#fe4462] border border-[#fe4462] px-4 py-1 rounded-full text-sm font-semibold uppercase tracking-wide">
               Our Story
@@ -24,20 +24,20 @@ export default function OurStory() {
 
             <div className="mt-5 space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
               <p>
-                Mohan Maya began as a small passion project in Vrindavan — a quiet
+                Mohan Maya began as a small passion project in Vrindavan - a quiet
                 dream to capture devotion, emotion, and storytelling inside the palm
                 of your hand. What started on a single workbench soon grew into a
                 studio of artists who live and breathe miniature craftsmanship.
               </p>
               <p>
                 Every piece is sculpted, painted, and finished entirely by hand.
-                We obsess over the tiniest details — the fold of a robe, the glint in
-                an eye — because we believe true artistry lives in the things most
+                We obsess over the tiniest details - the fold of a robe, the glint in
+                an eye - because we believe true artistry lives in the things most
                 people never notice.
               </p>
               <p>
                 Today, collectors around the world bring our handcrafted characters
-                into their homes — each one a timeless reminder that the smallest
+                into their homes - each one a timeless reminder that the smallest
                 creations can hold the biggest stories.
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function OurStory() {
             </Link>
           </ScrollReveal>
 
-          {/* Right — image */}
+          {/* Right - image */}
           <ScrollReveal direction="up" delay={0.1} className="relative">
             {/* Soft theme accents behind the image */}
             <div className="pointer-events-none absolute -bottom-5 -left-5 w-28 h-28 rounded-2xl bg-[#fe4462]/10 -z-10 hidden lg:block" />

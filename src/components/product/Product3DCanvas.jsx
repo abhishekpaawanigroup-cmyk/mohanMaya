@@ -41,7 +41,7 @@ function Model({ modelPath, fill }) {
 
   // Clone the cached scene PER INSTANCE. A THREE.Object3D can only live in one
   // scene graph at a time, so without this a second canvas (Big Screen) would
-  // "steal" the model from the first (inline) one — making it vanish on return.
+  // "steal" the model from the first (inline) one - making it vanish on return.
   const object = useMemo(() => scene.clone(true), [scene]);
 
   // Bounding-sphere radius (rotation-invariant → never crops while rotating).
@@ -123,7 +123,7 @@ function CanvasScene({ modelPath, controlsRef, fill }) {
       dpr={[1, 2]}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
-      {/* Lighting — bright enough that any model is clearly visible */}
+      {/* Lighting - bright enough that any model is clearly visible */}
       <ambientLight intensity={1.2} />
       <hemisphereLight intensity={0.8} groundColor="#b58a8a" />
       <directionalLight position={[5, 8, 5]} intensity={2.2} />

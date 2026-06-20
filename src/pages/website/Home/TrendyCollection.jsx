@@ -68,7 +68,7 @@ const TrendyCollection = () => {
           <FiChevronRight size={26} />
         </button>
 
-        {/* Slider — keyed on tab so it re-inits cleanly when data changes */}
+        {/* Slider - keyed on tab so it re-inits cleanly when data changes */}
         <Swiper
           key={activeTab}
           modules={[Navigation, Autoplay]}

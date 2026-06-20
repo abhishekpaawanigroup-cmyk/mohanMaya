@@ -10,7 +10,7 @@ import { useApp } from "../../context/AppContext";
 const ProductModal = lazy(() => import("../../pages/website/Shop/ProductModal"));
 
 /**
- * "You May Also Like" — recommends products by category, falling back to
+ * "You May Also Like" - recommends products by category, falling back to
  * top-rated items. Basis = an explicit `product`, else the most recently
  * viewed item, else nothing-specific (top rated overall).
  */

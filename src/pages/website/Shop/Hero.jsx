@@ -39,7 +39,7 @@ const Hero = () => {
  
           <div className="flex flex-col items-start gap-8">
  
-            {/* Breadcrumb — above all hero text */}
+            {/* Breadcrumb - above all hero text */}
             <Breadcrumb items={[{ label: "Home", to: "/" }, { label: "Shop" }]} light />
 
             {/* Badge */}

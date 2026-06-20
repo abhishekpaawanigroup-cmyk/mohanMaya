@@ -8,7 +8,7 @@ import { usePageMeta } from '../../../hooks/useHooks'
 
 const Shop = () => {
   usePageMeta(
-    "Shop Handcrafted Miniatures — Mohan Maya",
+    "Shop Handcrafted Miniatures - Mohan Maya",
     "Browse our collection of handcrafted miniature figurines and divine characters, made with precision and timeless artistry."
   );
   return (

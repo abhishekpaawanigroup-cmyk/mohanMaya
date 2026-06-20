@@ -16,7 +16,7 @@ import { useApp } from "../../context/AppContext";
 import { useModalA11y } from "../../hooks/useHooks";
 import Product3DViewerModal from "./Product3DViewerModal";
 
-// Lazy 3D — Home page stays light until a shopper opens the 3D view.
+// Lazy 3D - Home page stays light until a shopper opens the 3D view.
 const Product3DCanvas = lazy(() => import("./Product3DCanvas"));
 
 const MODEL_PATH = "/Modal/mohan-model.glb";
@@ -295,7 +295,7 @@ export default function ProductQuickViewModal({ product = {}, onClose }) {
           {/* description */}
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-5 text-sm">
             A meticulously handcrafted miniature, individually sculpted and hand-painted by our
-            artisans — finished to museum-grade detail and ready to be the centrepiece of any
+            artisans - finished to museum-grade detail and ready to be the centrepiece of any
             collection.
           </p>
 

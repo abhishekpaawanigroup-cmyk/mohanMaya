@@ -340,7 +340,7 @@ export default function ProductModal({ product = {}, onClose }) {
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-5 text-sm">
             A meticulously handcrafted miniature, individually sculpted and hand-painted by our
             artisans. Each {product.name} is a one-of-a-kind collectible finished to museum-grade
-            detail — a centrepiece worthy of any shelf or gift.
+            detail - a centrepiece worthy of any shelf or gift.
           </p>
 
           {/* size / variant */}

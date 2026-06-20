@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 /**
  * Returns whether the page is scrolled past `threshold` px as a boolean.
  * Unlike useScrollPosition this only triggers a re-render when the boolean
- * actually flips — so consumers (Header, BackToTop) don't re-render on every
+ * actually flips - so consumers (Header, BackToTop) don't re-render on every
  * scroll frame, which is critical for smooth 60fps scrolling.
  */
 export function useScrollThreshold(threshold = 0) {

@@ -32,7 +32,7 @@ const socials = [
 
 export default function Auth() {
   usePageMeta(
-    "Sign In · Create Account — Mohan Maya",
+    "Sign In · Create Account - Mohan Maya",
     "Log in or create your Mohan Maya account to track orders, save your wishlist, and check out faster."
   );
 
@@ -91,7 +91,7 @@ export default function Auth() {
       return;
     }
     setLoading(true);
-    // Mock async auth — gives a realistic loading state.
+    // Mock async auth - gives a realistic loading state.
     setTimeout(() => {
       if (isRegister) register({ name: form.name.trim(), email: form.email.trim() });
       else login({ email: form.email.trim() });
@@ -131,7 +131,7 @@ export default function Auth() {
 
           <p className="mt-4 text-white/70 leading-relaxed max-w-md">
             Join a community of collectors. Sign in to manage your handcrafted
-            miniatures, orders, and wishlist — all in one premium experience.
+            miniatures, orders, and wishlist - all in one premium experience.
           </p>
 
           <ul className="mt-8 space-y-3">

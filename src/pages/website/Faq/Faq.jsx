@@ -42,11 +42,11 @@ const FAQS = [
   },
   {
     q: "What if I receive a damaged product?",
-    a: "We’re sorry if that happens. Please contact us within 48 hours of delivery with photos of the damaged item and its packaging. We’ll arrange a free replacement or a full refund as quickly as possible — no lengthy back-and-forth.",
+    a: "We’re sorry if that happens. Please contact us within 48 hours of delivery with photos of the damaged item and its packaging. We’ll arrange a free replacement or a full refund as quickly as possible - no lengthy back-and-forth.",
   },
   {
     q: "Can I cancel my order after placing it?",
-    a: "Ready-made orders can be cancelled free of charge before they’re dispatched — just reach out to our support team. Custom and personalized orders can only be cancelled before production begins, since each piece is crafted specifically for you.",
+    a: "Ready-made orders can be cancelled free of charge before they’re dispatched - just reach out to our support team. Custom and personalized orders can only be cancelled before production begins, since each piece is crafted specifically for you.",
   },
 ];
 

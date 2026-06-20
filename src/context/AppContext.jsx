@@ -117,7 +117,7 @@ export function AppProvider({ children }) {
         return false;
       }
       setCouponCode(key);
-      addToast(`Coupon ${key} applied — ${COUPONS[key].label}`, "success");
+      addToast(`Coupon ${key} applied - ${COUPONS[key].label}`, "success");
       return true;
     },
     [setCouponCode, addToast]
@@ -167,7 +167,7 @@ export function AppProvider({ children }) {
     [orders]
   );
 
-  // ── Auth (lightweight mock — persisted to localStorage) ──
+  // ── Auth (lightweight mock - persisted to localStorage) ──
   const login = useCallback(
     ({ name, email }) => {
       const u = { name: name || email.split("@")[0], email };
