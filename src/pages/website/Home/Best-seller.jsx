@@ -17,11 +17,11 @@ const BestSellers = () => {
           className="mb-12"
         />
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-x-16 gap-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8">
           {bestSellers.map((item, idx) => (
             <ScrollReveal key={item.id} delay={idx * 0.05}>
               <div className="group flex items-center gap-6">
-                <div className="w-[180px] h-[200px] bg-transparent overflow-hidden flex items-center justify-center shrink-0">
+                <div className="w-[130px] h-[150px] sm:w-[180px] sm:h-[200px] bg-transparent overflow-hidden flex items-center justify-center shrink-0">
                   <img
                     src={item.image}
                     alt={item.name}

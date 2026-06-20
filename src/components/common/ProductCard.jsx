@@ -31,7 +31,7 @@ export default function ProductCard({ product, onQuickView }) {
           alt={product.name}
           loading="lazy"
           onLoad={() => setImgLoaded(true)}
-          className={`h-[200px] w-[200px] mx-auto rounded-full object-contain transition-all duration-500 group-hover:scale-105 ${
+          className={`h-44 w-44 sm:h-[200px] sm:w-[200px] max-w-full mx-auto rounded-full object-contain transition-all duration-500 group-hover:scale-105 ${
             imgLoaded ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -45,7 +45,7 @@ export default function ProductCard({ product, onQuickView }) {
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           <button
             onClick={() => toggleWishlist(product)}
-            className="bg-white dark:bg-[#1a0a0e] p-2 rounded-full shadow-md hover:scale-110 transition"
+            className="bg-white dark:bg-[#1a0a0e] p-2.5 rounded-full shadow-md hover:scale-110 transition"
             aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
           >
             <FiHeart
@@ -56,7 +56,7 @@ export default function ProductCard({ product, onQuickView }) {
           {onQuickView && (
             <button
               onClick={() => onQuickView(product)}
-              className="bg-white dark:bg-[#1a0a0e] p-2 rounded-full shadow-md hover:scale-110 transition opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100"
+              className="bg-white dark:bg-[#1a0a0e] p-2.5 rounded-full shadow-md hover:scale-110 transition opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100"
               aria-label="Quick view"
             >
               <FiEye size={18} className="text-gray-500" />

@@ -99,7 +99,7 @@ export default function Checkout() {
           <p className="text-gray-600 dark:text-gray-300 mt-2">Almost there — just a few details to complete your order.</p>
         </ScrollReveal>
 
-        <form onSubmit={handleSubmit} noValidate className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
+        <form onSubmit={handleSubmit} noValidate className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
           {/* ── Left: details ── */}
           <div className="space-y-6">
             {/* Customer */}
@@ -181,7 +181,7 @@ export default function Checkout() {
             <div className="bg-white dark:bg-white/5 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-white/10">
               <h2 className="text-lg font-bold dark:text-white mb-4">Order Summary</h2>
 
-              <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
+              <div className="space-y-3 max-h-[40vh] sm:max-h-72 overflow-y-auto pr-1">
                 {cart.map((item) => (
                   <div key={item.id} className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-lg bg-[#f0e0e3] dark:bg-white/10 overflow-hidden flex items-center justify-center shrink-0">

@@ -75,14 +75,14 @@ const Hero = () => {
   return (
     <div className="relative pb-10 mt-20 bg-[#f4edee] dark:bg-[#0d0508]">
       {/* Hero Video Section */}
-      <div className="w-full h-[480px] sm:h-[600px] lg:h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
+      <div className="w-full h-[300px] sm:h-[600px] lg:h-[750px] relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:z-10">
         <LazyVideo
           src="/hero/mohan-maya.mp4"
           className="w-full h-full object-cover"
         />
 
         <div className="absolute top-1/2 left-1/2 z-20 w-full px-4 text-center text-white -translate-x-1/2 -translate-y-1/2">
-          <h1 className="font-bold text-4xl md:text-6xl">
+          <h1 className="font-bold text-3xl sm:text-4xl md:text-6xl">
             Where Tiny Art Comes <br/> <span className="text-[#fe4462]">to Life</span>
           </h1>
 
@@ -102,7 +102,7 @@ const Hero = () => {
 
       {/* Slider Section — small overlap on mobile so the cards never touch the
           hero's "Explore" button; fuller overlap on larger screens. */}
-      <div className="relative z-20 mt-6 sm:mt-[-90px] lg:mt-[-152px] w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
+      <div className="relative z-20 mt-6 sm:mt-[-90px] lg:mt-[-152px] w-[92%] sm:w-[90%] lg:w-[70%] max-w-[1440px] mx-auto">
         <button className="custom-hero-prev absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition">
           <FiChevronLeft size={26} />
         </button>

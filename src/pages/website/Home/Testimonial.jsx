@@ -98,6 +98,8 @@ function Testimonials() {
   <img
     src={item.image}
     alt={item.name}
+    loading="lazy"
+    decoding="async"
     className="w-14 h-14 rounded-full object-cover border-2 border-[#fe4462]"
   />
 

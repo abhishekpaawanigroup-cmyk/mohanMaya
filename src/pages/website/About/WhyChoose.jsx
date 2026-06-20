@@ -90,6 +90,8 @@ const WhyChooseUs = () => {
               <img
                 src="/Shop/Product1.jpeg"
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="relative w-full h-[500px] object-cover rounded-3xl shadow-2xl"
               />
  

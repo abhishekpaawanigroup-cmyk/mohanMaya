@@ -106,7 +106,7 @@ export default function Auth() {
     }`;
 
   return (
-    <section className="min-h-[900px] max-w-7xl m-auto pt-20 grid lg:grid-cols-2 bg-[#f4edee] dark:bg-[#0d0508]">
+    <section className="min-h-screen md:min-h-[900px] max-w-7xl m-auto pt-20 grid grid-cols-1 lg:grid-cols-2 bg-[#f4edee] dark:bg-[#0d0508]">
       {/* ── Left: brand / value panel ── */}
       <div className="relative overflow-hidden bg-gradient-to-br from-[#1b1016] to-[#0d0508] text-white flex items-center">
         {/* Subtle theme graphics */}
@@ -123,7 +123,7 @@ export default function Auth() {
             <HiSparkles /> Mohan Maya
           </span>
 
-          <h1 className="mt-6 text-4xl sm:text-5xl font-bold leading-tight">
+          <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Where tiny art
             <br />
             comes to <span className="text-[#fe4462]">life</span>

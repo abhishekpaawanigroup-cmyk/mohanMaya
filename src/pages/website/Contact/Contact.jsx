@@ -70,12 +70,12 @@ export default function Contact() {
           breakpoint (250/280/300px → 125/140/150px), so exactly half sits
           inside the hero and half below. Shifts the content below up with it,
           keeping spacing consistent and introducing no horizontal scroll. */}
-      <div className="relative z-20 -mt-[125px] sm:-mt-[140px] lg:-mt-[150px] bg-[linear-gradient(to_bottom,transparent_50%,#f4edee_50%)] dark:bg-[linear-gradient(to_bottom,transparent_50%,#0d0508_50%)]">
+      <div className="relative z-20 -mt-[90px] sm:-mt-[140px] lg:-mt-[150px] bg-[linear-gradient(to_bottom,transparent_50%,#f4edee_50%)] dark:bg-[linear-gradient(to_bottom,transparent_50%,#0d0508_50%)]">
         <div className="max-w-[1440px] mx-auto rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 dark:ring-white/10 ">
           <iframe
             title="Mohan Maya location — Ganga Enclave, Roorkee, Uttarakhand, India"
             src="https://maps.google.com/maps?q=Paawani%20Group,%20Ganga%20Enclave,%20Canal%20Rd,%20near%20Ganeshpur,%20Ganesh%20Pur,%20Roorkee,%20Uttarakhand%20247667&z=15&output=embed"
-            className="block w-full h-[250px] sm:h-[280px] lg:h-[300px] border-0"
+            className="block w-full h-[220px] sm:h-[280px] lg:h-[300px] border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
@@ -88,7 +88,7 @@ export default function Contact() {
           <ScrollReveal>
             {/* Brand-bordered frame (matches the reference card) */}
             <div className="rounded-lg bg-white dark:bg-white/5 shadow-xl p-6 sm:p-10 lg:p-14">
-              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
                 {/* ── Left: intro + contact info ── */}
                 <div>

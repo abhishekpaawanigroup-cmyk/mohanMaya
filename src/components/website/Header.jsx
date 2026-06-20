@@ -158,7 +158,7 @@ export default function Header() {
             {/* Search toggle */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              className="p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
               aria-label="Search"
             >
               <IoSearch size={22} />
@@ -167,7 +167,7 @@ export default function Header() {
             {/* Dark mode */}
             <motion.button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              className="p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
               whileTap={{ rotate: 180, scale: 0.8 }}
               aria-label="Toggle dark mode"
             >
@@ -177,7 +177,7 @@ export default function Header() {
             {/* Wishlist */}
             <button
               onClick={() => setWishlistOpen(true)}
-              className="relative p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              className="relative p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
               aria-label="Wishlist"
             >
               <FaRegHeart size={20} />
@@ -191,7 +191,7 @@ export default function Header() {
             {/* Cart */}
             <button
               onClick={() => setCartOpen(true)}
-              className={`relative p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300 ${cartAnimating ? "animate-cart-bounce" : ""}`}
+              className={`relative p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300 ${cartAnimating ? "animate-cart-bounce" : ""}`}
               aria-label="Cart"
             >
               <LuShoppingBag size={22} />
@@ -235,7 +235,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.97 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute right-0 mt-3 w-60 bg-white dark:bg-[#1a0a0e] rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden z-50"
+                    className="absolute right-0 mt-3 w-60 max-w-[calc(100vw-1.5rem)] bg-white dark:bg-[#1a0a0e] rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden z-50"
                     role="menu"
                   >
                     <div className="flex items-center gap-3 p-4 border-b dark:border-white/10">
@@ -274,7 +274,7 @@ export default function Header() {
             {/* Mobile menu */}
             <button
               onClick={() => setOpenMenu(true)}
-              className="lg:hidden p-2 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              className="lg:hidden p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
               aria-label="Open menu"
             >
               <MdMenu size={28} />
@@ -300,10 +300,10 @@ export default function Header() {
                   placeholder="Search miniatures, characters…"
                   className="flex-1 bg-gray-100 dark:bg-white/10 !rounded-full px-5 py-3 text-sm font-medium placeholder-gray-400 dark:text-white border border-transparent outline-none focus:outline-none focus-visible:!outline-none focus:bg-gray-200/70 dark:focus:bg-white/15 focus:border-gray-300 dark:focus:border-white/20 transition-colors"
                 />
-                <button type="submit" className="btn-primary !py-3 !px-5 text-sm">
+                <button type="submit" className="btn-primary !py-3 !px-5 text-sm" aria-label="Submit search">
                   <IoSearch size={18} />
                 </button>
-                <button type="button" onClick={() => setSearchOpen(false)} className="p-2 text-gray-500 hover:text-[#fe4462]">
+                <button type="button" onClick={() => setSearchOpen(false)} className="p-2.5 text-gray-500 hover:text-[#fe4462]" aria-label="Close search">
                   <FiX size={20} />
                 </button>
               </form>
@@ -328,7 +328,7 @@ export default function Header() {
             >
               <div className="flex items-center justify-between p-6 border-b dark:border-white/10">
                 <h2 className="text-xl font-bold dark:text-white">Shopping Cart ({cartCount})</h2>
-                <button onClick={() => setCartOpen(false)} className="p-2 hover:text-[#fe4462] transition">
+                <button onClick={() => setCartOpen(false)} className="p-2.5 hover:text-[#fe4462] transition" aria-label="Close cart">
                   <FiX size={22} />
                 </button>
               </div>
@@ -463,7 +463,7 @@ export default function Header() {
             >
               <div className="flex items-center justify-between p-6 border-b dark:border-white/10">
                 <h2 className="text-xl font-bold dark:text-white">Wishlist ({wishlist.length})</h2>
-                <button onClick={() => setWishlistOpen(false)} className="p-2 hover:text-[#fe4462] transition">
+                <button onClick={() => setWishlistOpen(false)} className="p-2.5 hover:text-[#fe4462] transition" aria-label="Close wishlist">
                   <FiX size={22} />
                 </button>
               </div>
@@ -507,7 +507,7 @@ export default function Header() {
               onClick={() => setOpenMenu(false)}
             />
             <motion.aside
-              className="fixed top-0 right-0 h-screen w-[320px] sm:w-[380px] bg-[#0d0508] text-white z-[999] overflow-y-auto lg:hidden"
+              className="fixed top-0 right-0 h-screen w-[88vw] max-w-[340px] sm:w-[380px] sm:max-w-[380px] bg-[#0d0508] text-white z-[999] overflow-y-auto lg:hidden"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
@@ -519,6 +519,7 @@ export default function Header() {
                 <button
                   onClick={() => setOpenMenu(false)}
                   className="w-10 h-10 rounded-full bg-[#fe4462] flex items-center justify-center hover:bg-[#d93550] transition"
+                  aria-label="Close menu"
                 >
                   <FiX size={18} />
                 </button>
@@ -534,7 +535,7 @@ export default function Header() {
                     placeholder="Search products…"
                     className="bg-transparent flex-1 text-sm placeholder-gray-500 outline-none focus:outline-none focus-visible:!outline-none"
                   />
-                  <button type="submit"><IoSearch size={20} className="text-gray-400 hover:text-[#fe4462] transition" /></button>
+                  <button type="submit" aria-label="Submit search"><IoSearch size={20} className="text-gray-400 hover:text-[#fe4462] transition" /></button>
                 </form>
 
                 <nav className="space-y-1">
@@ -617,9 +618,15 @@ export default function Header() {
                 </div>
 
                 <div className="flex gap-3 mt-8">
-                  {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+                  {[
+                    { Icon: FaFacebookF, label: "Facebook" },
+                    { Icon: FaTwitter, label: "Twitter" },
+                    { Icon: FaInstagram, label: "Instagram" },
+                    { Icon: FaYoutube, label: "YouTube" },
+                  ].map(({ Icon, label }, i) => (
                     <button
                       key={i}
+                      aria-label={label}
                       className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-[#fe4462] hover:border-[#fe4462] transition text-gray-400 hover:text-white"
                     >
                       <Icon size={14} />

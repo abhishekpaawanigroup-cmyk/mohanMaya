@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiSearch, FiX, FiSliders, FiInbox } from "react-icons/fi";
+import { FiSliders, FiInbox, FiX } from "react-icons/fi";
 import ProductFilters from "./Filter";
 import ProductModal from "./ProductModal";
 import ProductCard from "../../../components/common/ProductCard";
+import AnimatedSearchInput from "../../../components/common/AnimatedSearchInput";
 import { ProductGridSkeleton } from "../../../components/common/Skeleton";
 import { products, categories, characters } from "../../../data/products";
 import { useDebounce } from "../../../hooks/useHooks";
@@ -120,32 +121,22 @@ const Products = () => {
     onReset: resetFilters,
   };
 
+
+
+
   return (
     <section id="products" className="py-20 bg-gray-50 dark:bg-[#0d0508] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Search bar */}
         <div className="flex flex-col sm:flex-row gap-3 mb-8">
-          <div className="relative flex-1">
-            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-            <input
-              value={search}
-              onChange={(e) => changeSearch(e.target.value)}
-              placeholder="Search products by name or category…"
-              className="w-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full pl-11 pr-10 py-3 outline-none focus:border-[#fe4462] dark:text-white"
-            />
-            {search && (
-              <button
-                onClick={() => changeSearch("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#fe4462]"
-                aria-label="Clear search"
-              >
-                <FiX size={18} />
-              </button>
-            )}
-          </div>
+          <AnimatedSearchInput
+            value={search}
+            onChange={changeSearch}
+            onClear={() => changeSearch("")}
+          />
           <button
             onClick={() => setMobileFiltersOpen(true)}
-            className="lg:hidden btn-outline justify-center"
+            className="lg:hidden btn-outline justify-center "
           >
             <FiSliders size={18} /> Filters
           </button>
@@ -180,7 +171,7 @@ const Products = () => {
               </div>
             ) : (
               <>
-                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                   <AnimatePresence mode="popLayout">
                     {paginated.map((product) => (
                       <ProductCard
@@ -198,7 +189,8 @@ const Products = () => {
                     <button
                       onClick={() => setPage(Math.max(1, safePage - 1))}
                       disabled={safePage === 1}
-                      className="px-3 py-1 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
+                      aria-label="Previous page"
+                      className="h-10 px-3 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
                     >
                       Prev
                     </button>
@@ -208,7 +200,7 @@ const Products = () => {
                         onClick={() => setPage(i + 1)}
                         aria-label={`Go to page ${i + 1}`}
                         aria-current={safePage === i + 1 ? "page" : undefined}
-                        className={`w-8 h-8 rounded-lg font-medium transition ${
+                        className={`w-10 h-10 rounded-lg font-medium transition ${
                           safePage === i + 1
                             ? "bg-[#fe4462] text-white"
                             : "border border-gray-300 dark:border-white/10 dark:text-white hover:border-[#fe4462] hover:text-[#fe4462]"
@@ -220,7 +212,8 @@ const Products = () => {
                     <button
                       onClick={() => setPage(Math.min(totalPages, safePage + 1))}
                       disabled={safePage === totalPages}
-                      className="px-3 py-1 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
+                      aria-label="Next page"
+                      className="h-10 px-3 rounded-lg border border-gray-300 dark:border-white/10 dark:text-white disabled:opacity-40 hover:border-[#fe4462] hover:text-[#fe4462] transition"
                     >
                       Next
                     </button>

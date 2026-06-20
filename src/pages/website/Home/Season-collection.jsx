@@ -21,7 +21,7 @@ const SeasonalCollection = () => {
 
           {/* LEFT VIDEO SECTION */}
           <div className="lg:col-span-2">
-            <div className="relative overflow-hidden rounded-lg h-[600px] shadow-2xl">
+            <div className="relative overflow-hidden rounded-lg h-[380px] sm:h-[500px] lg:h-[600px] shadow-2xl">
 
               {/* Video — lazy-loaded & paused when off-screen */}
               <LazyVideo
@@ -39,7 +39,7 @@ const SeasonalCollection = () => {
                   Limited Collection
                 </span>
 
-                <h3 className="text-5xl font-bold leading-tight mb-5">
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
                   Seasonal
                   <br />
                   Collection 2026
