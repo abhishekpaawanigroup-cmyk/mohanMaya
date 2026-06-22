@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Keyboard } from "swiper/modules";
 import { FiHeart, FiEye, FiShoppingBag, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import ActionButton from "../../../components/common/ActionButton";
 import ProductPreviewModal from "./Productmodal";
@@ -8,12 +8,13 @@ import { trendyData, trendyTabs } from "../../../data/products";
 import { useApp } from "../../../context/AppContext";
 
 import "swiper/css";
-import "swiper/css/navigation";
 
 const TrendyCollection = () => {
   const { addToCart, toggleWishlist, isWishlisted } = useApp();
   const [activeTab, setActiveTab] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [active, setActive] = useState(0);
+  const swiperRef = useRef(null);
 
   const items = trendyData[activeTab] || [];
 
@@ -23,10 +24,10 @@ const TrendyCollection = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-8 mb-14">
           <div>
-            <span className="bg-transparent text-[#ef4462] border border-[#ef4462] px-4 py-1 text-sm font-bold uppercase rounded-full">
+            <span className="bg-transparent text-[#fe4462] border border-[#fe4462] px-4 py-1 text-sm font-bold uppercase rounded-full">
               This Month
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#ef4462] mt-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#fe4462] mt-4">
               Trending Collection
             </h2>
           </div>
@@ -54,40 +55,27 @@ const TrendyCollection = () => {
           </div>
         </div>
 
-        {/* Custom Navigation */}
-        <button
-          className="custom-prev-trendy absolute left-0 sm:left-3 lg:left-0 top-[55%] lg:top-[50%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-2 lg:border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white"
-          aria-label="Previous"
-        >
-          <FiChevronLeft size={26} />
-        </button>
-        <button
-          className="custom-next-trendy absolute right-0 sm:right-3 lg:right-0 top-[55%] lg:top-[50%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-2 lg:border-4 border-[#efefef] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white"
-          aria-label="Next"
-        >
-          <FiChevronRight size={26} />
-        </button>
-
         {/* Slider - keyed on tab so it re-inits cleanly when data changes */}
         <Swiper
           key={activeTab}
-          modules={[Navigation, Autoplay]}
-          navigation={{ prevEl: ".custom-prev-trendy", nextEl: ".custom-next-trendy" }}
+          modules={[Keyboard]}
+          keyboard={{ enabled: true }}
+          onSwiper={(s) => { swiperRef.current = s; setActive(s.realIndex); }}
+          onSlideChange={(s) => setActive(s.realIndex)}
           loop={items.length > 4}
           spaceBetween={30}
           slidesPerView={4}
           breakpoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 25 },
-            1024: { slidesPerView: 3, spaceBetween: 30 },
-            1400: { slidesPerView: 4, spaceBetween: 30 },
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1400: { slidesPerView: 4 },
           }}
         >
           {items.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="flex flex-col h-full">
-                <div className="group relative bg-[#d1aaaa8a] dark:bg-white/5 shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full overflow-hidden">
+                <div className="group relative bg-[#d1aaaa8a] dark:bg-white/5 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
                   <div className="h-80 flex items-center justify-center overflow-hidden">
                     <img
                       src={item.image}
@@ -103,13 +91,13 @@ const TrendyCollection = () => {
                         icon={FiShoppingBag}
                         label="Add to Cart"
                         onClick={() => addToCart(item)}
-                        className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
+                        className="bg-[#fe4462] hover:bg-[#d93550] text-white"
                       />
                       <ActionButton
                         icon={FiEye}
                         label="Quick View"
                         onClick={() => setSelectedProduct(item)}
-                        className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
+                        className="bg-[#fe4462] hover:bg-[#d93550] text-white"
                       />
                       <ActionButton
                         icon={FiHeart}
@@ -117,8 +105,8 @@ const TrendyCollection = () => {
                         onClick={() => toggleWishlist(item)}
                         className={`text-white ${
                           isWishlisted(item.id)
-                            ? "bg-red-500 hover:bg-[#ff7f50]"
-                            : "bg-[#ff7f50] hover:bg-[#ef4462]"
+                            ? "bg-[#d93550] hover:bg-[#fe4462]"
+                            : "bg-[#fe4462] hover:bg-[#d93550]"
                         }`}
                       />
                     </div>
@@ -126,15 +114,60 @@ const TrendyCollection = () => {
                 </div>
 
                 <div className="mt-6 grow text-center">
-                  <h3 className="text-lg font-bold text-[#1d1d1d] dark:text-white line-clamp-2">
+                  <h3 className="text-[18px] font-bold text-[#1d1d1d] dark:text-white line-clamp-2">
                     {item.name}
                   </h3>
-                  <p className="text-[#ff7f50] text-base font-semibold mt-3">INR {item.price}.00</p>
+                  <div className="mt-3 flex items-center justify-center flex-wrap gap-x-2 gap-y-1">
+                    <span className="text-[#fe4462] text-[18px] font-bold">₹{item.price}</span>
+                    {item.oldPrice && item.oldPrice > item.price && (
+                      <>
+                        <span className="text-gray-400 dark:text-gray-500 text-sm line-through">
+                          ₹{item.oldPrice}
+                        </span>
+                        <span className="text-[11px] font-semibold text-[#fe4462] bg-[#fe4462]/10 border border-[#fe4462]/20 px-2 py-0.5 rounded-full">
+                          {Math.round(((item.oldPrice - item.price) / item.oldPrice) * 100)}% OFF
+                        </span>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Navigation — dots centered between the arrows, all below the cards */}
+        <div className="flex items-center justify-center gap-4 mt-10">
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="w-14 h-14 bg-white dark:bg-white/5 text-gray-700 dark:text-white rounded-full flex items-center justify-center border border-gray-200 dark:border-white/10 shadow-sm hover:bg-[#fe4462] hover:text-white hover:border-[#fe4462] transition-all duration-300"
+            aria-label="Previous"
+          >
+            <FiChevronLeft size={26} />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {items.map((item, i) => (
+              <button
+                key={item.id}
+                onClick={() => swiperRef.current?.slideToLoop(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={active === i ? "true" : undefined}
+                className={`h-2.5 rounded-full bg-[#fe4462] transition-all duration-300 ${
+                  active === i ? "w-6 opacity-100" : "w-2.5 opacity-30 hover:opacity-60"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            className="w-14 h-14 bg-white dark:bg-white/5 text-gray-700 dark:text-white rounded-full flex items-center justify-center border border-gray-200 dark:border-white/10 shadow-sm hover:bg-[#fe4462] hover:text-white hover:border-[#fe4462] transition-all duration-300"
+            aria-label="Next"
+          >
+            <FiChevronRight size={26} />
+          </button>
+        </div>
 
         {selectedProduct && (
           <ProductPreviewModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
