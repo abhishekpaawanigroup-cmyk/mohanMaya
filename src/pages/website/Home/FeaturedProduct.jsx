@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Keyboard } from "swiper/modules";
 import { FiEye, FiHeart, FiShoppingBag, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import ActionButton from "../../../components/common/ActionButton";
 import ProductPreviewModal from "./Productmodal";
@@ -9,34 +9,23 @@ import { featuredProducts } from "../../../data/products";
 import { useApp } from "../../../context/AppContext";
 
 import "swiper/css";
-import "swiper/css/navigation";
 
 const FeaturedProduct = () => {
   const { addToCart, toggleWishlist, isWishlisted } = useApp();
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [active, setActive] = useState(0);
+  const swiperRef = useRef(null);
 
   return (
     <section className="bg-[#f4edee] dark:bg-[#0d0508] pb-20 pt-10">
       <div className="mx-auto px-4 sm:px-8 relative max-w-[1440px]">
         <SectionHeading badge="Top Sale" title="Featured Characters" className="mb-14" />
 
-        {/* Custom Arrows */}
-        <button
-          className="custom-prev absolute left-0 top-[55%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white"
-          aria-label="Previous"
-        >
-          <FiChevronLeft size={26} />
-        </button>
-        <button
-          className="custom-next absolute right-0 top-[55%] z-20 w-14 h-14 bg-[#f4f4f4] rounded-full flex items-center justify-center border-4 border-[#f4f4f4] hover:bg-[#ef4462] hover:text-white transition-colors hover:border-white"
-          aria-label="Next"
-        >
-          <FiChevronRight size={26} />
-        </button>
-
         <Swiper
-          modules={[Navigation]}
-          navigation={{ prevEl: ".custom-prev", nextEl: ".custom-next" }}
+          modules={[Keyboard]}
+          keyboard={{ enabled: true }}
+          onSwiper={(s) => { swiperRef.current = s; setActive(s.realIndex); }}
+          onSlideChange={(s) => setActive(s.realIndex)}
           spaceBetween={30}
           loop
           slidesPerView={4}
@@ -66,13 +55,13 @@ const FeaturedProduct = () => {
                         icon={FiShoppingBag}
                         label="Add to Cart"
                         onClick={() => addToCart(item)}
-                        className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
+                        className="bg-[#fe4462] hover:bg-[#d93550] text-white"
                       />
                       <ActionButton
                         icon={FiEye}
                         label="Quick View"
                         onClick={() => setSelectedProduct(item)}
-                        className="bg-[#ff7f50] hover:bg-[#ef4462] text-white"
+                        className="bg-[#fe4462] hover:bg-[#d93550] text-white"
                       />
                       <ActionButton
                         icon={FiHeart}
@@ -80,8 +69,8 @@ const FeaturedProduct = () => {
                         onClick={() => toggleWishlist(item)}
                         className={`text-white ${
                           isWishlisted(item.id)
-                            ? "bg-red-500 hover:bg-[#ff7f50]"
-                            : "bg-[#ff7f50] hover:bg-[#ef4462]"
+                            ? "bg-[#d93550] hover:bg-[#fe4462]"
+                            : "bg-[#fe4462] hover:bg-[#d93550]"
                         }`}
                       />
                     </div>
@@ -92,12 +81,57 @@ const FeaturedProduct = () => {
                   <h3 className="text-[18px] font-bold text-[#1d1d1d] dark:text-white line-clamp-2">
                     {item.name}
                   </h3>
-                  <p className="text-[#ff7f50] text-[16px] font-semibold mt-3">INR {item.price}.00</p>
+                  <div className="mt-3 flex items-center justify-center flex-wrap gap-x-2 gap-y-1">
+                    <span className="text-[#fe4462] text-[18px] font-bold">₹{item.price}</span>
+                    {item.oldPrice && item.oldPrice > item.price && (
+                      <>
+                        <span className="text-gray-400 dark:text-gray-500 text-sm line-through">
+                          ₹{item.oldPrice}
+                        </span>
+                        <span className="text-[11px] font-semibold text-[#fe4462] bg-[#fe4462]/10 border border-[#fe4462]/20 px-2 py-0.5 rounded-full">
+                          {Math.round(((item.oldPrice - item.price) / item.oldPrice) * 100)}% OFF
+                        </span>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Navigation — dots centered between the arrows, all below the cards */}
+        <div className="flex items-center justify-center gap-4 mt-10">
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="w-14 h-14 bg-white dark:bg-white/5 text-gray-700 dark:text-white rounded-full flex items-center justify-center border border-gray-200 dark:border-white/10 shadow-sm hover:bg-[#fe4462] hover:text-white hover:border-[#fe4462] transition-all duration-300"
+            aria-label="Previous"
+          >
+            <FiChevronLeft size={26} />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {featuredProducts.map((item, i) => (
+              <button
+                key={item.id}
+                onClick={() => swiperRef.current?.slideToLoop(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={active === i ? "true" : undefined}
+                className={`h-2.5 rounded-full bg-[#fe4462] transition-all duration-300 ${
+                  active === i ? "w-6 opacity-100" : "w-2.5 opacity-30 hover:opacity-60"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            className="w-14 h-14 bg-white dark:bg-white/5 text-gray-700 dark:text-white rounded-full flex items-center justify-center border border-gray-200 dark:border-white/10 shadow-sm hover:bg-[#fe4462] hover:text-white hover:border-[#fe4462] transition-all duration-300"
+            aria-label="Next"
+          >
+            <FiChevronRight size={26} />
+          </button>
+        </div>
 
         {selectedProduct && (
           <ProductPreviewModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />

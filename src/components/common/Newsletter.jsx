@@ -37,44 +37,41 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="px-4 sm:px-6 py-16 bg-[#f4edee] dark:bg-[#0d0508]">
+    <section className="px-4 sm:px-6 py-16 sm:py-20 bg-[#f4edee] dark:bg-[#0d0508]">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl"
+        className="max-w-4xl mx-auto"
       >
-        {/* Gradient + glass backdrop */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#e57f90] via-[#f1aaaa] to-[#ff8d6b]" />
-        <div className="absolute -top-16 -right-10 w-64 h-64 rounded-full bg-white/15 blur-2xl" />
-        
+        {/* Clean, minimal card — a subtle brand top accent sets it apart from
+            the surrounding sections without being flashy. */}
+        <div className="relative overflow-hidden rounded-xl bg-white dark:bg-[#160c11] border border-gray-200 dark:border-white/10 shadow-sm px-6 sm:px-10 lg:px-14 py-10 sm:py-14 text-center">
+          <div className="absolute inset-x-0 top-0 h-1 bg-[#fe4462]" aria-hidden="true" />
 
-        <div className="relative z-10 px-6 sm:px-10 lg:px-16 py-12 sm:py-16 text-center text-white">
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md mb-5"
-          >
-            <FiMail size={26} />
-          </motion.span>
+          {/* Icon */}
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#fe4462]/10 text-[#fe4462] mb-5">
+            <FiMail size={22} />
+          </span>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Subscribe to Our Newsletter</h2>
-          <p className="mt-4 text-white/90 max-w-2xl mx-auto text-base sm:text-lg">
-            Get exclusive offers, new arrivals, and special discounts delivered directly to your inbox.
+          {/* Heading + description */}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+            Subscribe to Our Newsletter
+          </h2>
+          <p className="mt-3 text-gray-600 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
+            Get exclusive offers, new arrivals, and special discounts delivered
+            straight to your inbox.
           </p>
 
           {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            className="mt-8 max-w-xl mx-auto"
-          >
-            <div className="flex flex-col sm:flex-row gap-3 bg-white/15 backdrop-blur-xl p-2 rounded-2xl sm:rounded-full ring-1 ring-white/30">
+          <form onSubmit={handleSubmit} noValidate className="mt-8 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
-                <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70" size={18} />
+                <FiMail
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none"
+                  size={18}
+                />
                 <input
                   type="email"
                   value={email}
@@ -85,15 +82,13 @@ export default function Newsletter() {
                   placeholder="Enter your email address"
                   aria-label="Email address"
                   aria-invalid={Boolean(error)}
-                  className="w-full bg-white/90 focus:bg-white text-gray-800 placeholder-gray-400 rounded-xl sm:rounded-full pl-11 pr-4 py-3.5 outline-none transition"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 rounded-lg pl-11 pr-4 py-3.5 transition-shadow duration-200"
                 />
               </div>
               <motion.button
                 type="submit"
                 disabled={loading}
-                whileHover={{ scale: loading ? 1 : 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center justify-center gap-2 bg-[#0d0508] text-white font-semibold px-7 py-3.5 rounded-xl sm:rounded-full hover:bg-black transition disabled:opacity-70 disabled:cursor-not-allowed"
+                className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#fe4462] text-white font-semibold px-7 py-3.5 rounded-full shadow-sm hover:bg-[#fff] hover:border-[#fff] hover:text-[#fe4462] transition-all duration-300 cursor-pointer"
               >
                 {loading ? (
                   <>
@@ -107,8 +102,13 @@ export default function Newsletter() {
                 )}
               </motion.button>
             </div>
-            {error && <p className="text-white text-sm mt-3 font-medium">{error}</p>}
-            <p className="text-white/70 text-xs mt-4">
+
+            {error && (
+              <p role="alert" className="text-[#fe4462] text-sm mt-3 font-medium">
+                {error}
+              </p>
+            )}
+            <p className="text-gray-500 dark:text-gray-400 text-xs mt-4">
               No spam, ever. Unsubscribe anytime.
             </p>
           </form>
