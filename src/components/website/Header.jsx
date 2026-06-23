@@ -40,7 +40,9 @@ export default function Header() {
     removeFromCart,
     updateQty,
     wishlist,
+    toggleWishlist,
     cartAnimating,
+    cartIconRef,
     coupon,
     couponCode,
     applyCoupon,
@@ -174,22 +176,22 @@ export default function Header() {
               {darkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
             </motion.button>
 
-            {/* Wishlist */}
+            {/* Wishlist — solid red heart when items are saved (no count badge) */}
             <button
               onClick={() => setWishlistOpen(true)}
-              className="relative p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
+              className="p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300"
               aria-label="Wishlist"
             >
-              <FaRegHeart size={20} />
-              {wishlist.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-[#fe4462] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold leading-none">
-                  {wishlist.length}
-                </span>
+              {wishlist.length > 0 ? (
+                <FaHeart size={20} className="text-[#fe4462] transition-colors duration-300" />
+              ) : (
+                <FaRegHeart size={20} className="transition-colors duration-300" />
               )}
             </button>
 
             {/* Cart */}
             <button
+              ref={cartIconRef}
               onClick={() => setCartOpen(true)}
               className={`relative p-2.5 rounded-full hover:bg-[#fe4462]/10 transition text-gray-700 dark:text-gray-300 ${cartAnimating ? "animate-cart-bounce" : ""}`}
               aria-label="Cart"
@@ -462,7 +464,7 @@ export default function Header() {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <div className="flex items-center justify-between p-6 border-b dark:border-white/10">
-                <h2 className="text-xl font-bold dark:text-white">Wishlist ({wishlist.length})</h2>
+                <h2 className="text-xl font-bold dark:text-white">Wishlist</h2>
                 <button onClick={() => setWishlistOpen(false)} className="p-2.5 hover:text-[#fe4462] transition" aria-label="Close wishlist">
                   <FiX size={22} />
                 </button>
@@ -487,7 +489,13 @@ export default function Header() {
                         <p className="font-semibold text-sm truncate dark:text-white">{item.name}</p>
                         <p className="text-[#fe4462] text-sm font-bold">₹{item.price}</p>
                       </div>
-                      <FaHeart className="text-[#fe4462] flex-shrink-0" size={18} />
+                      <button
+                        onClick={() => toggleWishlist(item)}
+                        aria-label="Remove from wishlist"
+                        className="flex-shrink-0 grid place-items-center h-9 w-9 rounded-full hover:bg-[#fe4462]/10 transition-colors"
+                      >
+                        <FaHeart className="text-[#fe4462] transition-transform duration-200 hover:scale-110" size={18} />
+                      </button>
                     </motion.div>
                   ))
                 )}

@@ -1,11 +1,30 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useLocalStorage } from "../hooks/useHooks";
 import { COUPONS, computeTotals } from "../data/shop";
+import FlyToCart from "../components/common/FlyToCart";
 
 const AppContext = createContext(null);
 
 let toastId = 0;
+let flyId = 0;
 const MAX_RECENT = 8;
+
+// Resolve the product image element to fly from, given a click event (or element).
+// Looks for the nearest [data-fly-card] ancestor and uses its <img>.
+function getOriginImg(src) {
+  if (!src) return null;
+  const el = src.currentTarget || src.target || src;
+  if (el && typeof el.closest === "function") {
+    const card = el.closest("[data-fly-card]");
+    if (card) return card.querySelector("img");
+    if (el.tagName === "IMG") return el;
+  }
+  return null;
+}
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export function AppProvider({ children }) {
   const [darkMode, setDarkMode] = useLocalStorage("mm-dark-mode", false);
@@ -17,7 +36,10 @@ export function AppProvider({ children }) {
   const [user, setUser] = useLocalStorage("mm-user", null);
   const [cartAnimating, setCartAnimating] = useState(false);
   const [toasts, setToasts] = useState([]);
+  const [flyers, setFlyers] = useState([]);
   const animTimer = useRef(null);
+  // Attached to the header cart button so fly-to-cart knows where to land.
+  const cartIconRef = useRef(null);
 
   // Apply the dark class to <html> so Tailwind's dark: variants work app-wide.
   useEffect(() => {
@@ -49,7 +71,8 @@ export function AppProvider({ children }) {
     animTimer.current = setTimeout(() => setCartAnimating(false), 600);
   }, []);
 
-  const addToCart = useCallback(
+  // Commits the actual cart state update + toast (no animation).
+  const commitAddToCart = useCallback(
     (product, qty = 1) => {
       setCart((prev) => {
         const existing = prev.find((i) => i.id === product.id);
@@ -58,10 +81,42 @@ export function AppProvider({ children }) {
         }
         return [...prev, { ...product, qty }];
       });
-      triggerCartBounce();
       addToast(`${product.name} added to cart`, "success");
     },
-    [setCart, triggerCartBounce, addToast]
+    [setCart, addToast]
+  );
+
+  // Add to cart. Pass the click event (or source element) as `source` to play
+  // the fly-to-cart animation; the cart updates when the animation lands.
+  const addToCart = useCallback(
+    (product, qty = 1, source = null) => {
+      const cartEl = cartIconRef.current;
+      const originImg = getOriginImg(source);
+
+      if (cartEl && originImg && product?.image && !prefersReducedMotion()) {
+        const from = originImg.getBoundingClientRect();
+        const to = cartEl.getBoundingClientRect();
+        if (from.width && to.width) {
+          flyId += 1;
+          setFlyers((prev) => [...prev, { id: flyId, image: product.image, from, to, product, qty }]);
+          return; // commit happens in handleFlyerDone when it lands
+        }
+      }
+
+      commitAddToCart(product, qty);
+      triggerCartBounce();
+    },
+    [commitAddToCart, triggerCartBounce]
+  );
+
+  // Called when a flying image reaches the cart: commit + bounce + clean up.
+  const handleFlyerDone = useCallback(
+    (flyer) => {
+      commitAddToCart(flyer.product, flyer.qty);
+      triggerCartBounce();
+      setFlyers((prev) => prev.filter((f) => f.id !== flyer.id));
+    },
+    [commitAddToCart, triggerCartBounce]
   );
 
   const removeFromCart = useCallback(
@@ -205,6 +260,7 @@ export function AppProvider({ children }) {
     updateQty,
     clearCart,
     cartAnimating,
+    cartIconRef,
     wishlist,
     isWishlisted,
     toggleWishlist,
@@ -229,7 +285,12 @@ export function AppProvider({ children }) {
     logout,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+      <FlyToCart flyers={flyers} onDone={handleFlyerDone} />
+    </AppContext.Provider>
+  );
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

@@ -19,6 +19,7 @@ export default function ProductCard({ product, onQuickView }) {
   return (
     <motion.div
       layout
+      data-fly-card
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       className="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
@@ -85,7 +86,7 @@ export default function ProductCard({ product, onQuickView }) {
         </div>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={(e) => addToCart(product, 1, e)}
           className="mt-4 w-full flex items-center justify-center gap-2 bg-[#fe4462] hover:bg-[#d93550] text-white py-2.5 rounded-xl font-medium transition-colors"
         >
           <FiShoppingBag size={18} />

@@ -74,7 +74,7 @@ const TrendyCollection = () => {
         >
           {items.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full" data-fly-card>
                 <div className="group relative bg-[#d1aaaa8a] dark:bg-white/5 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-full">
                   <div className="h-80 flex items-center justify-center overflow-hidden">
                     <img
@@ -90,7 +90,7 @@ const TrendyCollection = () => {
                       <ActionButton
                         icon={FiShoppingBag}
                         label="Add to Cart"
-                        onClick={() => addToCart(item)}
+                        onClick={(e) => addToCart(item, 1, e)}
                         className="bg-[#fe4462] hover:bg-[#d93550] text-white"
                       />
                       <ActionButton
