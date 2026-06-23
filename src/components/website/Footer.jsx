@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
-  FaTwitter,
   FaInstagram,
   FaPhoneAlt,
 } from "react-icons/fa";
@@ -20,6 +19,7 @@ const company = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
   { label: "Shop", to: "/shop" },
+  { label: "Playlist", to: "/playlist" },
   { label: "Contact Us", to: "/contact" },
 ];
 

@@ -8,6 +8,7 @@ const About = lazy(() => import("../pages/website/About/About"));
 const Shop = lazy(() => import("../pages/website/Shop/Shop"));
 const Contact = lazy(() => import("../pages/website/Contact/Contact"));
 const Faq = lazy(() => import("../pages/website/Faq/Faq"));
+const Playlist = lazy(() => import("../pages/website/Playlist/Playlist"));
 const PrivacyPolicy = lazy(() => import("../pages/website/Privacy/PrivacyPolicy"));
 const TermsConditions = lazy(() => import("../pages/website/Terms/TermsConditions"));
 const Checkout = lazy(() => import("../pages/website/Checkout/Checkout"));
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "shop", element: <Shop /> },
       { path: "contact", element: <Contact /> },
       { path: "faq", element: <Faq /> },
+      { path: "playlist", element: <Playlist /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "terms", element: <TermsConditions /> },
       { path: "checkout", element: <Checkout /> },
