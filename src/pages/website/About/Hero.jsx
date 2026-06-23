@@ -10,12 +10,17 @@ const Hero3DModel = lazy(() => import("../Shop/Hero3DModel"));
 const HeroSection = () => {
   return (
     <section className="relative h-screen max-h-[1000px] overflow-hidden pt-30">
-      {/* Background */}
-      <img
-        src="/About/Hero/about-bg.png"
-        alt="About Hero Background"
+      {/* Background video (poster falls back to the image while it loads) */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/About/Hero/about-bg.png"
         className="absolute inset-0 w-full h-full object-cover scale-105"
-      />
+      >
+        <source src="/hero/hero-all.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/55"></div>
@@ -47,7 +52,7 @@ const HeroSection = () => {
               </Link>
 
               <Link to="/contact" className="px-6 py-3 bg-transparent text-[#fe4462] border border-[#fe4462] hover:bg-[#fe4462] hover:text-[#fff] rounded-full font-semibold transition cursor-pointer mt-8 inline-flex group items-center gap-1">
-                Learn More
+                Contact Us
                 <FiArrowRight className="group-hover:translate-x-1 duration-300" />
                 
               </Link>

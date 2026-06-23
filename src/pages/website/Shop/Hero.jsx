@@ -11,13 +11,18 @@ const Hero = () => {
   return (
     <section className="relative h-screen max-h-[1000px]  overflow-hidden pt-30 ">
  
-      {/* Background */}
- 
-      <img
-        src= "/Shop/Shopbg.png"
-        alt="Hero Background"
+      {/* Background video (poster falls back to the image while it loads) */}
+
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/Shop/Shopbg.png"
         className="absolute inset-0 w-full h-full object-cover scale-105"
-      />
+      >
+        <source src="/hero/hero-all.mp4" type="video/mp4" />
+      </video>
  
       {/* Dark Overlay */}
  

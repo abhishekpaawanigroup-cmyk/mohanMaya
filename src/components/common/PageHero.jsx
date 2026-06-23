@@ -29,10 +29,21 @@ export default function PageHero({
 
   return (
     <section
-      className="relative h-screen  max-h-[1000px] bg-cover bg-center md:bg-bottom"
-      style={{ backgroundImage: `url('${image}')` }}
+      className="relative h-screen max-h-[1000px] overflow-hidden"
       aria-label={title}
     >
+      {/* Background video (poster falls back to the page image while it loads) */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster={image}
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero/hero-all.mp4" type="video/mp4" />
+      </video>
+
       {/* Dark gradient overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/75" />
 

@@ -4,12 +4,21 @@ const UpcomingCollection = () => {
   return (
     <section
       className="relative min-h-[350px] sm:min-h-[450px] md:min-h-[500px] w-full bg-cover bg-center bg-no-repeat overflow-hidden"
-      style={{
-        backgroundImage: "url('/upcoming-image/up-bg.png')",
-        backgroundPosition: "bottom",
-        backgroundSize: "cover",
-      }}
+      // style={{
+      //   backgroundImage: "url('/upcoming-image/up-bg.png')",
+      //   backgroundPosition: "bottom",
+      //   backgroundSize: "cover",
+      // }}
     >
+      <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="absolute inset-0 w-full h-full object-cover"
+>
+  <source src="/hero/hero-all.mp4" type="video/mp4" />
+</video>
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
 
