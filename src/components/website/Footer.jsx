@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import {
   FaFacebookF,
   FaTwitter,
-  FaLinkedinIn,
   FaInstagram,
-  FaMapMarkerAlt,
   FaPhoneAlt,
 } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
+import { FaYoutube } from "react-icons/fa";
 
 const services = [
   { label: "Shop", to: "/shop" },
@@ -24,10 +24,9 @@ const company = [
 ];
 
 const socials = [
-  { Icon: FaFacebookF, label: "Facebook", href: "https://facebook.com/mohanmaya" },
-  { Icon: FaTwitter, label: "Twitter", href: "https://twitter.com/mohanmaya" },
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://linkedin.com/company/mohanmaya" },
-  { Icon: FaInstagram, label: "Instagram", href: "https://instagram.com/mohanmaya" },
+  { Icon: FaFacebookF, label: "Facebook", href: "https://www.facebook.com/share/18dgmfQ39U/" },
+  { Icon: FaYoutube , label: "YouTube", href: "https://www.youtube.com/results?search_query=mohanmaya" },
+  { Icon: FaInstagram, label: "Instagram", href: "https://instagram.com/mohanmaya_" },
 ];
 
 const LinkColumn = ({ title, links }) => (
@@ -93,11 +92,11 @@ export default function Footer() {
             <p className="text-gray-400 leading-8 mb-6">
               Ganga Enclave, Shobha Sadan,
               <br />
-              Roorke, Uttarakhand, India
+              Roorkee, Uttarakhand, India
             </p>
             <div className="flex gap-4 mb-6 items-center">
               <div className="w-10 h-10 rounded-full bg-[#fe4462] flex items-center justify-center shrink-0">
-                <FaMapMarkerAlt />
+                <MdEmail />
               </div>
               <div>
                 <h4 className="font-semibold">support@mohanmaya.in</h4>

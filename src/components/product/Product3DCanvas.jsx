@@ -144,6 +144,10 @@ function CanvasScene({ modelPath, controlsRef, fill }) {
         target={[0, 0, 0]}
         minDistance={14}
         maxDistance={70}
+        /* Free, continuous 360° horizontal rotation (no azimuth limits). */
+        /* Lock vertical rotation — keep the camera at eye level (horizontal only). */
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
       />
     </Canvas>
   );
